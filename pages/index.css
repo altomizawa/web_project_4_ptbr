@@ -39,7 +39,17 @@
 .profile__edit{
     width: 24px;
     height: 24px;
-    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.6rem; 
+    cursor: pointer;
+    transition: 150ms ease-in-out;
+   
+}
+
+.profile__edit:hover{
+    opacity:60%;
 }
 .adicionar__button{
     width: 150px;
@@ -47,7 +57,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    transition: 150ms ease-in-out;
+
 }
-.adicionar__link{
+.adicionar__button:hover{
+    opacity: 60%;
+}
+
+
+.adicionar__image{
     width: 20px;
 }
