@@ -11,11 +11,13 @@
     padding-block: 3rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .profile__info{
     display: flex;
-    column-gap: 2rem;;
+    column-gap: 2rem;
+    align-items: center;
 }
 
 .profile__picture{
@@ -53,7 +55,7 @@
 }
 .adicionar__button{
     width: 150px;
-    height:60px;
+    height:50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -69,3 +71,50 @@
 .adicionar__image{
     width: 20px;
 }
+
+/* --------------------CARDS SECTION------------------------ */
+
+.cards{
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1280px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+    row-gap: 2rem;;
+}
+
+.card{
+    background-color: white;
+    width: 30%;
+    overflow: hidden;
+    border-radius: 10px;
+    min-width: 300px;
+}
+
+.card__image{
+  height: 350px;
+}
+
+.card__description-wrapper{
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1rem;
+    margin: 1.5rem 0;
+    padding-inline: 1.5rem;
+    
+}
+
+.card__title{
+    width: 95%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+footer{
+    margin-block: 10rem;
+    border: none;
+}
+
