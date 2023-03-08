@@ -1,0 +1,7 @@
+.header{
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1280px;
+    border-bottom: 1px #545454 solid;
+    padding-bottom: 3rem;
+}

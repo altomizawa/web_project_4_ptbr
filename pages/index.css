@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;900&display=swap');
+@import url(../vendors/normalize.css);
+@import url(../blocks/root/root.css);
+@import url(../blocks/header/header.css);
+@import url(../blocks/logo/logo.css);
+
+.profile{
+    margin: 0 auto;
+    width: 90%;
+    max-width: 1280px;
+    padding-block: 3rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile__info{
+    display: flex;
+    column-gap: 2rem;;
+}
+
+.profile__picture{
+    width: 125px;
+    border-radius: 50%;
+}
+
+.profile__text-wrapper{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+
+}
+
+.profile__name-wrapper{
+    display: flex;
+    column-gap: 1rem;
+    align-items: flex-end;
+}
+
+.profile__edit{
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+}
+
+.adicionar__link{
+    heig
+    
+}
