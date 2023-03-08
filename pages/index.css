@@ -41,8 +41,13 @@
     height: 24px;
     object-fit: cover;
 }
-
+.adicionar__button{
+    width: 150px;
+    height:60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .adicionar__link{
-    heig
-    
+    width: 20px;
 }
