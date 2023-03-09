@@ -1,0 +1,14 @@
+.card{
+    background-color: white;
+    width: 30%;
+    overflow: hidden;
+    border-radius: 10px;
+    min-width: 320px;
+}
+
+@media screen and (max-width: 425px) {
+    .card{
+        width: 95%;
+    }
+    
+}
