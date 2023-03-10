@@ -27,13 +27,11 @@ let profileEditEl = document.querySelector(".profile__edit")
 //POPUP OUT FUNCTION
 closePopupEl.addEventListener("click", popupOut)
 function popupOut() {
-    popupEl.style.display="none";
-    console.log(popupEl)
+    popupEl.style.top="-140%"
 }
 
 //POPUP IN FUNCTION
 profileEditEl.addEventListener("click", popupIn)
 function popupIn() {
-    popupEl.style.display="flex";
-    console.log(popupEl)
+    popupEl.style.top="-20%"
 }

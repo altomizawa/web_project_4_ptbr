@@ -5,6 +5,11 @@
     right: -30px;
     top: -30px;
     color: grey;
+    cursor: pointer;
+}
+
+.popup__close-button:hover{
+    opacity: 60%
 }
 
 @media screen and (max-width: 768px) {

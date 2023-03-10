@@ -3,4 +3,9 @@
     text-align: center;
     border-radius: 2px;
     padding-block: 1rem;
+    cursor: pointer;
+}
+
+.popup__save-button:hover{
+    opacity: 80%;
 }
