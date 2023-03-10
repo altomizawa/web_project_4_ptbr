@@ -45,9 +45,16 @@ let updatedProfession = document.querySelector(".profile__title")
 
 //SAVE BUTTON FUNCTION
 popupSaveButtonEl.addEventListener("click", popupSave)
-function popupSave(){
-    updatedName.textContent=popupNameInput[0].value
-    updatedProfession.textContent = popupNameInput[1].value
-    popupOut();
 
+//FUNCTION SHOULD ONLY WORK IF FIELD IS NOT EMPTY
+function popupSave(){
+    if (!(popupNameInput[0].value=="")) {updateNameWhenNotEmpty()}
+    function updateNameWhenNotEmpty(){
+        updatedName.textContent = popupNameInput[0].value
+    }
+    if (!(popupNameInput[1].value=="")) {updateProfessionWhenNotEmpty()}
+    function updateProfessionWhenNotEmpty(){
+        updatedProfession.textContent = popupNameInput[1].value
+    }
+    popupOut();
 }
