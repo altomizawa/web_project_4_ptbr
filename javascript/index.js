@@ -16,3 +16,24 @@ dislike[i].addEventListener("click", function(){
     dislike[i].style.display="none";
     like[i].style.display="block"
 })
+
+// ---------------POPUP OPEN/CLOSE FUNCTION------------------
+//NAME OBJECTS
+let closePopupEl = document.querySelector(".popup__close-button")
+let popupEl = document.querySelector(".popup")
+let profileEditEl = document.querySelector(".profile__edit")
+
+
+//POPUP OUT FUNCTION
+closePopupEl.addEventListener("click", popupOut)
+function popupOut() {
+    popupEl.style.display="none";
+    console.log(popupEl)
+}
+
+//POPUP IN FUNCTION
+profileEditEl.addEventListener("click", popupIn)
+function popupIn() {
+    popupEl.style.display="flex";
+    console.log(popupEl)
+}

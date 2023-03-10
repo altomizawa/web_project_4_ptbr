@@ -1,0 +1,14 @@
+.popup__input{
+    border: none;
+    border-bottom: 1px solid black;
+    width: 100%;
+
+}
+.popup__input::placeholder{
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    text-align: left;
+    color: black;
+}

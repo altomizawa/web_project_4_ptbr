@@ -28,3 +28,10 @@
 /* --------------------FOOTER SECTION------------------------ */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/copyrights/copyrights.css);
+
+/* --------------------POPUP SECTION------------------------ */
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/__card/popup__card.css);
+@import url(../blocks/popup/__input/popup__input.css);
+@import url(../blocks/popup/__save-button/popup__save-button.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
