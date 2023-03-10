@@ -35,3 +35,11 @@ profileEditEl.addEventListener("click", popupIn)
 function popupIn() {
     popupEl.style.top="-20%"
 }
+
+// ---------------POPUP SAVE BUTTTON FUNCTION------------------
+let popupSaveButtonEl = document.querySelector(".popup__save-button");
+popupSaveButtonEl.addEventListener("click", popupSave)
+function popupSave(){
+    popupOut();
+    console.log(popupSaveButtonEl);
+}
