@@ -37,9 +37,17 @@ function popupIn() {
 }
 
 // ---------------POPUP SAVE BUTTTON FUNCTION------------------
+//NAME OBJECTS
 let popupSaveButtonEl = document.querySelector(".popup__save-button");
+let popupNameInput = Array.from(document.querySelectorAll(".popup__input"))
+let updatedName = document.querySelector(".profile__name")
+let updatedProfession = document.querySelector(".profile__title")
+
+//SAVE BUTTON FUNCTION
 popupSaveButtonEl.addEventListener("click", popupSave)
 function popupSave(){
+    updatedName.textContent=popupNameInput[0].value
+    updatedProfession.textContent = popupNameInput[1].value
     popupOut();
-    console.log(popupSaveButtonEl);
+
 }
