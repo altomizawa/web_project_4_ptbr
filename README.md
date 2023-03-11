@@ -1,16 +1,23 @@
-# Projeto 4:  EUA Afora
+# Projeto 4: EUA Afora
+### Visão geral    
+* Introdução  
+* Status do projeto
+* Tecnologias utilizadas
+* Autor 
+  
+**Introdução**    
+  
+Este é um projeto que trabalhamos alguns aspectos iniciais da linguagem Javascript.
+Utilizando de condições IF e eventListeners, entre outras ferramentas, conseguimos adicionar funcionalidade aos botões e tornar o website mais real.
+  
+**Status do projeto**  
+Este é a apresentacão final do Sprint 4 do curso de front-end developer da Practicum.
 
-### Visão geral
+**Tecnologias utilizadas**
+HTML avançado, CSS avançado e Javascript básico
 
-* Figma
-* Imagens
+**Autor**
+Al Tomizawa
 
-**Figma**
-
-* [Link para o projeto no Figma](https://www.figma.com/file/XfB6BSINvliub43JgKza1e/WEB.-Sprint-4.-Around-The-U.S.-desktop-%2B-mobile-pt)
-
-**Imagens**
-
-A maneira como você fará isso no trabalho é exportando imagens diretamente do Figma — recomendamos fazer isso para praticar mais. Não se esqueça de otimizá-los [aqui](https://tinypng.com/), para que seu projeto carregue mais rápido.
-
-Divirta-se com JavaScript!
+**Link do projeto**
+https://altomizawa.github.io/web_project_4_ptbr/
