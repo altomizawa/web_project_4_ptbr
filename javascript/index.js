@@ -34,8 +34,8 @@ function popupOut() {
 profileEditEl.addEventListener("click", popupIn)
 function popupIn() {
     popupEl.style.top="-20%"
-    popupNameInput[0].value = ""
-    popupNameInput[1].value = ""
+    // popupNameInput[0].value = ""
+    // popupNameInput[1].value = ""
 }
 
 // ---------------POPUP SAVE BUTTTON FUNCTION------------------
