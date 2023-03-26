@@ -174,3 +174,12 @@ cardDeleteButtonEl.forEach(function (item,index){
 })
 
 //-----------------IMAGE POPUP---------------------------
+//NAME OBJECTS
+const cardImageEl = document.querySelectorAll(".card__image")
+
+cardImageEl.forEach(function(item){
+  item.addEventListener("click", () =>{
+    item.style.opacity="0.4";
+  })
+})
+
