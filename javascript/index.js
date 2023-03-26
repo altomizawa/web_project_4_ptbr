@@ -1,7 +1,7 @@
 //------------------------CREATE INITIAL CARDS IN JS---------------------
 
 //CREATE INITIAL CARDS OBJECT
-const initialCards = [
+let initialCards = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg"
@@ -108,6 +108,20 @@ popupCriarButtonEl.addEventListener("click", () =>{
 }
 })
 
+//-----------------DELETE CARD BUTTON---------------------------
+//NAME OBJECTS
+const cardDeleteButtonEl = document.querySelectorAll(".card__delete-button")
+const cardEl = document.querySelectorAll(".card")
+
+for (let i = 0 ; i<cardDeleteButtonEl.length; i++){
+  cardDeleteButtonEl[i].addEventListener("click", () => {
+    cardEl[i].remove()
+    initialCards.splice(i,1)
+    console.log(initialCards)
+
+  })
+}
+// cardDeleteButtonEl.forEach(item => item.addEventListener("click", () => {item.style.width = "50px"}))
 
 
 //CREATE NEW CARD FUNCTION
@@ -137,3 +151,6 @@ dislike[i].addEventListener("click", function(){
     dislike[i].style.display="none";
     like[i].style.display="block"
 })
+
+
+//---------------------TRASH CAN ICON-------------------
