@@ -31,7 +31,7 @@ const initialCards = [
 const cardsParent = document.querySelector(".cards")
 const cardTemplate = document.querySelector(".card-template").content
 
-//FOR EACH
+//CREATE ALL CARDS
 initialCards.forEach((item)=>{
   newCard = cardTemplate.cloneNode(true)
   newCard.querySelector(".card__title").textContent = item.name
@@ -39,6 +39,85 @@ initialCards.forEach((item)=>{
   cardsParent.append(newCard)
 })
 
+// ---------------POPUP PROFILE - OPEN/CLOSE FUNCTION------------------
+//NAME OBJECTS
+let closePopupEl = document.querySelectorAll(".popup__close-button")
+let popupEl = document.querySelectorAll(".popup")
+let profileEditEl = document.querySelector(".profile__edit")
+let imageEditEl = document.querySelector(".adicionar-button")
+
+
+//POPUP OUT FUNCTION - PROFILE
+closePopupEl[0].addEventListener("click", function(){
+  popupEl[0].style.top="-140%"
+})
+
+//POPUP IN FUNCTION - PROFILE
+profileEditEl.addEventListener("click", function() {
+  popupEl[0].style.top="-20%"
+})
+
+//POPUP OUT FUNCTION - CARD
+closePopupEl[1].addEventListener("click", function(){
+  popupEl[1].style.top="-140%"
+})
+
+//POPUP IN FUNCTION - CARD
+imageEditEl.addEventListener("click", function(){
+  popupEl[1].style.top = "-20%"
+})
+
+
+// ---------------POPUP SAVE BUTTTON FUNCTION------------------
+//NAME OBJECTS
+let popupSaveButtonEl = document.querySelector(".popup__save-button");
+let popupNameInput = document.querySelectorAll(".popup__input_profile")
+let updatedName = document.querySelector(".profile__name")
+let updatedProfession = document.querySelector(".profile__title")
+
+//SAVE BUTTON FUNCTION
+popupSaveButtonEl.addEventListener("click", popupSave)
+
+//FUNCTION SHOULD ONLY WORK IF FIELD IS NOT EMPTY
+function popupSave(){
+    if (!(popupNameInput[0].value=="")) {updateNameWhenNotEmpty()}
+    function updateNameWhenNotEmpty(){
+        updatedName.textContent = popupNameInput[0].value
+    }
+    if (!(popupNameInput[1].value=="")) {updateProfessionWhenNotEmpty()}
+    function updateProfessionWhenNotEmpty(){
+        updatedProfession.textContent = popupNameInput[1].value
+    }
+    popupEl[0].style.top="-140%";
+}
+
+// ---------------POPUP CRIAR BUTTTON FUNCTION------------------
+//NAME OBJECTS
+let popupCriarButtonEl = document.querySelector(".popup__criar-button")
+let popupCriarInput = document.querySelectorAll(".popup__input_card")
+
+//CREATE NEW PHOTO CARD IF NOT INPUT NOT EMPTY
+popupCriarButtonEl.addEventListener("click", () =>{
+  if(!(popupCriarInput[0].value=="" || popupCriarInput[1].value=="")){
+  const cardAddedObj = {
+    name: `${popupCriarInput[0].value}`,
+    link: `${popupCriarInput[1].value}`
+  }
+  popupEl[1].style.top="-140%";
+  addNewCard(cardAddedObj)
+}
+})
+
+
+
+//CREATE NEW CARD FUNCTION
+function addNewCard(cardAddedObj) {
+initialCards.push(cardAddedObj)
+cardAdded = cardTemplate.cloneNode(true)
+cardAdded.querySelector(".card__title").textContent = cardAddedObj.name
+cardAdded.querySelector(".card__image").src = cardAddedObj.link
+cardsParent.prepend(cardAdded)
+}
 
 // ---------------LIKE BUTTON FUNCTION------------------
 //NAME OBJECTS (HEARTS)
@@ -58,49 +137,3 @@ dislike[i].addEventListener("click", function(){
     dislike[i].style.display="none";
     like[i].style.display="block"
 })
-
-// ---------------POPUP PROFILE - OPEN/CLOSE FUNCTION------------------
-//NAME OBJECTS
-let closePopupEl = document.querySelector(".popup__close-button")
-let popupEl = document.querySelector(".popup")
-let profileEditEl = document.querySelector(".profile__edit")
-
-
-//POPUP OUT FUNCTION
-closePopupEl.addEventListener("click", popupOut)
-function popupOut() {
-    popupEl.style.top="-140%"
-}
-
-//POPUP IN FUNCTION
-profileEditEl.addEventListener("click", popupIn)
-function popupIn() {
-    popupEl.style.top="-20%"
-    // popupNameInput[0].value = ""
-    // popupNameInput[1].value = ""
-}
-
-
-// ---------------POPUP SAVE BUTTTON FUNCTION------------------
-//NAME OBJECTS
-let popupSaveButtonEl = document.querySelector(".popup__save-button");
-let popupNameInput = Array.from(document.querySelectorAll(".popup__input"))
-let updatedName = document.querySelector(".profile__name")
-let updatedProfession = document.querySelector(".profile__title")
-
-//SAVE BUTTON FUNCTION
-popupSaveButtonEl.addEventListener("click", popupSave)
-
-//FUNCTION SHOULD ONLY WORK IF FIELD IS NOT EMPTY
-function popupSave(){
-    if (!(popupNameInput[0].value=="")) {updateNameWhenNotEmpty()}
-    function updateNameWhenNotEmpty(){
-        updatedName.textContent = popupNameInput[0].value
-    }
-    if (!(popupNameInput[1].value=="")) {updateProfessionWhenNotEmpty()}
-    function updateProfessionWhenNotEmpty(){
-        updatedProfession.textContent = popupNameInput[1].value
-    }
-    popupOut();
-}
-
