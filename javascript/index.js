@@ -64,6 +64,8 @@ profileEditEl.addEventListener("click", function() {
 //POPUP OUT FUNCTION - CARD
 closePopupEl[1].addEventListener("click", function(){
   popupEl[1].style.top="-140%"
+  popupCriarInput[0].value=""
+  popupCriarInput[1].value=""
 })
 
 //POPUP IN FUNCTION - CARD
