@@ -37,7 +37,17 @@
             <button class="adicionar-button"><img src="./images/Plus-sign.svg" alt="" class="adicionar-button__image"></button>
         </div>
         <ul class="cards">
-            <li class="card">
+            <template class="card-template">
+                <li class="card">
+                    <img src="" alt="imagem do vale de Yosemite" class="card__image">
+                    <div class="card__description-wrapper">
+                        <h4 class="card__title"></h4>
+                        <img src="./images/heart.svg" alt="imagem de um coração vazado" class="like-button like-button_inactive" id="like_off">
+                        <img src="./images/heart_active.svg" alt="imagem de um coração vazado" class="like-button like-button_active" id="like_on">
+                    </div>
+                </li>
+            </template>
+            <!-- <li class="card">
                 <img src="./images/kirill-pershin-1088404-unsplashYosemite.jpg" alt="imagem do vale de Yosemite" class="card__image">
                 <div class="card__description-wrapper">
                     <h4 class="card__title">Vale de Yosemite</h4>
@@ -84,7 +94,7 @@
                     <img src="./images/heart.svg" alt="imagem de um coração vazado" class="like-button like-button_inactive">
                     <img src="./images/heart_active.svg" alt="imagem de um coração vazado" class="like-button like-button_active">
                 </div>
-            </li>     
+            </li>      -->
         </ul>
     </main>
     <footer class="footer">

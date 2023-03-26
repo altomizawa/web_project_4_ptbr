@@ -1,3 +1,45 @@
+//------------------------CREATE INITIAL CARDS IN JS---------------------
+
+//CREATE INITIAL CARDS OBJECT
+const initialCards = [
+  {
+    name: "Vale de Yosemite",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg"
+  },
+  {
+    name: "Lago Louise",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg"
+  },
+  {
+    name: "Montanhas Carecas",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg"
+  },
+  {
+    name: "Latemar",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg"
+  },
+  {
+    name: "Parque Nacional da Vanoise ",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg"
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg"
+  }
+]; 
+
+const cardsParent = document.querySelector(".cards")
+const cardTemplate = document.querySelector(".card-template").content
+
+//FOR EACH
+initialCards.forEach((item)=>{
+  newCard = cardTemplate.cloneNode(true)
+  newCard.querySelector(".card__title").textContent = item.name
+  newCard.querySelector(".card__image").src = item.link
+  cardsParent.append(newCard)
+})
+
+
 // ---------------LIKE BUTTON FUNCTION------------------
 //NAME OBJECTS (HEARTS)
 let like = Array.from(document.querySelectorAll(".like-button_inactive"));
@@ -60,3 +102,4 @@ function popupSave(){
     }
     popupOut();
 }
+
