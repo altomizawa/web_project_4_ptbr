@@ -31,11 +31,14 @@ let initialCards = [
 const cardsParent = document.querySelector(".cards")
 const cardTemplate = document.querySelector(".card-template").content
 
+
 //CREATE ALL CARDS
-initialCards.forEach((item)=>{
+initialCards.forEach((item, index)=>{
   newCard = cardTemplate.cloneNode(true)
   newCard.querySelector(".card__title").textContent = item.name
   newCard.querySelector(".card__image").src = item.link
+  newCard.querySelector(".card__popup-wrapper>p").textContent = item.name
+  newCard.querySelector(".card__popup-wrapper>.card__image-big").src = item.link
   cardsParent.append(newCard)
 })
 
@@ -176,10 +179,21 @@ cardDeleteButtonEl.forEach(function (item,index){
 //-----------------IMAGE POPUP---------------------------
 //NAME OBJECTS
 const cardImageEl = document.querySelectorAll(".card__image")
+const cardPopupEl = document.querySelectorAll(".card__image-popup")
+const cardPopupCloseBtnEl = document.querySelectorAll(".card__close-button")
 
-cardImageEl.forEach(function(item){
+
+cardImageEl.forEach(function(item, index){
   item.addEventListener("click", () =>{
-    item.style.opacity="0.4";
+    cardPopupEl[index].classList.add("card__image-popup_active")
   })
 })
+
+cardPopupCloseBtnEl.forEach(function(item, index) {
+  item.addEventListener("click", function() {
+    cardPopupEl[index].classList.remove("card__image-popup_active")
+  })
+
+})
+
 

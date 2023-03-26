@@ -30,6 +30,7 @@
 @import url(../blocks/card/__image-popup/card__image-popup.css);
 @import url(../blocks/card/__close-button/card__close-button.css);
 @import url(../blocks/card/__popup-wrapper/card__popup-wrapper.css);
+@import url(../blocks/card/__image-popup/card__image-popup_active.css);
 
 /* --------------------FOOTER SECTION------------------------ */
 @import url(../blocks/footer/footer.css);
