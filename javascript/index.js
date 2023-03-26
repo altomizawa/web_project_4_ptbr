@@ -59,7 +59,7 @@ dislike[i].addEventListener("click", function(){
     like[i].style.display="block"
 })
 
-// ---------------POPUP OPEN/CLOSE FUNCTION------------------
+// ---------------POPUP PROFILE - OPEN/CLOSE FUNCTION------------------
 //NAME OBJECTS
 let closePopupEl = document.querySelector(".popup__close-button")
 let popupEl = document.querySelector(".popup")
@@ -79,6 +79,7 @@ function popupIn() {
     // popupNameInput[0].value = ""
     // popupNameInput[1].value = ""
 }
+
 
 // ---------------POPUP SAVE BUTTTON FUNCTION------------------
 //NAME OBJECTS
