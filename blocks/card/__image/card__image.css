@@ -4,4 +4,5 @@
     min-height: 320px;
     cursor: pointer;
     transition: 200ms ease-in-out;
+    object-fit: cover;
   }

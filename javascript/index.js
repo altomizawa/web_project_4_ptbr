@@ -109,6 +109,8 @@ popupCriarButtonEl.addEventListener("click", () =>{
   }
   popupEl[1].style.top="-140%";
   addNewCard(cardAddedObj)
+  popupCriarInput[0].value=""
+  popupCriarInput[1].value=""
 }
 })
 
