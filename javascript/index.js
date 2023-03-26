@@ -39,6 +39,7 @@ initialCards.forEach((item)=>{
   cardsParent.append(newCard)
 })
 
+
 // ---------------POPUP PROFILE - OPEN/CLOSE FUNCTION------------------
 //NAME OBJECTS
 let closePopupEl = document.querySelectorAll(".popup__close-button")
@@ -108,25 +109,9 @@ popupCriarButtonEl.addEventListener("click", () =>{
 }
 })
 
-//-----------------DELETE CARD BUTTON---------------------------
-//NAME OBJECTS
-const cardDeleteButtonEl = document.querySelectorAll(".card__delete-button")
-const cardEl = document.querySelectorAll(".card")
-
-for (let i = 0 ; i<cardDeleteButtonEl.length; i++){
-  cardDeleteButtonEl[i].addEventListener("click", () => {
-    cardEl[i].remove()
-    initialCards.splice(i,1)
-    console.log(initialCards)
-
-  })
-}
-// cardDeleteButtonEl.forEach(item => item.addEventListener("click", () => {item.style.width = "50px"}))
-
-
 //CREATE NEW CARD FUNCTION
 function addNewCard(cardAddedObj) {
-initialCards.push(cardAddedObj)
+initialCards.unshift(cardAddedObj)
 cardAdded = cardTemplate.cloneNode(true)
 cardAdded.querySelector(".card__title").textContent = cardAddedObj.name
 cardAdded.querySelector(".card__image").src = cardAddedObj.link
@@ -139,11 +124,23 @@ let like = Array.from(document.querySelectorAll(".like-button_inactive"));
 let dislike = Array.from(document.querySelectorAll(".like-button_active"));
 
 //LIKE FUNCTION
-for (let i = 0; i < like.length; i++)
-like[i].addEventListener("click", function(){
-    like[i].style.display="none";
-    dislike[i].style.display="block"
-})
+like.forEach(item => item.addEventListener("click", function() {
+       item.style.display="none";
+       item.nextElementSibling.style.display="block"
+   }
+))
+
+dislike.forEach(item => item.addEventListener("click", function() {
+  item.style.display="block";
+       item.previousElementSibling.style.display="none"
+
+}
+))
+// for (let i = 0; i < like.length; i++)
+// like[i].addEventListener("click", function(){
+//     like[i].style.display="none";
+//     dislike[i].style.display="block"
+// })
 
 //DISLIKE FUNCTION
 for (let i = 0; i < like.length; i++)
@@ -153,4 +150,27 @@ dislike[i].addEventListener("click", function(){
 })
 
 
-//---------------------TRASH CAN ICON-------------------
+//-----------------DELETE CARD BUTTON---------------------------
+//NAME OBJECTS
+const cardDeleteButtonEl = document.querySelectorAll(".card__delete-button")
+const cardEl = document.querySelectorAll(".card")
+
+// cardDeleteButtonEl.forEach((item)=> item.addEventListener("click", console.log("teste")))
+
+// for (let i = 0 ; i<initialCards.length; i++){
+//   cardDeleteButtonEl[i].addEventListener("click", () => {
+//     cardDeleteButtonEl[i].parentElement.remove()
+//     //cardEl[i].remove()
+//     console.log(initialCards.splice(i,1))
+//     console.log(initialCards.length)
+//     console.log(i)
+//   })
+// }
+cardDeleteButtonEl.forEach(function (item,index){
+  item.addEventListener("click", ()=> {
+    item.parentElement.remove()
+    initialCards.splice(index, 1)
+  })
+})
+
+//-----------------IMAGE POPUP---------------------------
