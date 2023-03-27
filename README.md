@@ -8,7 +8,7 @@
 **Introdução**    
   
 Este é um projeto que trabalhamos alguns aspectos iniciais da linguagem Javascript.
-Utilizando de condições IF e eventListeners, entre outras ferramentas, conseguimos adicionar funcionalidade aos botões e tornar o website mais real.
+Utilizando de condições IF e eventListeners, entre outras ferramentas, conseguimos adicionar funcionalidade aos botões e tornar o website mais real.<br>
 ATUALIZAÇÃO (27/03/2023):
 Foram adicionadas funcionalidades de inserir um novo cartão através do formulário, apagar o cartão, clicar no botão like e, finalmente, o usuário pode clicar na imagem para vê-la em formato maior.
   
