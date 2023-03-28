@@ -1,123 +1,141 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Document</title>
-</head>
-<body>
-    <header class = "header">
-    <img src="./images/Around_the_US.svg" alt="logotipo de Around the US" class="logo">
+  </head>
+  <body>
+    <header class="header">
+      <img
+        src="./images/Around_the_US.svg"
+        alt="logotipo de Around the US"
+        class="logo"
+      />
     </header>
 
     <main>
-        <div class="profile">
-            <div class="popup">
-                <div class="popup__card">
-                     <img src="./images/Close_Icon.svg" alt="ícone X de fechar a janela" class="popup__close-button">
-                    <h4 class="popup__title">Editar perfil</h4>
-                    <input type="text" class="popup__input popup__input_profile" placeholder="Jacques Cousteau">
-                    <input type="text" class="popup__input popup__input_profile" placeholder="Explorador">
-                    <button class="popup__save-button">Salvar</button>
-                </div>
-            </div>
-            <div class="profile__info">
-                <img src="./images/imageprofile-picture.jpg" alt="imagem do Jacques Cousteau" class="profile__picture">
-                <div class="profile__text-wrapper">
-                    <div class="profile__name-wrapper">
-                        <h1 class="profile__name">Jacques Cousteau</h1>
-                        <button class="profile__edit"><img src="./images/Pencil.svg" alt="ilustração de um lápis"></button>
-                    </div>
-                    <h2 class="profile__title">Explorador</h2>
-                </div>
-                
-            </div>
-            <button class="adicionar-button"><img src="./images/Plus-sign.svg" alt="" class="adicionar-button__image"></button>
+      <div class="profile">
+        <div class="popup">
+          <div class="popup__card">
+            <img
+              src="./images/Close_Icon.svg"
+              alt="ícone X de fechar a janela"
+              class="popup__close-button"
+            />
+            <h4 class="popup__title">Editar perfil</h4>
+            <input
+              type="text"
+              class="popup__input popup__input_profile"
+              placeholder="Jacques Cousteau"
+            />
+            <input
+              type="text"
+              class="popup__input popup__input_profile"
+              placeholder="Explorador"
+            />
+            <button class="popup__save-button">Salvar</button>
+          </div>
         </div>
-        <ul class="cards">
-            <div class="popup">
-                <div class="popup__card">
-                     <img src="./images/Close_Icon.svg" alt="ícone X de fechar a janela" class="popup__close-button">
-                    <h4 class="popup__title">Novo local</h4>
-                    <input type="text" class="popup__input popup__input_card" placeholder="Título">
-                    <input type="text" class="popup__input popup__input_card" placeholder="Link da imagem">
-                    <button class="popup__criar-button">Criar</button>
-                </div>
+        <div class="profile__info">
+          <img
+            src="./images/imageprofile-picture.jpg"
+            alt="imagem do Jacques Cousteau"
+            class="profile__picture"
+          />
+          <div class="profile__text-wrapper">
+            <div class="profile__name-wrapper">
+              <h1 class="profile__name">Jacques Cousteau</h1>
+              <button class="profile__edit">
+                <img src="./images/Pencil.svg" alt="ilustração de um lápis" />
+              </button>
             </div>
-            <template class="card-template">
-                <div class="card__image-popup">
-                    <div class="card__popup-wrapper">
-                        <img src="./images/Close_Icon.svg" alt="ícone X de fechar a janela" class="card__close-button">
-                        <img src="https://images.unsplash.com/photo-1538370965046-79c0d6907d47?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80" class="card__image-big">
-                        <p></p>
-                    </div>                    
-                </div>
-                <li class="card">                    
-                    <button class="card__delete-button"><img src="./images/trashCan.svg" alt="ícone de lata de lixo" class="card__delete-icon card__delete-icon_active">
-                        <img src="./images/trashCan_grey.svg" alt="ícone de lata de lixo" class="card__delete-icon card__delete-icon_inactive"></button>
-                    <img src=" " alt="imagem do vale de Yosemite" class="card__image">
-                    <div class="card__description-wrapper">
-                        <h4 class="card__title"></h4>
-                        <img src="./images/heart.svg" alt="imagem de um coração vazado" class="like-button like-button_inactive" id="like_off">
-                        <img src="./images/heart_active.svg" alt="imagem de um coração vazado" class="like-button like-button_active" id="like_on">
-                    </div>
-                </li>
-            </template>
-            <!-- <li class="card">
-                <img src="./images/kirill-pershin-1088404-unsplashYosemite.jpg" alt="imagem do vale de Yosemite" class="card__image">
-                <div class="card__description-wrapper">
-                    <h4 class="card__title">Vale de Yosemite</h4>
-                    <img src="./images/heart.svg" alt="imagem de um coração vazado" class="like-button like-button_inactive" id="like_off">
-                    <img src="./images/heart_active.svg" alt="imagem de um coração vazado" class="like-button like-button_active" id="like_on">
-                </div>
-            </li>
-            <li class="card">
-                <img src="./images/kirill-pershin-1404681-unsplashLouise.jpg" alt="imagem do Lago Louise" class="card__image">
-                <div class="card__description-wrapper">
-                    <h4 class="card__title">Lago Louise</h4>
-                    <img src="./images/heart.svg" alt="imagem de um coração vazado" class="like-button like-button_inactive">
-                    <img src="./images/heart_active.svg" alt="imagem de um coração vazado" class="like-button like-button_active">
-                </div>
-            </li>
-            <li class="card">
-                <img src="./images/kirill-pershin-1556355-unsplashmountains.jpg" alt="imagem das Montanhas Caretas " class="card__image">
-                <div class="card__description-wrapper">
-                    <h4 class="card__title">Montanhas Carentes do Oeste</h4>
-                    <img src="./images/heart.svg" alt="imagem de um coração vazado" class="like-button like-button_inactive">
-                    <img src="./images/heart_active.svg" alt="imagem de um coração vazado" class="like-button like-button_active">
-                </div>
-            </li>
-            <li class="card">
-                <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="imagem de Latamar" class="card__image">
-                <div class="card__description-wrapper">
-                    <h4 class="card__title">Latemar</h4>
-                    <img src="./images/heart.svg" alt="imagem de um coração vazado" class="like-button like-button_inactive">
-                    <img src="./images/heart_active.svg" alt="imagem de um coração vazado" class="like-button like-button_active">
-                </div>
-            </li>
-            <li class="card">
-                <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="imagem do Vanoise National Park" class="card__image">
-                <div class="card__description-wrapper">
-                    <h4 class="card__title">Vanoise National Park</h4>
-                    <img src="./images/heart.svg" alt="imagem de um coração vazado" class="like-button like-button_inactive">
-                    <img src="./images/heart_active.svg" alt="imagem de um coração vazado" class="like-button like-button_active">
-                </div>
-            </li>
-            <li class="card">
-                <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="imagem do Lago di Braies" class="card__image">
-                <div class="card__description-wrapper">
-                    <h4 class="card__title">Lago di Braies</h4>
-                    <img src="./images/heart.svg" alt="imagem de um coração vazado" class="like-button like-button_inactive">
-                    <img src="./images/heart_active.svg" alt="imagem de um coração vazado" class="like-button like-button_active">
-                </div>
-            </li>      -->
-        </ul>
+            <h2 class="profile__title">Explorador</h2>
+          </div>
+        </div>
+        <button class="adicionar-button">
+          <img
+            src="./images/Plus-sign.svg"
+            alt=""
+            class="adicionar-button__image"
+          />
+        </button>
+      </div>
+      <ul class="cards">
+        <div class="popup">
+          <div class="popup__card">
+            <img
+              src="./images/Close_Icon.svg"
+              alt="ícone X de fechar a janela"
+              class="popup__close-button"
+            />
+            <h4 class="popup__title">Novo local</h4>
+            <input
+              type="text"
+              class="popup__input popup__input_card"
+              placeholder="Título"
+            />
+            <input
+              type="text"
+              class="popup__input popup__input_card"
+              placeholder="Link da imagem"
+            />
+            <button class="popup__criar-button">Criar</button>
+          </div>
+        </div>
+        <template class="card-template">
+          <div class="card__image-popup">
+            <div class="card__popup-wrapper">
+              <img
+                src="./images/Close_Icon.svg"
+                alt="ícone X de fechar a janela"
+                class="card__close-button"
+              />
+              <img
+                src="https://images.unsplash.com/photo-1538370965046-79c0d6907d47?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80"
+                class="card__image-big"
+              />
+              <p></p>
+            </div>
+          </div>
+          <li class="card">
+            <button class="card__delete-button">
+              <img
+                src="./images/trashCan.svg"
+                alt="ícone de lata de lixo"
+                class="card__delete-icon card__delete-icon_active"
+              />
+              <img
+                src="./images/trashCan_grey.svg"
+                alt="ícone de lata de lixo"
+                class="card__delete-icon card__delete-icon_inactive"
+              />
+            </button>
+            <img src=" " alt="imagem do vale de Yosemite" class="card__image" />
+            <div class="card__description-wrapper">
+              <h4 class="card__title"></h4>
+              <img
+                src="./images/heart.svg"
+                alt="imagem de um coração vazado"
+                class="like-button like-button_inactive"
+                id="like_off"
+              />
+              <img
+                src="./images/heart_active.svg"
+                alt="imagem de um coração vazado"
+                class="like-button like-button_active like-button_hidden"
+                id="like_on"
+              />
+            </div>
+          </li>
+        </template>
+      </ul>
     </main>
     <footer class="footer">
-        <p class="copyrights">© 2021 Around The U.S.</p>
+      <p class="copyrights">© 2021 Around The U.S.</p>
     </footer>
     <script src="./javascript/index.js"></script>
-</body>
+  </body>
 </html>

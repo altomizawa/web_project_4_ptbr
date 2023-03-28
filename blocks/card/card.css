@@ -1,18 +1,16 @@
-.card{
-    background-color: white;
-    width: 30%;
-    overflow: hidden;
-    border-radius: 10px;
-    min-width: 320px;
-    max-height: 400px;
-    position: relative;
+.card {
+  background-color: white;
+  width: 30%;
+  overflow: hidden;
+  border-radius: 10px;
+  min-width: 320px;
+  max-height: 400px;
+  position: relative;
 }
 
 @media screen and (max-width: 425px) {
-    .card{
-        width: 95%;
-        min-width: 100px;
-    }
-    
+  .card {
+    width: 95%;
+    min-width: 100px;
+  }
 }
-
