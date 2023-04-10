@@ -70,6 +70,13 @@ closePopupEl[profilePopupCloseButonIndex].addEventListener("click", () => {
   popupEl[profilePopupIndex].classList.remove("popup_active");
 });
 
+//POPOUT OUT CLICKING ANYWHERE OUTSIDE CARD
+popupEl[0].addEventListener("click", (evt) => {
+  if (evt.target === popupEl[0]) {
+    popupEl[0].classList.remove("popup_active");
+  }
+});
+
 //POPUP FUNCTION - CARD
 const cardPopupCloseButtonIndex = 1;
 const cardPopupIndex = 1;
