@@ -71,11 +71,25 @@ closePopupEl[profilePopupCloseButonIndex].addEventListener("click", () => {
 });
 
 //POPOUT OUT CLICKING ANYWHERE OUTSIDE CARD
-popupEl[0].addEventListener("click", (evt) => {
-  if (evt.target === popupEl[0]) {
-    popupEl[0].classList.remove("popup_active");
-  }
+
+popupEl.forEach((popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target === popup) {
+      popup.classList.remove("popup_active");
+    }
+  });
 });
+// popupEl[0].addEventListener("click", (evt) => {
+//   if (evt.target === popupEl[0]) {
+//     popupEl[0].classList.remove("popup_active");
+//   }
+// });
+
+// popupEl[1].addEventListener("click", (evt) => {
+//   if (evt.target === popupEl[1]) {
+//     popupEl[1].classList.remove("popup_active");
+//   }
+// });
 
 //POPUP FUNCTION - CARD
 const cardPopupCloseButtonIndex = 1;
@@ -203,5 +217,13 @@ cardImageEl.forEach(function (item, index) {
 cardPopupCloseBtnEl.forEach(function (item, index) {
   item.addEventListener("click", function () {
     cardPopupEl[index].classList.remove("card__image-popup_active");
+  });
+});
+
+cardPopupEl.forEach((card) => {
+  card.addEventListener("click", (evt) => {
+    if (evt.target === card) {
+      card.classList.remove("card__image-popup_active");
+    }
   });
 });
