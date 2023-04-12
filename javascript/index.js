@@ -61,35 +61,47 @@ const profilePopupIndex = 0;
 const profilePopupCloseButonIndex = 0;
 
 //POPUP IN
-profileEditEl.addEventListener("click", () => {
+profileEditEl.addEventListener("click", (evt, index) => {
   popupEl[profilePopupIndex].classList.add("popup_active");
+  clickOutsideToClose();
+  window.addEventListener("keydown", escToClose);
 });
 
 //POPUP OUT
 closePopupEl[profilePopupCloseButonIndex].addEventListener("click", () => {
   popupEl[profilePopupIndex].classList.remove("popup_active");
+  window.removeEventListener("keydown", escToClose);
 });
 
-//POPOUT OUT CLICKING ANYWHERE OUTSIDE CARD
-
-popupEl.forEach((popup) => {
-  popup.addEventListener("click", (evt) => {
-    if (evt.target === popup) {
-      popup.classList.remove("popup_active");
-    }
+//FUNCTION POPOUT OUT CLICKING ANYWHERE OUTSIDE CARD
+const clickOutsideToClose = () => {
+  popupEl.forEach((popup) => {
+    popup.addEventListener("click", (evt) => {
+      if (evt.target === popup) {
+        popup.classList.remove("popup_active");
+      }
+    });
   });
-});
-// popupEl[0].addEventListener("click", (evt) => {
-//   if (evt.target === popupEl[0]) {
-//     popupEl[0].classList.remove("popup_active");
-//   }
-// });
+};
 
-// popupEl[1].addEventListener("click", (evt) => {
-//   if (evt.target === popupEl[1]) {
-//     popupEl[1].classList.remove("popup_active");
-//   }
-// });
+//FUNCTION - PRESS ESC TO CLOSE POPUP
+
+const escToClose = (evt) => {
+  if (evt.key === "Escape") {
+    popupEl.forEach((popup) => {
+      popup.classList.remove("popup_active");
+    });
+  }
+};
+
+// const escToClose = (index) => {
+//   window.addEventListener("keydown", (evt) => {
+//     if (evt.key === "Escape") {
+//       popupEl[index].classList.remove("popup_active");
+//       console.log(evt.key);
+//     }
+//   });
+// };
 
 //POPUP FUNCTION - CARD
 const cardPopupCloseButtonIndex = 1;
@@ -100,6 +112,7 @@ const cardPopupLinkIndex = 1;
 //POPUP OUT - CARD
 closePopupEl[cardPopupCloseButtonIndex].addEventListener("click", function () {
   popupEl[cardPopupIndex].classList.remove("popup_active");
+  window.removeEventListener("keydown", escToClose);
   popupCreateInput[cardPopupTitleIndex].value = "";
   popupCreateInput[cardPopupLinkIndex].value = "";
 });
@@ -107,6 +120,7 @@ closePopupEl[cardPopupCloseButtonIndex].addEventListener("click", function () {
 //POPUP IN - CARD
 imageEditEl.addEventListener("click", function () {
   popupEl[cardPopupIndex].classList.add("popup_active");
+  window.addEventListener("keydown", escToClose);
 });
 
 // ---------------POPUP SAVE BUTTTON FUNCTION------------------
@@ -134,6 +148,7 @@ function popupSave() {
     updatedProfession.textContent = popupNameInput[1].value;
   }
   popupEl[profilePopupIndex].classList.remove("popup_active");
+  window.removeEventListener("keydown", escToClose);
 }
 
 // ---------------POPUP CRIAR BUTTTON FUNCTION------------------
@@ -158,6 +173,7 @@ function createCardIfInputNotEmpty() {
       link: `${popupCreateInput[popupCreateInputLinkIndex].value}`,
     };
     popupEl[cardPopupIndex].classList.remove("popup_active");
+    window.removeEventListener("keydown", escToClose);
     addNewCard(cardAddedObj);
     popupCreateInput[popupCreateInputNameIndex].value = "";
     popupCreateInput[popupCreateInputLinkIndex].value = "";
