@@ -63,6 +63,7 @@ const profilePopupCloseButonIndex = 0;
 //POPUP IN
 profileEditEl.addEventListener("click", (evt, index) => {
   popupEl[profilePopupIndex].classList.add("popup_active");
+  disableButton(popupEl[profilePopupIndex]);
   clickOutsideToClose();
   window.addEventListener("keydown", escToClose);
 });
@@ -113,8 +114,9 @@ const cardPopupLinkIndex = 1;
 closePopupEl[cardPopupCloseButtonIndex].addEventListener("click", function () {
   popupEl[cardPopupIndex].classList.remove("popup_active");
   window.removeEventListener("keydown", escToClose);
-  popupCreateInput[cardPopupTitleIndex].value = "";
-  popupCreateInput[cardPopupLinkIndex].value = "";
+  resetForm();
+  // popupCreateInput[cardPopupTitleIndex].value = "";
+  // popupCreateInput[cardPopupLinkIndex].value = "";
 });
 
 //POPUP IN - CARD
