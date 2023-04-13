@@ -19,7 +19,7 @@
     <main>
       <div class="profile">
         <div class="popup">
-          <div class="popup__card">
+          <form class="popup__card" novalidate>
             <img
               src="./images/Close_Icon.svg"
               alt="ícone X de fechar a janela"
@@ -27,17 +27,27 @@
             />
             <h4 class="popup__title">Editar perfil</h4>
             <input
+              id="name-input"
               type="text"
               class="popup__input popup__input_profile"
               placeholder="Jacques Cousteau"
+              minlength="2"
+              maxlength="10"
+              required
             />
+            <span class="name-input--error popup__input--error"></span>
             <input
+              id="description-input"
               type="text"
               class="popup__input popup__input_profile"
               placeholder="Explorador"
+              minlength="2"
+              maxlength="10"
+              required
             />
+            <span class="description-input--error popup__input--error"></span>
             <button class="popup__save-button">Salvar</button>
-          </div>
+          </form>
         </div>
         <div class="profile__info">
           <img
@@ -65,7 +75,7 @@
       </div>
       <ul class="cards">
         <div class="popup">
-          <div class="popup__card">
+          <form class="popup__card" novalidate>
             <img
               src="./images/Close_Icon.svg"
               alt="ícone X de fechar a janela"
@@ -77,13 +87,15 @@
               class="popup__input popup__input_card"
               placeholder="Título"
             />
+            <span class="card-title-input--error popup__input--error"></span>
             <input
-              type="text"
+              type="url"
               class="popup__input popup__input_card"
               placeholder="Link da imagem"
             />
+            <span class="card-link-input--error popup__input--error"></span>
             <button class="popup__criar-button">Criar</button>
-          </div>
+          </form>
         </div>
         <template class="card-template">
           <div class="card__image-popup">
