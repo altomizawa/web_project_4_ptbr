@@ -14,13 +14,13 @@ const isValid = (formElement, inputElement) => {
 const disableButton = (formElement) => {
   const button = formElement.querySelector("button");
   button.classList.add("popup__save-button_inactive");
-  button.disable = true;
+  button.disabled = true;
 };
 
 const enableButton = (formElement) => {
   const button = formElement.querySelector("button");
   button.classList.remove("popup__save-button_inactive");
-  button.disable = false;
+  button.disabled = false;
 };
 
 //CREATE showInputError()
