@@ -127,15 +127,20 @@ const createCard = (popup) => {
   const inputTitleIndex = 0;
   const inputLinkIndex = 1;
   //Update Profile
-  createCardButton.addEventListener("click", () => {
+  createCardButton.addEventListener("click", updateCardAndClose);
+  //
+  function updateCardAndClose() {
     const cardAddedObj = {
       name: `${inputs[inputTitleIndex].value}`,
       link: `${inputs[inputLinkIndex].value}`,
     };
     addNewCard(cardAddedObj);
+    createCardButton.removeEventListener("click", updateCardAndClose);
     closePopup(popup);
-  });
+  }
 };
+
+//
 
 //CREATE NEW CARD FUNCTION
 function addNewCard(cardAddedObj) {
