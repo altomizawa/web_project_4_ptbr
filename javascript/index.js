@@ -49,143 +49,103 @@ initialCards.forEach((item) => {
   cardsParent.append(newCard);
 });
 
-// ---------------POPUP PROFILE - OPEN/CLOSE FUNCTION------------------
-//NAME OBJECTS
-let closePopupEl = document.querySelectorAll(".popup__close-button");
-let popupEl = document.querySelectorAll(".popup");
-let profileEditEl = document.querySelector(".profile__edit");
-let imageEditEl = document.querySelector(".adicionar-button");
+//POPUP IN FUNCTION
+const profileEditButton = document.querySelector(".profile__edit");
+const newCardButton = document.querySelector(".adicionar-button");
+const popups = document.querySelectorAll(".popup");
+const profileIndex = 0;
+const newCardIndex = 1;
 
-//POPUP FUNCTION - PROFILE
-const profilePopupIndex = 0;
-const profilePopupCloseButonIndex = 0;
-
-//POPUP IN
-profileEditEl.addEventListener("click", (evt, index) => {
-  popupEl[profilePopupIndex].classList.add("popup_active");
-  disableButton(popupEl[profilePopupIndex]);
-  clickOutsideToClose();
+const popupIn = (popup) => {
+  popup.classList.add("popup_active");
+  disableButton(popup);
+  clickOutsideToClose(popup);
   window.addEventListener("keydown", escToClose);
-});
-
-//POPUP OUT
-closePopupEl[profilePopupCloseButonIndex].addEventListener("click", () => {
-  popupEl[profilePopupIndex].classList.remove("popup_active");
-  window.removeEventListener("keydown", escToClose);
-});
-
-//FUNCTION POPOUT OUT CLICKING ANYWHERE OUTSIDE CARD
-const clickOutsideToClose = () => {
-  popupEl.forEach((popup) => {
-    popup.addEventListener("click", (evt) => {
-      if (evt.target === popup) {
-        popup.classList.remove("popup_active");
-      }
-    });
+  //create closeButton for card
+  const closeButtonEl = popup.querySelector(".popup__close-button");
+  closeButtonEl.addEventListener("click", () => {
+    closePopup(popup);
   });
 };
 
-//FUNCTION - PRESS ESC TO CLOSE POPUP
+//CLOSE POPUP FUNCTION
+const closePopup = (popup) => {
+  popup.classList.remove("popup_active");
+};
 
+//CLICK OUTSIDE TO CLOSE FUNCTION
+const clickOutsideToClose = (popup) => {
+  popup.addEventListener("click", (evt) => {
+    if (evt.target === popup) {
+      closePopup(popup);
+    }
+  });
+};
+
+//ESC TO CLOSE FUNCTION
 const escToClose = (evt) => {
   if (evt.key === "Escape") {
-    popupEl.forEach((popup) => {
-      popup.classList.remove("popup_active");
+    popups.forEach((popup) => {
+      closePopup(popup);
     });
   }
 };
 
-// const escToClose = (index) => {
-//   window.addEventListener("keydown", (evt) => {
-//     if (evt.key === "Escape") {
-//       popupEl[index].classList.remove("popup_active");
-//       console.log(evt.key);
-//     }
-//   });
-// };
-
-//POPUP FUNCTION - CARD
-const cardPopupCloseButtonIndex = 1;
-const cardPopupIndex = 1;
-const cardPopupTitleIndex = 0;
-const cardPopupLinkIndex = 1;
-
-//POPUP OUT - CARD
-closePopupEl[cardPopupCloseButtonIndex].addEventListener("click", function () {
-  popupEl[cardPopupIndex].classList.remove("popup_active");
-  window.removeEventListener("keydown", escToClose);
-  resetForm();
-  // popupCreateInput[cardPopupTitleIndex].value = "";
-  // popupCreateInput[cardPopupLinkIndex].value = "";
+//ADD EVENT LISTENER TO PROFILE BUTTON
+profileEditButton.addEventListener("click", () => {
+  popupIn(popups[profileIndex]);
+  //create saveButton for card
+  saveProfile(popups[profileIndex]);
 });
 
-//POPUP IN - CARD
-imageEditEl.addEventListener("click", function () {
-  popupEl[cardPopupIndex].classList.add("popup_active");
-  window.addEventListener("keydown", escToClose);
+//ADD EVENT LISTENER TO ADD NEW CARD BUTTON
+newCardButton.addEventListener("click", () => {
+  popupIn(popups[newCardIndex]);
+  createCard(popups[newCardIndex]);
 });
 
-// ---------------POPUP SAVE BUTTTON FUNCTION------------------
-//NAME OBJECTS
-let popupSaveButtonEl = document.querySelector(".popup__save-button");
-let popupNameInput = document.querySelectorAll(".popup__input_profile");
-let updatedName = document.querySelector(".profile__name");
-let updatedProfession = document.querySelector(".profile__title");
+//SAVE PROFILE BUTTON FUNCTION
+const saveProfile = (popup) => {
+  const saveProfileButton = popup.querySelector("button");
+  const inputs = popup.querySelectorAll("input");
+  const inputNameIndex = 0;
+  const inputProfessionIndex = 1;
+  const profileName = document.querySelector(".profile__name");
+  const profileProfession = document.querySelector(".profile__title");
+  //Update Profile
+  saveProfileButton.addEventListener("click", () => {
+    profileName.textContent = inputs[inputNameIndex].value;
+    profileProfession.textContent = inputs[inputProfessionIndex].value;
+    closePopup(popup);
+  });
+};
 
-//SAVE BUTTON FUNCTION
-popupSaveButtonEl.addEventListener("click", popupSave);
-
-//FUNCTION SHOULD ONLY WORK IF FIELD IS NOT EMPTY
-function popupSave() {
-  if (!(popupNameInput[0].value == "")) {
-    updateNameWhenNotEmpty();
-  }
-  function updateNameWhenNotEmpty() {
-    updatedName.textContent = popupNameInput[0].value;
-  }
-  if (!(popupNameInput[1].value == "")) {
-    updateProfessionWhenNotEmpty();
-  }
-  function updateProfessionWhenNotEmpty() {
-    updatedProfession.textContent = popupNameInput[1].value;
-  }
-  popupEl[profilePopupIndex].classList.remove("popup_active");
-  window.removeEventListener("keydown", escToClose);
-}
-
-// ---------------POPUP CRIAR BUTTTON FUNCTION------------------
-//NAME OBJECTS
-const popupCreateButtonEl = document.querySelector(".popup__criar-button");
-const popupCreateInput = document.querySelectorAll(".popup__input_card");
-const popupCreateInputNameIndex = 0;
-const popupCreateInputLinkIndex = 1;
-
-//CREATE NEW PHOTO CARD IF NOT INPUT NOT EMPTY
-popupCreateButtonEl.addEventListener("click", createCardIfInputNotEmpty);
-
-function createCardIfInputNotEmpty() {
-  if (
-    !(
-      popupCreateInput[popupCreateInputNameIndex].value == "" ||
-      popupCreateInput[popupCreateInputLinkIndex].value == ""
-    )
-  ) {
+//CREATE CARD BUTTON FUNCTION
+const createCard = (popup) => {
+  const createCardButton = popup.querySelector("button");
+  const inputs = popup.querySelectorAll("input");
+  const inputTitleIndex = 0;
+  const inputLinkIndex = 1;
+  //Update Profile
+  createCardButton.addEventListener("click", updateCardAndClose);
+  //
+  function updateCardAndClose() {
     const cardAddedObj = {
-      name: `${popupCreateInput[popupCreateInputNameIndex].value}`,
-      link: `${popupCreateInput[popupCreateInputLinkIndex].value}`,
+      name: `${inputs[inputTitleIndex].value}`,
+      link: `${inputs[inputLinkIndex].value}`,
     };
-    popupEl[cardPopupIndex].classList.remove("popup_active");
-    window.removeEventListener("keydown", escToClose);
     addNewCard(cardAddedObj);
-    popupCreateInput[popupCreateInputNameIndex].value = "";
-    popupCreateInput[popupCreateInputLinkIndex].value = "";
+    createCardButton.removeEventListener("click", updateCardAndClose);
+    closePopup(popup);
   }
-}
+};
+
+//
 
 //CREATE NEW CARD FUNCTION
 function addNewCard(cardAddedObj) {
   initialCards.unshift(cardAddedObj);
-  cardAdded = cardTemplate.cloneNode(true);
+  const cardAdded = cardTemplate.cloneNode(true);
   cardAdded.querySelector(".card__title").textContent = cardAddedObj.name;
   cardAdded.querySelector(".card__image").src = cardAddedObj.link;
   cardsParent.prepend(cardAdded);
