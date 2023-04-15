@@ -25,15 +25,15 @@ const enableButton = (formElement) => {
 
 //CREATE showInputError()
 const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}--error`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}_error`);
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("popup__input--error");
+  errorElement.classList.add("popup__input_error");
   disableButton(formElement);
 };
 
 //CREATE hideInputError()
 const hideInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}--error`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}_error`);
   errorElement.textContent = "";
   enableButton(formElement);
 };
