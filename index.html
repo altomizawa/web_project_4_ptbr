@@ -18,7 +18,7 @@
 
     <main>
       <div class="profile">
-        <div class="popup">
+        <div class="popup popup__profile">
           <form class="popup__card" novalidate>
             <img
               src="./images/Close_Icon.svg"
@@ -29,7 +29,7 @@
             <input
               id="popup__name-input"
               type="text"
-              class="popup__input popup__input_profile"
+              class="popup__input popup__input_name"
               placeholder="Jacques Cousteau"
               minlength="2"
               maxlength="10"
@@ -39,7 +39,7 @@
             <input
               id="description-input"
               type="text"
-              class="popup__input popup__input_profile"
+              class="popup__input popup__input_profession"
               placeholder="Explorador"
               minlength="2"
               maxlength="10"
@@ -68,13 +68,13 @@
         <button class="adicionar-button">
           <img
             src="./images/Plus-sign.svg"
-            alt=""
+            alt="sinal de mais para adicionar imagem"
             class="adicionar-button__image"
           />
         </button>
       </div>
       <ul class="cards">
-        <div class="popup">
+        <div class="popup popup__add-card">
           <form class="popup__card" novalidate>
             <img
               src="./images/Close_Icon.svg"
@@ -85,7 +85,7 @@
             <input
               id="card-title-input"
               type="text"
-              class="popup__input popup__input_card"
+              class="popup__input popup__input_card-title"
               placeholder="Título"
               minlength="2"
               maxlength="30"
@@ -95,7 +95,7 @@
             <input
               id="card-link-input"
               type="url"
-              class="popup__input popup__input_card"
+              class="popup__input popup__input_card-link"
               placeholder="Link da imagem"
               required
             />
@@ -112,7 +112,7 @@
                 class="card__close-button"
               />
               <img
-                src="https://images.unsplash.com/photo-1538370965046-79c0d6907d47?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80"
+                src=""
                 class="card__image-big"
               />
               <p></p>

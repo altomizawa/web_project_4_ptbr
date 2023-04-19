@@ -3,7 +3,11 @@ const formElement = document.querySelectorAll(".popup__card");
 
 //CREATE isValid()
 const isValid = (formElement, inputElement) => {
-  if (!inputElement.validity.valid) {
+  const inputs = Array.from(formElement.querySelectorAll("input"))
+  const checkInput = inputs.every(input => input.validity.valid)
+  console.log(checkInput)
+
+  if (!checkInput) {
     showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
     hideInputError(formElement, inputElement, inputElement.validationMessage);
@@ -32,7 +36,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
 };
 
 //CREATE hideInputError()
-const hideInputError = (formElement, inputElement, errorMessage) => {
+const hideInputError = (formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.textContent = "";
   enableButton(formElement);
@@ -62,7 +66,3 @@ const enableValidation = () => {
 
 enableValidation();
 
-//RESET FORM FUNCTION
-const resetForm = (formToReset) => {
-  console.log(formToReset);
-};

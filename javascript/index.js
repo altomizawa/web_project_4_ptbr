@@ -53,12 +53,16 @@ initialCards.forEach((item) => {
 const profileEditButton = document.querySelector(".profile__edit");
 const newCardButton = document.querySelector(".adicionar-button");
 const popups = document.querySelectorAll(".popup");
-const profileIndex = 0;
-const newCardIndex = 1;
+const popupProfile = document.querySelector(".popup__profile");
+const popupAddCard = document.querySelector(".popup__add-card");
 
 const popupIn = (popup) => {
   popup.classList.add("popup_active");
-  disableButton(popup);
+  
+  //disable button
+  const button = popup.querySelector("button")
+  // disableButton(button)
+
   clickOutsideToClose(popup);
   window.addEventListener("keydown", escToClose);
   //create closeButton for card
@@ -71,6 +75,7 @@ const popupIn = (popup) => {
 //CLOSE POPUP FUNCTION
 const closePopup = (popup) => {
   popup.classList.remove("popup_active");
+  window.removeEventListener("keydown", escToClose);
 };
 
 //CLICK OUTSIDE TO CLOSE FUNCTION
@@ -93,29 +98,29 @@ const escToClose = (evt) => {
 
 //ADD EVENT LISTENER TO PROFILE BUTTON
 profileEditButton.addEventListener("click", () => {
-  popupIn(popups[profileIndex]);
+  popupIn(popupProfile);
   //create saveButton for card
-  saveProfile(popups[profileIndex]);
+  saveProfile(popupProfile);
 });
 
 //ADD EVENT LISTENER TO ADD NEW CARD BUTTON
 newCardButton.addEventListener("click", () => {
-  popupIn(popups[newCardIndex]);
-  createCard(popups[newCardIndex]);
+  popupIn(popupAddCard);
+  createCard(popupAddCard);
 });
 
 //SAVE PROFILE BUTTON FUNCTION
 const saveProfile = (popup) => {
   const saveProfileButton = popup.querySelector("button");
   const inputs = popup.querySelectorAll("input");
-  const inputNameIndex = 0;
-  const inputProfessionIndex = 1;
+  const inputName = popup.querySelector(".popup__input_name");
+  const inputProfession = popup.querySelector(".popup__input_profession")
   const profileName = document.querySelector(".profile__name");
   const profileProfession = document.querySelector(".profile__title");
   //Update Profile
   saveProfileButton.addEventListener("click", () => {
-    profileName.textContent = inputs[inputNameIndex].value;
-    profileProfession.textContent = inputs[inputProfessionIndex].value;
+    profileName.textContent = inputName.value;
+    profileProfession.textContent = inputProfession.value;
     closePopup(popup);
   });
 };
@@ -124,15 +129,15 @@ const saveProfile = (popup) => {
 const createCard = (popup) => {
   const createCardButton = popup.querySelector("button");
   const inputs = popup.querySelectorAll("input");
-  const inputTitleIndex = 0;
-  const inputLinkIndex = 1;
+  const inputTitle = popup.querySelector(".popup__input_card-title")
+  const inputLink = popup.querySelector(".popup__input_card-link")
   //Update Profile
   createCardButton.addEventListener("click", updateCardAndClose);
   //
   function updateCardAndClose() {
     const cardAddedObj = {
-      name: `${inputs[inputTitleIndex].value}`,
-      link: `${inputs[inputLinkIndex].value}`,
+      name: `${inputTitle.value}`,
+      link: `${inputLink.value}`,
     };
     addNewCard(cardAddedObj);
     createCardButton.removeEventListener("click", updateCardAndClose);
