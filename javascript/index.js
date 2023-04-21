@@ -5,26 +5,32 @@ let initialCards = [
   {
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+    alt: "Foto da Vale de Yosemite"
   },
   {
     name: "Lago Louise",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+    alt: "Foto do Lago Louise"
   },
   {
     name: "Montanhas Carecas",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
+    alt: "Foto das Montanhas Carecas"
   },
   {
     name: "Latemar",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
+    alt: "Foto de Latemar"
   },
   {
     name: "Parque Nacional da Vanoise ",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
+    alt: "Foto do Parque Nacional de Vanoise"
   },
   {
     name: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
+    alt: "Foto do Lago di Braies"
   },
 ];
 
@@ -38,6 +44,7 @@ function createCardElement(cardData) {
   const newCard = cardTemplate.cloneNode(true);
   newCard.querySelector(".card__title").textContent = cardData.name;
   newCard.querySelector(".card__image").src = cardData.link;
+  newCard.querySelector(".card__image").alt = cardData.alt
   newCard.querySelector(".card__popup-wrapper>p").textContent = cardData.name;
   newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
     cardData.link;
@@ -49,8 +56,6 @@ initialCards.forEach((item) => {
   const newCard = createCardElement(item);
   cardsParent.append(newCard);
   deleteCard()
- 
-  
 });
 
 //POPUP IN FUNCTION
@@ -62,13 +67,19 @@ const popupAddCard = document.querySelector(".popup__add-card");
 
 const popupIn = (popup) => {
   popup.classList.add("popup_active");
+  //reset form
+  const form = popup.querySelector("form")
+  form.reset();
+
   
   //disable button
   const button = popup.querySelector("button")
-  // disableButton(button)
+  disableButton(popup)
 
+  //clickoutside to close eventlistener
   clickOutsideToClose(popup);
   window.addEventListener("keydown", escToClose);
+
   //create closeButton for card
   const closeButtonEl = popup.querySelector(".popup__close-button");
   closeButtonEl.addEventListener("click", () => {
@@ -86,7 +97,7 @@ const closePopup = (popup) => {
 const clickOutsideToClose = (popup) => {
   popup.addEventListener("click", (evt) => {
     if (evt.target === popup) {
-      closePopup(popup);
+      closePopup(popup)
     }
   });
 };
@@ -146,6 +157,7 @@ const createCard = (popup) => {
     addNewCard(cardAddedObj);
     createCardButton.removeEventListener("click", updateCardAndClose);
     closePopup(popup);
+    imagePopup2()
   }
 };
 
@@ -157,6 +169,9 @@ function addNewCard(cardAddedObj) {
   const cardAdded = cardTemplate.cloneNode(true);
   cardAdded.querySelector(".card__title").textContent = cardAddedObj.name;
   cardAdded.querySelector(".card__image").src = cardAddedObj.link;
+  cardAdded.querySelector(".card__popup-wrapper>p").textContent = cardAddedObj.name;
+  cardAdded.querySelector(".card__popup-wrapper>.card__image-big").src =
+  cardAddedObj.link;
   addLikeButton(cardAdded)
   cardsParent.prepend(cardAdded);
   deleteCard()
@@ -191,27 +206,36 @@ allCards.forEach((card) => {
 }
 
 //-----------------IMAGE POPUP---------------------------
-//NAME OBJECTS
-const cardImageEl = document.querySelectorAll(".card__image");
-const cardPopupEl = document.querySelectorAll(".card__image-popup");
-const cardPopupCloseBtnEl = document.querySelectorAll(".card__close-button");
 
-cardImageEl.forEach(function (item, index) {
-  item.addEventListener("click", () => {
-    cardPopupEl[index].classList.add("card__image-popup_active");
-  });
-});
+imagePopup2()
+function imagePopup2(){
+  const cards = document.querySelectorAll(".card")
+  cards.forEach((card) => {
+    imagePopup(card)
+  })
+}
 
-cardPopupCloseBtnEl.forEach(function (item, index) {
-  item.addEventListener("click", function () {
-    cardPopupEl[index].classList.remove("card__image-popup_active");
-  });
-});
 
-cardPopupEl.forEach((card) => {
-  card.addEventListener("click", (evt) => {
-    if (evt.target === card) {
-      card.classList.remove("card__image-popup_active");
-    }
-  });
-});
+function imagePopup(card){
+  const cardImage = card.querySelector(".card__image");
+  const cardImagePopup = card.querySelector(".card__image-popup")
+  const cardImageCloseBtn = card.querySelector(".card__close-button")
+  
+  //ADD EVENT LISTENER TO IMAGES FOR POPUP IN FUNCTION
+  cardImage.addEventListener("click", imagePopupIn)
+  
+  //CREATE imagePopupIn FUNCTION
+  function imagePopupIn() {
+    cardImagePopup.classList.add("card__image-popup_active");
+  }
+
+
+  //CREATE imagePopupOut FUNCTION
+  function imagePopupOut() {
+    cardImagePopup.classList.remove("card__image-popup_active");
+  }
+
+  //ADD eventListener TO BUTTON
+  cardImageCloseBtn.addEventListener("click", imagePopupOut)
+
+}

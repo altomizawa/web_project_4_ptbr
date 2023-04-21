@@ -1,3 +1,4 @@
+
 function enableValidation({
     formSelector,
     inputSelector,
@@ -10,6 +11,7 @@ function enableValidation({
     const form = document.querySelector(formSelector);
     const inputs = Array.from(form.querySelectorAll(inputSelector));
     const submitButton = form.querySelector(submitButtonSelector);
+    submitButton.disabled = true;
 
     function toggleButtonState(){
         const isFormValid = inputs.every(input => input.validity.valid);
