@@ -41,12 +41,16 @@ function createCardElement(cardData) {
   newCard.querySelector(".card__popup-wrapper>p").textContent = cardData.name;
   newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
     cardData.link;
+    addLikeButton(newCard)
   return newCard;
 }
 
 initialCards.forEach((item) => {
   const newCard = createCardElement(item);
   cardsParent.append(newCard);
+  deleteCard()
+ 
+  
 });
 
 //POPUP IN FUNCTION
@@ -153,37 +157,38 @@ function addNewCard(cardAddedObj) {
   const cardAdded = cardTemplate.cloneNode(true);
   cardAdded.querySelector(".card__title").textContent = cardAddedObj.name;
   cardAdded.querySelector(".card__image").src = cardAddedObj.link;
+  addLikeButton(cardAdded)
   cardsParent.prepend(cardAdded);
+  deleteCard()
 }
 
 // ---------------LIKE BUTTON FUNCTION------------------
-//NAME OBJECTS (HEARTS)
-let like = Array.from(document.querySelectorAll(".like-button_inactive"));
-let dislike = Array.from(document.querySelectorAll(".like-button_active"));
+function addLikeButton(card){
+const cardLikeButtonInactive = card.querySelector(".like-button_inactive");
+const cardLikeButtonActive = card.querySelector(".like-button_active")
+cardLikeButtonInactive.addEventListener("click", buttonClickLike)
 
-//LIKE FUNCTION
-like.forEach(function (item, index) {
-  item.addEventListener("click", () => {
-    item.classList.add("like-button_hidden");
-    dislike[index].classList.remove("like-button_hidden");
-  });
-  dislike[index].addEventListener("click", () => {
-    dislike[index].classList.add("like-button_hidden");
-    item.classList.remove("like-button_hidden");
-  });
-});
+function buttonClickLike() {
+  cardLikeButtonInactive.classList.add("like-button_hidden")
+  cardLikeButtonActive.classList.remove("like-button_hidden")
+  cardLikeButtonActive.addEventListener("click", buttonClickDislike)
+}
 
-//-----------------DELETE CARD BUTTON---------------------------
-//NAME OBJECTS
-const cardDeleteButtonEl = document.querySelectorAll(".card__delete-button");
-const cardEl = document.querySelectorAll(".card");
-//DELETE CARD
-cardDeleteButtonEl.forEach(function (item, index) {
-  item.addEventListener("click", () => {
-    item.parentElement.remove();
-    initialCards.splice(index, 1);
-  });
-});
+function buttonClickDislike(){
+  cardLikeButtonInactive.classList.remove("like-button_hidden")
+  cardLikeButtonActive.classList.add("like-button_hidden")
+}
+}
+
+//-----------------DELETE CARD FUNCTION---------------------------
+function deleteCard(){
+let allCards = document.querySelectorAll(".card")
+allCards.forEach((card) => {
+  const deleteButton = card.querySelector(".card__delete-button");
+  deleteButton.addEventListener("click", () => {card.remove()}
+  )
+})
+}
 
 //-----------------IMAGE POPUP---------------------------
 //NAME OBJECTS
