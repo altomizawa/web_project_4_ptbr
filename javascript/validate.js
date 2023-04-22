@@ -1,68 +1,77 @@
-//SELECT ALL FORMS
-const formElement = document.querySelectorAll(".popup__card");
-
-//CREATE isValid()
-const isValid = (formElement, inputElement) => {
-  const inputs = Array.from(formElement.querySelectorAll("input"))
-  const checkInput = inputs.every(input => input.validity.valid)
-  console.log(checkInput)
-
-  if (!checkInput) {
-    showInputError(formElement, inputElement, inputElement.validationMessage);
-  } else {
-    hideInputError(formElement, inputElement, inputElement.validationMessage);
-  }
-};
-
-//ENABLE / DISABLE BUTTON FUNCTION
-const disableButton = (formElement) => {
-  const button = formElement.querySelector("button");
-  button.classList.add("popup__save-button_inactive");
-  button.disabled = true;
-};
-
-const enableButton = (formElement) => {
-  const button = formElement.querySelector("button");
-  button.classList.remove("popup__save-button_inactive");
-  button.disabled = false;
-};
-
-//CREATE showInputError()
-const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add("popup__input-error");
-  disableButton(formElement);
-};
-
-//CREATE hideInputError()
-const hideInputError = (formElement, inputElement) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  errorElement.textContent = "";
-  enableButton(formElement);
-};
-
-//Adding Event Handlers to all form fields
-const setEventListeners = (formElement) => {
-  const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener("input", () => {
-      isValid(formElement, inputElement);
-    });
+enableValidation({
+    formSelector: ".popup__card",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__submit-button",
+    inactiveButtonClass: "popup__submit-button_inactive",
+    inputErrorClass: "popup__input-error",
+    errorClass: "popup__input-error"
   });
-};
+ 
 
-//ADD EVENT HANDLERS TO ALL FORMS
-const enableValidation = () => {
-  const formList = Array.from(document.querySelectorAll(".popup__card"));
+function enableValidation({
+    formSelector,
+    inputSelector,
+    submitButtonSelector,
+    inactiveButtonClass,
+    inputErrorClass,
+    errorClass
+}){
+    const forms = document.querySelectorAll(formSelector)
 
-  formList.forEach((formElement) => {
-    formElement.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-    });
-    setEventListeners(formElement);
-  });
-};
+    // PREVENT DEFAULT EVENT FOR SUBMIT BUTTON
+    forms.forEach((form) =>{
+        form.addEventListener("submit", (evt) => {
+            evt.preventDefault()
+        })
+    })
+    
+    // ADD EVENT LISTENERS TO ALL FIELDS
+    forms.forEach((form) => {
+        const inputs = Array.from(form.querySelectorAll(inputSelector))
+        inputs.forEach((input) => {
+            input.addEventListener("input", (evt) =>{
+                isValid(input)
+            })
+        })
+        //CHECK IF INPUT IS VALID
+        function isValid (input) {
+            const checkInput = inputs.every(input => input.validity.valid)
+            if (!checkInput) {
+                showInputError(form, input, input.validationMessage)
+            } else {
+                hideInputError(form, input)
+            }
+        }
+    })
 
-enableValidation();
+    //ENABLE SUBMIT BUTTON
+    function enableButton(form){
+        const button = form.querySelector(submitButtonSelector)
+        button.classList.remove(inactiveButtonClass)
+        button.disabled = false
+    }
 
+    //DISABLE SUBMIT BUTTON
+    function disableButton(form){
+        const button = form.querySelector(submitButtonSelector)
+        button.classList.add(inactiveButtonClass)
+    }
+
+    //SHOW ERROR MESSAGE
+    function showInputError (form, input, errorMessage){
+        errorElement = form.querySelector(`#${input.id}--error`)
+        errorElement.textContent = errorMessage
+        errorElement.classList.add(errorClass)
+        disableButton(form)
+    }
+
+    //HIDE ERROR MESSAGE
+    function hideInputError (form, input, errorMessage){
+        errorElement = form.querySelector(`#${input.id}--error`)
+        errorElement.textContent = ""
+        errorElement.classList.remove(errorClass)
+        enableButton(form)
+    }
+
+
+}

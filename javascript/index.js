@@ -117,12 +117,18 @@ profileEditButton.addEventListener("click", () => {
   popupIn(popupProfile);
   //create saveButton for card
   saveProfile(popupProfile);
+  const button = (popupProfile.querySelector("button"))
+  button.disabled = true
+  button.classList.add("popup__submit-button_inactive")
 });
 
 //ADD EVENT LISTENER TO ADD NEW CARD BUTTON
 newCardButton.addEventListener("click", () => {
   popupIn(popupAddCard);
   createCard(popupAddCard);
+  const button = (popupAddCard.querySelector("button"))
+  button.disabled = true
+  button.classList.add("popup__submit-button_inactive")
 });
 
 //SAVE PROFILE BUTTON FUNCTION
@@ -135,7 +141,6 @@ const saveProfile = (popup) => {
   const profileProfession = document.querySelector(".profile__title");
   //Update Profile
   saveProfileButton.addEventListener("click", () => {
-    console.log("hello")
     profileName.textContent = inputName.value;
     profileProfession.textContent = inputProfession.value;
     closePopup(popup);
