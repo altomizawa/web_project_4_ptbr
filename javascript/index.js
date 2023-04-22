@@ -62,8 +62,8 @@ initialCards.forEach((item) => {
 const profileEditButton = document.querySelector(".profile__edit");
 const newCardButton = document.querySelector(".adicionar-button");
 const popups = document.querySelectorAll(".popup");
-const popupProfile = document.querySelector(".popup__profile");
-const popupAddCard = document.querySelector(".popup__add-card");
+const popupProfile = document.querySelector(".popup_profile");
+const popupAddCard = document.querySelector(".popup_add-card");
 
 const popupIn = (popup) => {
   popup.classList.add("popup_active");
