@@ -17,7 +17,12 @@ function enableValidation({
 }){
     const forms = document.querySelectorAll(formSelector)
 
-    // ADD EVENT HANDLERS TO ALL FORMS (PREVENT DEFAULTS AND INPUT LISTENERS)
+    // PREVENT DEFAULT EVENT FOR SUBMIT BUTTON
+    forms.forEach((form) =>{
+        form.addEventListener("submit", (evt) => {
+            evt.preventDefault()
+        })
+    })
     
     // ADD EVENT LISTENERS TO ALL FIELDS
     forms.forEach((form) => {
@@ -54,6 +59,7 @@ function enableValidation({
     function showInputError (form, input, errorMessage){
         errorElement = form.querySelector(`#${input.id}--error`)
         errorElement.textContent = errorMessage
+        errorElement.classList.add(errorClass)
         disableButton(form)
     }
 
@@ -61,7 +67,7 @@ function enableValidation({
     function hideInputError (form, input, errorMessage){
         errorElement = form.querySelector(`#${input.id}--error`)
         errorElement.textContent = ""
-        console.log(errorElement.textContent)
+        errorElement.classList.remove(errorClass)
         enableButton(form)
     }
 

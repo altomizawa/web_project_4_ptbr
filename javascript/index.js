@@ -135,9 +135,9 @@ const saveProfile = (popup) => {
   const profileProfession = document.querySelector(".profile__title");
   //Update Profile
   saveProfileButton.addEventListener("click", () => {
+    console.log("hello")
     profileName.textContent = inputName.value;
     profileProfession.textContent = inputProfession.value;
-    console.log(inputName.value)
     closePopup(popup);
   });
 };
