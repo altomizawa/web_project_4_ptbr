@@ -16,6 +16,8 @@
       />
     </header>
 
+
+<!-- ------------------------PROFILE POPUP------------------------------ -->
     <main>
       <div class="profile">
         <div class="popup popup__profile">
@@ -27,7 +29,7 @@
             />
             <h4 class="popup__title">Editar perfil</h4>
             <input
-              id="popup__name-input"
+              id="name-input"
               type="text"
               class="popup__input popup__input_name"
               placeholder="Jacques Cousteau"
@@ -35,7 +37,7 @@
               maxlength="10"
               required
             />
-              <span class="popup__input-error popup__name-input-error"></span>
+              <span class="popup__input-error popup__name-input-error" id="name-input--error"></span>
             <input
               id="description-input"
               type="text"
@@ -45,10 +47,11 @@
               maxlength="10"
               required
             />
-              <span class="popup__input-error description-input-error"></span>
-            <button class="popup__save-button">Salvar</button>
+              <span class="popup__input-error description-input-error" id="description-input--error"></span>
+            <button class="popup__submit-button">Salvar</button>
           </form>
         </div>
+        <!-- ------------------------PROFILE INFO------------------------------ -->
         <div class="profile__info">
           <img
             src="./images/imageprofile-picture.jpg"
@@ -73,6 +76,8 @@
           />
         </button>
       </div>
+
+<!-- ------------------------CARDS POPUP------------------------------ -->
       <ul class="cards">
         <div class="popup popup__add-card">
           <form class="popup__card" novalidate>
@@ -91,7 +96,7 @@
               maxlength="30"
               required
             />
-              <span class="popup__input-error card-title-input-error"></span>
+              <span class="popup__input-error card-title-input-error" id="card-title-input--error"></span>
             <input
               id="card-link-input"
               type="url"
@@ -99,10 +104,12 @@
               placeholder="Link da imagem"
               required
             />
-              <span class="popup__input-error card-link-input-error"></span>
-            <button class="popup__criar-button">Criar</button>
+              <span class="popup__input-error card-link-input-error" id="card-link-input--error"></span>
+            <button class="popup__submit-button">Criar</button>
           </form>
         </div>
+
+<!-- ------------------------CARDS TEMPLATE------------------------------ -->
         <template class="card-template">          
           <li class="card">
             <div class="card__image-popup">
@@ -151,10 +158,12 @@
         </template>
       </ul>
     </main>
+
+<!-- ------------------------FOOTER------------------------------ -->
     <footer class="footer">
       <p class="copyrights">© 2021 Around The U.S.</p>
     </footer>
-    <script src="./javascript/validate.js"></script>
+    <script src="./javascript/validate2.js"></script>
     <script src="./javascript/index.js"></script>
    
   </body>

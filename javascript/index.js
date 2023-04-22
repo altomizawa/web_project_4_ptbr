@@ -74,7 +74,8 @@ const popupIn = (popup) => {
   
   //disable button
   const button = popup.querySelector("button")
-  disableButton(popup)
+  //enable after update validate.js
+ // disableButton(popup)
 
   //clickoutside to close eventlistener
   clickOutsideToClose(popup);
@@ -136,6 +137,7 @@ const saveProfile = (popup) => {
   saveProfileButton.addEventListener("click", () => {
     profileName.textContent = inputName.value;
     profileProfession.textContent = inputProfession.value;
+    console.log(inputName.value)
     closePopup(popup);
   });
 };
@@ -160,6 +162,7 @@ const createCard = (popup) => {
     imagePopup2()
   }
 };
+
 
 //
 
