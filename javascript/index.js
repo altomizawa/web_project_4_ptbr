@@ -224,17 +224,24 @@ function imagePopup2(){
 }
 
 
+
+
 function imagePopup(card){
   const cardImage = card.querySelector(".card__image");
   const cardImagePopup = card.querySelector(".card__image-popup")
   const cardImageCloseBtn = card.querySelector(".card__close-button")
+  const cardImageBig = card.querySelector(".card__image-big")
+
   
   //ADD EVENT LISTENER TO IMAGES FOR POPUP IN FUNCTION
   cardImage.addEventListener("click", imagePopupIn)
   
   //CREATE imagePopupIn FUNCTION
-  function imagePopupIn() {
+  function imagePopupIn(evt) {
     cardImagePopup.classList.add("card__image-popup_active");
+    const cardImageBig = evt.target.parentElement.querySelector(".card__image-big")
+    window.addEventListener("keydown", escToCloseImage)
+    cardImagePopup.addEventListener("click", clickOutsideToCloseImage)
   }
 
 
@@ -245,5 +252,25 @@ function imagePopup(card){
 
   //ADD eventListener TO BUTTON
   cardImageCloseBtn.addEventListener("click", imagePopupOut)
+
+
+  //CREATE escToCloseImage FUNCTION
+  function escToCloseImage (evt) {
+    if (evt.key === "Escape"){
+    imagePopupOut()
+    window.removeEventListener("keydown", escToCloseImage)
+    console.log("esc")
+  }  
+  }
+
+  //CREATE clickOutsideToCloseImage FUNCTION
+  function clickOutsideToCloseImage (evt) {
+    if (evt.target !== cardImageBig) {
+      console.log("outside")
+      imagePopupOut()
+    } else {
+      console.log("inside")
+    }
+  }
 
 }
