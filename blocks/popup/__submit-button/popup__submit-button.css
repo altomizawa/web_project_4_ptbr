@@ -6,6 +6,6 @@
   cursor: pointer;
 }
 
-.popup__submit-button:hover {
+.popup__submit-button:not([disabled]):hover {
   opacity: 80%;
 }
