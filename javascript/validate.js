@@ -1,26 +1,15 @@
-enableValidation({
-    formSelector: ".popup__card",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__submit-button",
-    inactiveButtonClass: "popup__submit-button_inactive",
-    inputErrorClass: "popup__input-error",
-    errorClass: "popup__input-error"
-  });
- 
-
 function enableValidation({
     formSelector,
     inputSelector,
     submitButtonSelector,
     inactiveButtonClass,
-    inputErrorClass,
     errorClass
 }){
     const forms = document.querySelectorAll(formSelector)
 
     // PREVENT DEFAULT EVENT FOR SUBMIT BUTTON
     forms.forEach((form) =>{
-        form.addEventListener("submit", (evt) => {
+        form.addEventListener("submit", () => {
             evt.preventDefault()
         })
     })
@@ -66,7 +55,7 @@ function enableValidation({
     }
 
     //HIDE ERROR MESSAGE
-    function hideInputError (form, input, errorMessage){
+    function hideInputError (form, input){
         errorElement = form.querySelector(`#${input.id}--error`)
         errorElement.textContent = ""
         errorElement.classList.remove(errorClass)
@@ -75,3 +64,12 @@ function enableValidation({
 
 
 }
+
+enableValidation({
+    formSelector: ".popup__card",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__submit-button",
+    inactiveButtonClass: "popup__submit-button_inactive",
+    inputErrorClass: "popup__input-error",
+    errorClass: "popup__input-error"
+  });
