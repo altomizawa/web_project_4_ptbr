@@ -54,8 +54,9 @@ function createCardElement(cardData) {
 
 initialCards.forEach((item) => {
   const newCard = createCardElement(item);
+  deleteCard(newCard)
   cardsParent.append(newCard);
-  deleteCard()
+
 });
 
 //POPUP IN FUNCTION
@@ -184,8 +185,8 @@ function addNewCard(cardAddedObj) {
   cardAdded.querySelector(".card__popup-wrapper>.card__image-big").src =
   cardAddedObj.link;
   addLikeButton(cardAdded)
+  deleteCard(cardAdded)
   cardsParent.prepend(cardAdded);
-  deleteCard()
 }
 
 // ---------------LIKE BUTTON FUNCTION------------------
@@ -207,13 +208,21 @@ function buttonClickDislike(){
 }
 
 //-----------------DELETE CARD FUNCTION---------------------------
-function deleteCard(){
-const allCards = document.querySelectorAll(".card")
-allCards.forEach((card) => {
-  const deleteButton = card.querySelector(".card__delete-button");
-  deleteButton.addEventListener("click", () => {card.remove()}
-  )
-})
+// function deleteCard(){
+// const allCards = document.querySelectorAll(".card")
+// allCards.forEach((card) => {
+//   const deleteButton = card.querySelector(".card__delete-button");
+//   deleteButton.addEventListener("click", () => {card.remove()}
+//   )
+// })
+// }
+function deleteCard(cardAdded){
+  console.log(cardAdded)
+  const deleteButton = cardAdded.querySelector(".card__delete-button");
+  const cardToDelete = deleteButton.parentElement
+  deleteButton.addEventListener("click", () => {
+    cardToDelete.remove()
+  })
 }
 
 //-----------------IMAGE POPUP---------------------------
