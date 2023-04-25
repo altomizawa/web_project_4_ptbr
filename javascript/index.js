@@ -71,12 +71,6 @@ const popupIn = (popup) => {
   const form = popup.querySelector("form")
   form.reset();
 
-  
-  //disable button
-  const button = popup.querySelector("button")
-  //enable after update validate.js
- // disableButton(popup)
-
   //clickoutside to close eventlistener
   clickOutsideToClose(popup);
   window.addEventListener("keydown", escToClose);
@@ -112,29 +106,9 @@ const escToClose = (evt) => {
   }
 };
 
-//ADD EVENT LISTENER TO PROFILE BUTTON
-profileEditButton.addEventListener("click", () => {
-  popupIn(popupProfile);
-  //create saveButton for card
-  saveProfile(popupProfile);
-  const button = (popupProfile.querySelector("button"))
-  button.disabled = true
-  button.classList.add("popup__submit-button_inactive")
-});
-
-//ADD EVENT LISTENER TO ADD NEW CARD BUTTON
-newCardButton.addEventListener("click", () => {
-  popupIn(popupAddCard);
-  createCard(popupAddCard);
-  const button = (popupAddCard.querySelector("button"))
-  button.disabled = true
-  button.classList.add("popup__submit-button_inactive")
-});
-
 //SAVE PROFILE BUTTON FUNCTION
 const saveProfile = (popup) => {
   const saveProfileButton = popup.querySelector("button");
-  const inputs = popup.querySelectorAll("input");
   const inputName = popup.querySelector(".popup__input_name");
   const inputProfession = popup.querySelector(".popup__input_profession")
   const profileName = document.querySelector(".profile__name");
@@ -147,10 +121,39 @@ const saveProfile = (popup) => {
   });
 };
 
+//ADD EVENT LISTENER TO PROFILE BUTTON
+profileEditButton.addEventListener("click", () => {
+  popupIn(popupProfile);
+  //create saveButton for card
+  saveProfile(popupProfile);
+  const saveProfileButton = (popupProfile.querySelector("button"))
+  saveProfileButton.disabled = true
+  saveProfileButton.classList.add("popup__submit-button_inactive")
+});
+
+
+//ADD EVENT LISTENER TO ADD NEW CARD BUTTON
+newCardButton.addEventListener("click", () => {
+  popupIn(popupAddCard);
+  createCard(popupAddCard);
+  const addNewCardbutton = (popupAddCard.querySelector("button"))
+  addNewCardbutton.disabled = true
+  addNewCardbutton.classList.add("popup__submit-button_inactive")
+});
+
+//ADD IMAGE POPUP FUNCTION TO CARD
+
+addImagePopupFunctionToCard()
+function addImagePopupFunctionToCard(){
+  const cards = document.querySelectorAll(".card")
+  cards.forEach((card) => {
+    imagePopup(card)
+  })
+}
+
 //CREATE CARD BUTTON FUNCTION
 const createCard = (popup) => {
   const createCardButton = popup.querySelector("button");
-  const inputs = popup.querySelectorAll("input");
   const inputTitle = popup.querySelector(".popup__input_card-title")
   const inputLink = popup.querySelector(".popup__input_card-link")
   //Update Profile
@@ -164,7 +167,7 @@ const createCard = (popup) => {
     addNewCard(cardAddedObj);
     createCardButton.removeEventListener("click", updateCardAndClose);
     closePopup(popup);
-    imagePopup2()
+    addImagePopupFunctionToCard()
   }
 };
 
@@ -205,7 +208,7 @@ function buttonClickDislike(){
 
 //-----------------DELETE CARD FUNCTION---------------------------
 function deleteCard(){
-let allCards = document.querySelectorAll(".card")
+const allCards = document.querySelectorAll(".card")
 allCards.forEach((card) => {
   const deleteButton = card.querySelector(".card__delete-button");
   deleteButton.addEventListener("click", () => {card.remove()}
@@ -214,17 +217,6 @@ allCards.forEach((card) => {
 }
 
 //-----------------IMAGE POPUP---------------------------
-
-imagePopup2()
-function imagePopup2(){
-  const cards = document.querySelectorAll(".card")
-  cards.forEach((card) => {
-    imagePopup(card)
-  })
-}
-
-
-
 
 function imagePopup(card){
   const cardImage = card.querySelector(".card__image");
@@ -259,18 +251,17 @@ function imagePopup(card){
     if (evt.key === "Escape"){
     imagePopupOut()
     window.removeEventListener("keydown", escToCloseImage)
-    console.log("esc")
+    cardImagePopup.removeEventListener("click", clickOutsideToCloseImage)
   }  
   }
 
   //CREATE clickOutsideToCloseImage FUNCTION
   function clickOutsideToCloseImage (evt) {
     if (evt.target !== cardImageBig) {
-      console.log("outside")
       imagePopupOut()
-    } else {
-      console.log("inside")
-    }
+      window.removeEventListener("keydown", escToCloseImage)
+      cardImagePopup.removeEventListener("click", clickOutsideToCloseImage)
+    } 
   }
 
 }
