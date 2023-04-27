@@ -182,7 +182,6 @@ function addNewCard(cardAddedObj) {
   addLikeButton(cardAdded)
   deleteCard(cardAdded)
   addImagePopupFunctionToCard(cardAdded)
-  console.log(cardAdded)
   cardsParent.prepend(cardAdded);
 }
 
