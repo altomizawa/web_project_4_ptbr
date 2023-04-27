@@ -49,6 +49,7 @@ function createCardElement(cardData) {
   newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
     cardData.link;
     addLikeButton(newCard)
+    addImagePopupFunctionToCard(newCard)
   return newCard;
 }
 
@@ -143,13 +144,8 @@ newCardButton.addEventListener("click", () => {
 });
 
 //ADD IMAGE POPUP FUNCTION TO CARD
-
-addImagePopupFunctionToCard()
-function addImagePopupFunctionToCard(){
-  const cards = document.querySelectorAll(".card")
-  cards.forEach((card) => {
-    imagePopup(card)
-  })
+function addImagePopupFunctionToCard(card){
+  imagePopup(card)
 }
 
 //CREATE CARD BUTTON FUNCTION
@@ -168,7 +164,6 @@ const createCard = (popup) => {
     addNewCard(cardAddedObj);
     createCardButton.removeEventListener("click", updateCardAndClose);
     closePopup(popup);
-    addImagePopupFunctionToCard()
   }
 };
 
@@ -186,6 +181,8 @@ function addNewCard(cardAddedObj) {
   cardAddedObj.link;
   addLikeButton(cardAdded)
   deleteCard(cardAdded)
+  addImagePopupFunctionToCard(cardAdded)
+  console.log(cardAdded)
   cardsParent.prepend(cardAdded);
 }
 
