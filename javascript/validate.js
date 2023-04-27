@@ -9,7 +9,7 @@ function enableValidation({
 
     // PREVENT DEFAULT EVENT FOR SUBMIT BUTTON
     forms.forEach((form) =>{
-        form.addEventListener("submit", () => {
+        form.addEventListener("submit", (evt) => {
             evt.preventDefault()
         })
     })
@@ -18,7 +18,7 @@ function enableValidation({
     forms.forEach((form) => {
         const inputs = Array.from(form.querySelectorAll(inputSelector))
         inputs.forEach((input) => {
-            input.addEventListener("input", (evt) =>{
+            input.addEventListener("input", () =>{
                 isValid(input)
             })
         })

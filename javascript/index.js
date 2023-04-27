@@ -127,7 +127,7 @@ profileEditButton.addEventListener("click", () => {
   popupIn(popupProfile);
   //create saveButton for card
   saveProfile(popupProfile);
-  const saveProfileButton = (popupProfile.querySelector("button"))
+  const saveProfileButton = popupProfile.querySelector("button")
   saveProfileButton.disabled = true
   saveProfileButton.classList.add("popup__submit-button_inactive")
 });
@@ -137,7 +137,7 @@ profileEditButton.addEventListener("click", () => {
 newCardButton.addEventListener("click", () => {
   popupIn(popupAddCard);
   createCard(popupAddCard);
-  const addNewCardbutton = (popupAddCard.querySelector("button"))
+  const addNewCardbutton = popupAddCard.querySelector("button")
   addNewCardbutton.disabled = true
   addNewCardbutton.classList.add("popup__submit-button_inactive")
 });
@@ -208,16 +208,7 @@ function buttonClickDislike(){
 }
 
 //-----------------DELETE CARD FUNCTION---------------------------
-// function deleteCard(){
-// const allCards = document.querySelectorAll(".card")
-// allCards.forEach((card) => {
-//   const deleteButton = card.querySelector(".card__delete-button");
-//   deleteButton.addEventListener("click", () => {card.remove()}
-//   )
-// })
-// }
 function deleteCard(cardAdded){
-  console.log(cardAdded)
   const deleteButton = cardAdded.querySelector(".card__delete-button");
   const cardToDelete = deleteButton.parentElement
   deleteButton.addEventListener("click", () => {
@@ -240,7 +231,6 @@ function imagePopup(card){
   //CREATE imagePopupIn FUNCTION
   function imagePopupIn(evt) {
     cardImagePopup.classList.add("card__image-popup_active");
-    const cardImageBig = evt.target.parentElement.querySelector(".card__image-big")
     window.addEventListener("keydown", escToCloseImage)
     cardImagePopup.addEventListener("click", clickOutsideToCloseImage)
   }
