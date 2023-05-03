@@ -38,7 +38,7 @@ const cardsParent = document.querySelector(".cards");
 const cardTemplate = document.querySelector(".card-template").content;
 
 //CREATE NEWCARD CLASS
-class NewCard {
+class Card {
   constructor (name, link, alt, template, isNew){
     this.name = name;
     this.link = link;
@@ -75,10 +75,10 @@ class NewCard {
 //CREATE ALL CARDS
 (function createAllCards() {
   initialCards.forEach((item) => {
-    const newCard = new NewCard(item.name, item.link, item.alt, cardTemplate, false)
+    const newCard = new Card(item.name, item.link, item.alt, cardTemplate, false)
     newCard.createCard()  
   })
-})()
+})();
 
 
 //POPUP IN FUNCTION
@@ -178,30 +178,12 @@ const createCard = (popup) => {
   createCardButton.addEventListener("click", updateCardAndClose);
   //
   function updateCardAndClose() {
-    const newCard = new NewCard(inputTitle.value, inputLink.value, inputLink.alt, cardTemplate, true)
+    const newCard = new Card(inputTitle.value, inputLink.value, inputLink.alt, cardTemplate, true)
     newCard.createCard()
     createCardButton.removeEventListener("click", updateCardAndClose);
     closePopup(popup);
   }
 };
-
-
-//
-
-//CREATE NEW CARD FUNCTION
-function addNewCard(cardAddedObj) {
-  initialCards.unshift(cardAddedObj);
-  const cardAdded = cardTemplate.cloneNode(true);
-  cardAdded.querySelector(".card__title").textContent = cardAddedObj.name;
-  cardAdded.querySelector(".card__image").src = cardAddedObj.link;
-  cardAdded.querySelector(".card__popup-wrapper>p").textContent = cardAddedObj.name;
-  cardAdded.querySelector(".card__popup-wrapper>.card__image-big").src =
-  cardAddedObj.link;
-  addLikeButton(cardAdded)
-  deleteCard(cardAdded)
-  addImagePopupFunctionToCard(cardAdded)
-  cardsParent.prepend(cardAdded);
-}
 
 // ---------------LIKE BUTTON FUNCTION------------------
 function addLikeButton(card){
@@ -278,11 +260,3 @@ function imagePopup(card){
   }
 
 }
-
-
-
-// const newCard1 = new NewCard("Vale de Yosemite", "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg", "Foto do Vale de Yosemite", cardTemplate)
-
-// newCard1.createCard()
-
-
