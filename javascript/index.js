@@ -37,28 +37,49 @@ let initialCards = [
 const cardsParent = document.querySelector(".cards");
 const cardTemplate = document.querySelector(".card-template").content;
 
-//CREATE ALL CARDS
-// initialCards.forEach((item, index)=>{
+//CREATE NEWCARD CLASS
+class NewCard {
+  constructor (name, link, alt, template, isNew){
+    this.name = name;
+    this.link = link;
+    this.alt = alt;
+    this.template = template;
+    this.isNew = isNew;
+  }
 
-function createCardElement(cardData) {
-  const newCard = cardTemplate.cloneNode(true);
-  newCard.querySelector(".card__title").textContent = cardData.name;
-  newCard.querySelector(".card__image").src = cardData.link;
-  newCard.querySelector(".card__image").alt = cardData.alt
-  newCard.querySelector(".card__popup-wrapper>p").textContent = cardData.name;
-  newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
-    cardData.link;
-    addLikeButton(newCard)
-    addImagePopupFunctionToCard(newCard)
-  return newCard;
+  createCard(){
+    const newCard = this.template.cloneNode(true)
+    newCard.querySelector(".card__title").textContent = this.name;
+    newCard.querySelector(".card__image").src = this.link;
+    newCard.querySelector(".card__image").alt = this.alt
+    newCard.querySelector(".card__popup-wrapper>p").textContent = this.name;
+    newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
+      this.link;
+
+    //Add EventListener to trash can icon  
+    const trashCanIcon = newCard.querySelector(".card__delete-button")
+    trashCanIcon.addEventListener("click", deleteCard(newCard))
+
+    //Add Like Button Functionality
+     addLikeButton(newCard)
+
+    //Add Image Popup
+    imagePopup(newCard)
+
+   //return and create card 
+   if (this.isNew) {return cardsParent.prepend(newCard)} else {return cardsParent.append(newCard)};
+  }
+
 }
 
-initialCards.forEach((item) => {
-  const newCard = createCardElement(item);
-  deleteCard(newCard)
-  cardsParent.append(newCard);
+//CREATE ALL CARDS
+(function createAllCards() {
+  initialCards.forEach((item) => {
+    const newCard = new NewCard(item.name, item.link, item.alt, cardTemplate, false)
+    newCard.createCard()  
+  })
+})()
 
-});
 
 //POPUP IN FUNCTION
 const profileEditButton = document.querySelector(".profile__edit");
@@ -157,11 +178,8 @@ const createCard = (popup) => {
   createCardButton.addEventListener("click", updateCardAndClose);
   //
   function updateCardAndClose() {
-    const cardAddedObj = {
-      name: `${inputTitle.value}`,
-      link: `${inputLink.value}`,
-    };
-    addNewCard(cardAddedObj);
+    const newCard = new NewCard(inputTitle.value, inputLink.value, inputLink.alt, cardTemplate, true)
+    newCard.createCard()
     createCardButton.removeEventListener("click", updateCardAndClose);
     closePopup(popup);
   }
@@ -261,42 +279,10 @@ function imagePopup(card){
 
 }
 
-class NewCard {
-  constructor (name, link, alt, template){
-    this.name = name;
-    this.link = link;
-    this.alt = alt;
-    this.template = template;
-  }
-
-  createCard(){
-    const newCard = this.template.cloneNode(true)
-    newCard.querySelector(".card__title").textContent = this.name;
-    newCard.querySelector(".card__image").src = this.link;
-    newCard.querySelector(".card__image").alt = this.alt
-    newCard.querySelector(".card__popup-wrapper>p").textContent = this.name;
-    newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
-      this.link;
-
-    //Add EventListener to trash can icon  
-    const trashCanIcon = newCard.querySelector(".card__delete-button")
-    trashCanIcon.addEventListener("click", deleteCard(newCard))
-    console.log(trashCanIcon)
-
-    //Add Like Button Functionality
-    addLikeButton(newCard)
-
-    //Add Image Popup
-    imagePopup(newCard)
 
 
+// const newCard1 = new NewCard("Vale de Yosemite", "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg", "Foto do Vale de Yosemite", cardTemplate)
 
-   //return and create card 
-   return cardsParent.prepend(newCard);
-  }
+// newCard1.createCard()
 
-}
 
-const newCard1 = new NewCard("Vale de Yosemite", "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg", "Foto do Vale de Yosemite", cardTemplate)
-
-newCard1.createCard()
