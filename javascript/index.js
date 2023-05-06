@@ -61,12 +61,13 @@ class Card {
     trashCanIcon.addEventListener("click", deleteCard(newCard))
 
     //Add Like Button Functionality
-     addLikeButton(newCard)
+    addLikeButton(newCard)
 
     //Add Image Popup
     imagePopup(newCard)
 
    //return and create card 
+   //Separate initial cards from new cards to that they appear first, instead of last (assignment requirement)
    if (this.isNew) {return cardsParent.prepend(newCard)} else {return cardsParent.append(newCard)};
   }
 
