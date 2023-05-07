@@ -67,13 +67,25 @@ class FormValidator{
 
 forms = document.querySelectorAll(".popup__card")
 
-const newForm = new FormValidator({
-    formSelector: ".popup__card",
-    inputSelector: ".popup__input",
-    submitButtonSelector: ".popup__submit-button",
-    inactiveButtonClass: "popup__submit-button_inactive",
-    inputErrorClass: "popup__input-error",
-    errorClass: "popup__input-error"
-    }, forms[1])
+// const newForm = new FormValidator({
+//     formSelector: ".popup__card",
+//     inputSelector: ".popup__input",
+//     submitButtonSelector: ".popup__submit-button",
+//     inactiveButtonClass: "popup__submit-button_inactive",
+//     inputErrorClass: "popup__input-error",
+//     errorClass: "popup__input-error"
+//     }, forms[1])
 
-newForm._enableValidation()
+
+forms.forEach((form) => {
+    const newForm = new FormValidator({
+        formSelector: ".popup__card",
+        inputSelector: ".popup__input",
+        submitButtonSelector: ".popup__submit-button",
+        inactiveButtonClass: "popup__submit-button_inactive",
+        inputErrorClass: "popup__input-error",
+        errorClass: "popup__input-error"
+    }, form)
+    newForm._enableValidation()
+})
+
