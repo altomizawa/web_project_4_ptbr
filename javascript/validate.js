@@ -4,7 +4,7 @@ class FormValidator{
         this.formToValidate = formToValidate;
         this.submitButton = this.formToValidate.querySelector(this.config.submitButtonSelector);
         this.inputs = Array.from(this.formToValidate.querySelectorAll(this.config.inputSelector));
-        this._enableValidation();
+        this.enableValidation();
     }
 
     //Enable Submit Button
@@ -56,7 +56,7 @@ class FormValidator{
     }
 
     //Enable All validation and Prevent Default
-    _enableValidation() {
+    enableValidation() {
         this.formToValidate.addEventListener("submit", (evt) => {
             evt.preventDefault();
         })
@@ -65,17 +65,8 @@ class FormValidator{
     }
 }
 
+//CREATE FORM VALIDATION FOR ALL FORMS
 forms = document.querySelectorAll(".popup__card")
-
-// const newForm = new FormValidator({
-//     formSelector: ".popup__card",
-//     inputSelector: ".popup__input",
-//     submitButtonSelector: ".popup__submit-button",
-//     inactiveButtonClass: "popup__submit-button_inactive",
-//     inputErrorClass: "popup__input-error",
-//     errorClass: "popup__input-error"
-//     }, forms[1])
-
 
 forms.forEach((form) => {
     const newForm = new FormValidator({
@@ -86,6 +77,6 @@ forms.forEach((form) => {
         inputErrorClass: "popup__input-error",
         errorClass: "popup__input-error"
     }, form)
-    newForm._enableValidation()
+    newForm.enableValidation()
 })
 
