@@ -1,4 +1,4 @@
-class FormValidator{
+export class FormValidator{
     constructor(config, formToValidate){
         this.config = config;
         this.formToValidate = formToValidate;
@@ -65,18 +65,5 @@ class FormValidator{
     }
 }
 
-//CREATE FORM VALIDATION FOR ALL FORMS
-forms = document.querySelectorAll(".popup__card")
 
-forms.forEach((form) => {
-    const newForm = new FormValidator({
-        formSelector: ".popup__card",
-        inputSelector: ".popup__input",
-        submitButtonSelector: ".popup__submit-button",
-        inactiveButtonClass: "popup__submit-button_inactive",
-        inputErrorClass: "popup__input-error",
-        errorClass: "popup__input-error"
-    }, form)
-    newForm.enableValidation()
-})
 

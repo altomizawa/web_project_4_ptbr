@@ -1,3 +1,8 @@
+import {Card} from "./card.js";
+import { profileEditButton, newCardButton, popupProfile, popupAddCard, popupIn, closePopup, clickOutsideToClose, escToClose} from "./utils.js";
+import { FormValidator } from "./FormValidator.js";
+
+
 //------------------------CREATE INITIAL CARDS IN JS---------------------
 
 //CREATE INITIAL CARDS OBJECT
@@ -34,101 +39,20 @@ let initialCards = [
   },
 ];
 
-const cardsParent = document.querySelector(".cards");
-const cardTemplate = document.querySelector(".card-template").content;
+export const cardsParent = document.querySelector(".cards");
+export const cardTemplate = document.querySelector(".card-template").content;
 
-//CREATE NEWCARD CLASS
-class Card {
-  constructor (name, link, alt, template, isNew){
-    this.name = name;
-    this.link = link;
-    this.alt = alt;
-    this.template = template;
-    this.isNew = isNew;
-  }
 
-  createCard(){
-    const newCard = this.template.cloneNode(true)
-    newCard.querySelector(".card__title").textContent = this.name;
-    newCard.querySelector(".card__image").src = this.link;
-    newCard.querySelector(".card__image").alt = this.alt
-    newCard.querySelector(".card__popup-wrapper>p").textContent = this.name;
-    newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
-      this.link;
-
-    //Add EventListener to trash can icon  
-    const trashCanIcon = newCard.querySelector(".card__delete-button")
-    trashCanIcon.addEventListener("click", deleteCard(newCard))
-
-    //Add Like Button Functionality
-    addLikeButton(newCard)
-
-    //Add Image Popup
-    imagePopup(newCard)
-
-   //return and create card 
-   //Separate initial cards from new cards to that they appear first, instead of last (assignment requirement)
-   if (this.isNew) {return cardsParent.prepend(newCard)} else {return cardsParent.append(newCard)};
-  }
-
-}
 
 //CREATE ALL CARDS
 (function createAllCards() {
   initialCards.forEach((item) => {
     const newCard = new Card(item.name, item.link, item.alt, cardTemplate, false)
-    newCard.createCard()  
+    newCard.createCard()
   })
 })();
 
 
-//POPUP IN FUNCTION
-const profileEditButton = document.querySelector(".profile__edit");
-const newCardButton = document.querySelector(".adicionar-button");
-const popups = document.querySelectorAll(".popup");
-const popupProfile = document.querySelector(".popup_profile");
-const popupAddCard = document.querySelector(".popup_add-card");
-
-const popupIn = (popup) => {
-  popup.classList.add("popup_active");
-  //reset form
-  const form = popup.querySelector("form")
-  form.reset();
-
-  //clickoutside to close eventlistener
-  clickOutsideToClose(popup);
-  window.addEventListener("keydown", escToClose);
-
-  //create closeButton for card
-  const closeButtonEl = popup.querySelector(".popup__close-button");
-  closeButtonEl.addEventListener("click", () => {
-    closePopup(popup);
-  });
-};
-
-//CLOSE POPUP FUNCTION
-const closePopup = (popup) => {
-  popup.classList.remove("popup_active");
-  window.removeEventListener("keydown", escToClose);
-};
-
-//CLICK OUTSIDE TO CLOSE FUNCTION
-const clickOutsideToClose = (popup) => {
-  popup.addEventListener("click", (evt) => {
-    if (evt.target === popup) {
-      closePopup(popup)
-    }
-  });
-};
-
-//ESC TO CLOSE FUNCTION
-const escToClose = (evt) => {
-  if (evt.key === "Escape") {
-    popups.forEach((popup) => {
-      closePopup(popup);
-    });
-  }
-};
 
 //SAVE PROFILE BUTTON FUNCTION
 const saveProfile = (popup) => {
@@ -186,26 +110,10 @@ const createCard = (popup) => {
   }
 };
 
-// ---------------LIKE BUTTON FUNCTION------------------
-function addLikeButton(card){
-const cardLikeButtonInactive = card.querySelector(".like-button_inactive");
-const cardLikeButtonActive = card.querySelector(".like-button_active")
-cardLikeButtonInactive.addEventListener("click", buttonClickLike)
 
-function buttonClickLike() {
-  cardLikeButtonInactive.classList.add("like-button_hidden")
-  cardLikeButtonActive.classList.remove("like-button_hidden")
-  cardLikeButtonActive.addEventListener("click", buttonClickDislike)
-}
-
-function buttonClickDislike(){
-  cardLikeButtonInactive.classList.remove("like-button_hidden")
-  cardLikeButtonActive.classList.add("like-button_hidden")
-}
-}
 
 //-----------------DELETE CARD FUNCTION---------------------------
-function deleteCard(cardAdded){
+export function deleteCard(cardAdded){
   const deleteButton = cardAdded.querySelector(".card__delete-button");
   const cardToDelete = deleteButton.parentElement
   deleteButton.addEventListener("click", () => {
@@ -215,16 +123,16 @@ function deleteCard(cardAdded){
 
 //-----------------IMAGE POPUP---------------------------
 
-function imagePopup(card){
+export function _imagePopup(card){
   const cardImage = card.querySelector(".card__image");
   const cardImagePopup = card.querySelector(".card__image-popup")
   const cardImageCloseBtn = card.querySelector(".card__close-button")
   const cardImageBig = card.querySelector(".card__image-big")
 
-  
+
   //ADD EVENT LISTENER TO IMAGES FOR POPUP IN FUNCTION
   cardImage.addEventListener("click", imagePopupIn)
-  
+
   //CREATE imagePopupIn FUNCTION
   function imagePopupIn(evt) {
     cardImagePopup.classList.add("card__image-popup_active");
@@ -248,7 +156,7 @@ function imagePopup(card){
     imagePopupOut()
     window.removeEventListener("keydown", escToCloseImage)
     cardImagePopup.removeEventListener("click", clickOutsideToCloseImage)
-  }  
+  }
   }
 
   //CREATE clickOutsideToCloseImage FUNCTION
@@ -257,7 +165,22 @@ function imagePopup(card){
       imagePopupOut()
       window.removeEventListener("keydown", escToCloseImage)
       cardImagePopup.removeEventListener("click", clickOutsideToCloseImage)
-    } 
+    }
   }
 
 }
+
+//CREATE FORM VALIDATION FOR ALL FORMS
+const forms = document.querySelectorAll(".popup__card")
+
+forms.forEach((form) => {
+    const newForm = new FormValidator({
+        formSelector: ".popup__card",
+        inputSelector: ".popup__input",
+        submitButtonSelector: ".popup__submit-button",
+        inactiveButtonClass: "popup__submit-button_inactive",
+        inputErrorClass: "popup__input-error",
+        errorClass: "popup__input-error"
+    }, form)
+    newForm.enableValidation()
+})
