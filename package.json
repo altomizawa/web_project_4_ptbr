@@ -1,0 +1,11 @@
+{
+  "name": "web_project_4_ptbr",
+  "version": "0.0.1",
+  "description": "Project 4 of Sprint 10",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Al Tomizawa",
+  "license": "ISC"
+}

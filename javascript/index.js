@@ -1,6 +1,12 @@
 import {Card} from "./card.js";
 import { profileEditButton, newCardButton, popupProfile, popupAddCard, popupIn, closePopup, clickOutsideToClose, escToClose} from "./utils.js";
 import { FormValidator } from "./FormValidator.js";
+import Popup from "./popup.js"
+import Section from "./section.js"
+import PopupWithImage from "./popupWithImage.js";
+
+const hello  = new Popup (".popup")
+
 
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
