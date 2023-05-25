@@ -5,8 +5,7 @@ import Popup from "./popup.js"
 import Section from "./section.js"
 import PopupWithImage from "./popupWithImage.js";
 
-const teste  = new Popup (".popup")
-teste.open()
+
 
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
@@ -190,3 +189,6 @@ forms.forEach((form) => {
     }, form)
     newForm.enableValidation()
 })
+
+const teste  = new PopupWithImage (".card__image-popup")
+teste.open()

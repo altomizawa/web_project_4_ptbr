@@ -1,7 +1,7 @@
 //CREATE NEWCARD CLASS
 import {deleteCard, _imagePopup, cardsParent} from "./index.js";
 import { _addLikeButton } from "./utils.js";
-
+ 
 
 export class Card {
     constructor (name, link, alt, template, isNew){

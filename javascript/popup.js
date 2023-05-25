@@ -37,8 +37,7 @@ export default class Popup {
         window.addEventListener("keydown", (evt) => {this._handleEscClose(evt)});
 
         this._popup.addEventListener("click", (evt) => {
-            if (evt.target === this._popup) {
-                console.log(this._popup)
+            if (evt.target !== this._popup.querySelector("form")) {
                 this.close();
             }
         })
