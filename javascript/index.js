@@ -5,8 +5,8 @@ import Popup from "./popup.js"
 import Section from "./section.js"
 import PopupWithImage from "./popupWithImage.js";
 
-const hello  = new Popup (".popup")
-
+const teste  = new Popup (".popup")
+teste.open()
 
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
