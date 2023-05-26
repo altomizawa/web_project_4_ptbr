@@ -11,9 +11,12 @@ export class Card {
       this.template = template;
       this.isNew = isNew;
     }
-  
+    
+   
     createCard(){
       const newCard = this.template.cloneNode(true)
+      console.log(this.name)
+
       newCard.querySelector(".card__title").textContent = this.name;
       newCard.querySelector(".card__image").src = this.link;
       newCard.querySelector(".card__image").alt = this.alt
@@ -21,20 +24,24 @@ export class Card {
       newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
         this.link;
   
-      //Add EventListener to trash can icon  
+    //   //Add EventListener to trash can icon  
       const trashCanIcon = newCard.querySelector(".card__delete-button")
       trashCanIcon.addEventListener("click", deleteCard(newCard))
   
-      //Add Like Button Functionality
+    //   //Add Like Button Functionality
       _addLikeButton(newCard)
   
-      //Add Image Popup
+    //   //Add Image Popup
       _imagePopup(newCard)
+      
+    //console.log(newCard)
+
+
   
      //return and create card 
      //Separate initial cards from new cards to that they appear first, instead of last (assignment requirement)
 
-     if (this.isNew) {return cardsParent.prepend(newCard)} else {return cardsParent.append(newCard)};
+    if (this.isNew) {return cardsParent.prepend(newCard)} else {return cardsParent.append(newCard)};
     }
   
   }

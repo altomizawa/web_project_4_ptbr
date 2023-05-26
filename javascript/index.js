@@ -107,15 +107,19 @@ function addImagePopupFunctionToCard(card){
 }
 
 //CREATE CARD BUTTON FUNCTION
-const createCard = (popup) => {v 
+const createCard = (popup) => {
   const createCardButton = popup.querySelector("button");
-  const inputTitle = popup.querySelector(".popup__input_card-title")
-  const inputLink = popup.querySelector(".popup__input_card-link")
+  const inputs = {
+    inputTitle: popup.querySelector(".popup__input_card-title"),
+    inputLink: popup.querySelector(".popup__input_card-link"),
+    inputAlt: popup.querySelector(".popup__input_card-title")
+  }
+
   //Update Profile
   createCardButton.addEventListener("click", updateCardAndClose);
   //
   function updateCardAndClose() {
-    const newCard = new Card(inputTitle.value, inputLink.value, inputLink.alt, cardTemplate, true)
+    const newCard = new Card(inputs, cardTemplate, true);
     newCard.createCard()
     createCardButton.removeEventListener("click", updateCardAndClose);
     closePopup(popup);
@@ -197,6 +201,6 @@ forms.forEach((form) => {
     newForm.enableValidation()
 })
 
-const newSection = new Section({items: initialCards}, ".cards")
+const newSection = new Section({items: initialCards}, ".card-template")
 newSection.renderer()
 
