@@ -49,13 +49,20 @@ export const cardTemplate = document.querySelector(".card-template").content;
 
 
 
+
 //CREATE ALL CARDS
-(function createAllCards() {
-  initialCards.forEach((item) => {
-    const newCard = new Card(item.name, item.link, item.alt, cardTemplate, false)
-    newCard.createCard()
-  })
-})();
+// initialCards.forEach((card) => {
+//   const newCard = new Card (card, cardTemplate, false)
+//   newCard.createCard()
+// })
+
+
+// (function createAllCards() {
+//   initialCards.forEach((item) => {
+//     const newCard = new Card(item, cardTemplate, false)
+//     newCard.createCard()
+//   })
+// })();
 
 
 
@@ -100,7 +107,7 @@ function addImagePopupFunctionToCard(card){
 }
 
 //CREATE CARD BUTTON FUNCTION
-const createCard = (popup) => {
+const createCard = (popup) => {v 
   const createCardButton = popup.querySelector("button");
   const inputTitle = popup.querySelector(".popup__input_card-title")
   const inputLink = popup.querySelector(".popup__input_card-link")
@@ -190,5 +197,6 @@ forms.forEach((form) => {
     newForm.enableValidation()
 })
 
-const teste  = new PopupWithImage (".card__image-popup")
-teste.open()
+const newSection = new Section({items: initialCards}, ".cards")
+newSection.renderer()
+

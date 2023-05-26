@@ -4,7 +4,7 @@ import { _addLikeButton } from "./utils.js";
  
 
 export class Card {
-    constructor (name, link, alt, template, isNew){
+    constructor ({name, link, alt}, template, isNew){
       this.name = name;
       this.link = link;
       this.alt = alt;
@@ -33,6 +33,7 @@ export class Card {
   
      //return and create card 
      //Separate initial cards from new cards to that they appear first, instead of last (assignment requirement)
+
      if (this.isNew) {return cardsParent.prepend(newCard)} else {return cardsParent.append(newCard)};
     }
   

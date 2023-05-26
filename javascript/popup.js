@@ -16,7 +16,7 @@ export default class Popup {
     //Method to Close Popup
     close(){
             this._popup.classList.remove("popup_active");
-            //window.removeEventListener("keydown", escToClose);
+            
 
     }
     //Method to call Close Popup by pressing Esc
