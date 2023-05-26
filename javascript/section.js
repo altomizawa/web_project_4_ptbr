@@ -1,15 +1,19 @@
+import {deleteCard, _imagePopup, cardsParent, cardTemplate} from "./index.js";
+import { _addLikeButton } from "./utils.js";
+import {Card} from "./card.js"
+
 export default class Section {
-    constructor({items, renderer}, containerSelector){
-        this._renderedItems = items;
+constructor({items, renderer}, containerSelector){
+        this._items = items;
         this._container = document.querySelector(containerSelector);
-        this._renderer(item) = renderer
+        this._renderer = renderer
     }
     
     renderer(){
-        this._renderedItems.forEach((item) =>{
-            this._renderer(item);
+        this._items.forEach((item) =>{
+        const newCard = new Card (item, cardTemplate, false)
+        newCard.createCard()
         })
-
     }
 
     addItem(element){

@@ -5,8 +5,7 @@ import Popup from "./popup.js"
 import Section from "./section.js"
 import PopupWithImage from "./popupWithImage.js";
 
-const teste  = new Popup (".popup")
-teste.open()
+
 
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
@@ -50,13 +49,20 @@ export const cardTemplate = document.querySelector(".card-template").content;
 
 
 
+
 //CREATE ALL CARDS
-(function createAllCards() {
-  initialCards.forEach((item) => {
-    const newCard = new Card(item.name, item.link, item.alt, cardTemplate, false)
-    newCard.createCard()
-  })
-})();
+// initialCards.forEach((card) => {
+//   const newCard = new Card (card, cardTemplate, false)
+//   newCard.createCard()
+// })
+
+
+// (function createAllCards() {
+//   initialCards.forEach((item) => {
+//     const newCard = new Card(item, cardTemplate, false)
+//     newCard.createCard()
+//   })
+// })();
 
 
 
@@ -101,7 +107,7 @@ function addImagePopupFunctionToCard(card){
 }
 
 //CREATE CARD BUTTON FUNCTION
-const createCard = (popup) => {
+const createCard = (popup) => {v 
   const createCardButton = popup.querySelector("button");
   const inputTitle = popup.querySelector(".popup__input_card-title")
   const inputLink = popup.querySelector(".popup__input_card-link")
@@ -190,3 +196,7 @@ forms.forEach((form) => {
     }, form)
     newForm.enableValidation()
 })
+
+const newSection = new Section({items: initialCards}, ".cards")
+newSection.renderer()
+
