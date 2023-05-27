@@ -2,8 +2,8 @@
 const profileEditButton = document.querySelector(".profile__edit");
 const newCardButton = document.querySelector(".adicionar-button");
 const popups = document.querySelectorAll(".popup");
-const popupProfile = document.querySelector(".popup_profile");
-const popupAddCard = document.querySelector(".popup_add-card");
+//const popupProfile = document.querySelector(".popup_profile");
+//const popupAddCard = document.querySelector(".popup_add-card");
 
 const popupIn = (popup) => {
   popup.classList.add("popup_active");
@@ -66,4 +66,4 @@ function _addLikeButton(card){
     }
     }
 
-export {profileEditButton, newCardButton, popupProfile, popupAddCard, popupIn, closePopup, clickOutsideToClose, escToClose, _addLikeButton}
+export {profileEditButton, newCardButton, popupIn, closePopup, clickOutsideToClose, escToClose, _addLikeButton}

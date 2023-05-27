@@ -5,15 +5,14 @@ export default class Popup {
 
     open(){
             this._popup.classList.add("popup_active");
-            const form = this._popup.querySelector("form")
-            this.setEventListeners();                 
+            this.setEventListeners();           
     }
     //Method to Close Popup
     close(){
             this._popup.classList.remove("popup_active");
-            
-
     }
+
+
     //Method to call Close Popup by pressing Esc
     _handleEscClose(evt){
             if (evt.key === "Escape") {

@@ -8,7 +8,7 @@ export class Card {
     constructor ({name, link, alt}, template, isNew){
       this.name = name;
       this.link = link;
-      this.alt = alt;
+      this.alt = name;
       this.template = template;
       this.isNew = isNew;
     }

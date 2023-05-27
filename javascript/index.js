@@ -20,34 +20,49 @@ const initialCardGrid = new Section({items: initialCards, renderer: (item) => {
 
 initialCardGrid.renderer()
 
-
-//SAVE PROFILE BUTTON FUNCTION
-const saveProfile = (popup) => {
-  const saveProfileButton = popup.querySelector("button");
-  const inputName = popup.querySelector(".popup__input_name");
-  const inputProfession = popup.querySelector(".popup__input_profession")
-  
-  //Update Profile
-  saveProfileButton.addEventListener("click", () => {
-    profileName.textContent = inputName.value;
-    profileProfession.textContent = inputProfession.value;
-    closePopup(popup);
-  });
-};
-
 //ADD EVENT LISTENER TO PROFILE BUTTON
 profileEditButton.addEventListener("click", () =>{
-  const profilePopup = new Popup (".popup_profile")
+  const profilePopup = new PopupWithForm (".popup_profile")
   profilePopup.open();
-  saveProfile(profilePopup._popup);
+
+  const inputName = profilePopup._form.querySelector(".popup__input_name")
+  const inputProfession = profilePopup._form.querySelector(".popup__input_profession")
+  const saveProfileButton = profilePopup._form.querySelector("button");
+
+
+  saveProfileButton.addEventListener("click", () =>{
+    profileName.textContent = profilePopup._formSubmitCallback.name;
+    profileProfession.textContent = profilePopup._formSubmitCallback.profession;
+    console.log(profilePopup._getInputValues())
+  })
+
+
+  //console.log(inputs.querySelector(".popup__title"))
+  //saveProfile(profilePopup._popup);
 })
+
+// //SAVE PROFILE BUTTON FUNCTION
+// const saveProfile = (popup) => {
+//   const saveProfileButton = popup.querySelector("button");
+//   const inputName = popup.querySelector(".popup__input_name");
+//   const inputProfession = popup.querySelector(".popup__input_profession")
+  
+//   //Update Profile
+//   saveProfileButton.addEventListener("click", () => {
+//     profileName.textContent = inputName.value;
+//     profileProfession.textContent = inputProfession.value;
+//     closePopup(popup);
+//   });
+// };
+
+
 
 //ADD EVENT LISTENER TO ADD NEW CARD BUTTON
 newCardButton.addEventListener("click", () => {
   //popupIn(popupAddCard);
-  const newCardPopup = new Popup(".popup_add-card")
+  const newCardPopup = new PopupWithForm(".popup_add-card")
   newCardPopup.open()
-  createCard(newCardPopup._popup);
+  createCard(newCardPopup);
 });
 
 
@@ -59,11 +74,14 @@ function addImagePopupFunctionToCard(card){
 
 //CREATE CARD BUTTON FUNCTION
 const createCard = (popup) => {
-  const createCardButton = popup.querySelector("button");
+  const createCardButton = popup._submitButton;
+  console.log(createCardButton)
+  const form = popup._form
+  
   const inputs = {
-    name: popup.querySelector(".popup__input_card-title"),
-    link: popup.querySelector(".popup__input_card-link"),
-    alt: popup.querySelector(".popup__input_card-title")
+    name: form.querySelector(".popup__input_card-title"),
+    link: form.querySelector(".popup__input_card-link"),
+    alt: form.querySelector(".popup__input_card-title")
   }
 
   //Update Profile
@@ -72,7 +90,6 @@ const createCard = (popup) => {
   function updateCardAndClose() {
     const newCard = new Card({name:inputs.name.value, link: inputs.link.value, alt:inputs.alt.value}, cardTemplate, true);
     newCard.setItem(newCard.createCard())
-
     createCardButton.removeEventListener("click", updateCardAndClose);
     closePopup(popup);
   }
@@ -153,7 +170,3 @@ forms.forEach((form) => {
 })
 
 
-const teste = new PopupWithForm(".popup_profile")
-teste.open()
-
-//new Popup (".popup_profile")
