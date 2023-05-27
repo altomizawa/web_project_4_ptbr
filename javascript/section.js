@@ -1,7 +1,3 @@
-import {deleteCard, _imagePopup, cardsParent, cardTemplate} from "./index.js";
-import { _addLikeButton } from "./utils.js";
-import {Card} from "./card.js"
-
 export default class Section {
 constructor({items, renderer}, containerSelector){
         this._items = items;
