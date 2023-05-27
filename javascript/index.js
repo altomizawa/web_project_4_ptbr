@@ -110,9 +110,9 @@ function addImagePopupFunctionToCard(card){
 const createCard = (popup) => {
   const createCardButton = popup.querySelector("button");
   const inputs = {
-    inputTitle: popup.querySelector(".popup__input_card-title"),
-    inputLink: popup.querySelector(".popup__input_card-link"),
-    inputAlt: popup.querySelector(".popup__input_card-title")
+    name: popup.querySelector(".popup__input_card-title"),
+    link: popup.querySelector(".popup__input_card-link"),
+    alt: popup.querySelector(".popup__input_card-title")
   }
 
   //Update Profile

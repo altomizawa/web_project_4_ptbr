@@ -15,14 +15,12 @@ export class Card {
    
     createCard(){
       const newCard = this.template.cloneNode(true)
-      console.log(this.name)
-
-      newCard.querySelector(".card__title").textContent = this.name;
-      newCard.querySelector(".card__image").src = this.link;
-      newCard.querySelector(".card__image").alt = this.alt
-      newCard.querySelector(".card__popup-wrapper>p").textContent = this.name;
+      newCard.querySelector(".card__title").textContent = this.name.value;
+      newCard.querySelector(".card__image").src = this.link.value;
+      newCard.querySelector(".card__image").alt = this.alt.value
+      newCard.querySelector(".card__popup-wrapper>p").textContent = this.name.value;
       newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
-        this.link;
+        this.link.value;
   
     //   //Add EventListener to trash can icon  
       const trashCanIcon = newCard.querySelector(".card__delete-button")
