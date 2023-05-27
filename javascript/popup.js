@@ -5,13 +5,8 @@ export default class Popup {
 
     open(){
             this._popup.classList.add("popup_active");
-            //reset form
             const form = this._popup.querySelector("form")
-            this.setEventListeners();
-            form.reset();
-          
-            //clickoutside to close eventlistener
-            //clickOutsideToClose(popup);                    
+            this.setEventListeners();                 
     }
     //Method to Close Popup
     close(){
@@ -36,8 +31,9 @@ export default class Popup {
         //add Esc To Close Event Listener
         window.addEventListener("keydown", (evt) => {this._handleEscClose(evt)});
 
+        //close popup if clicked outside popup area
         this._popup.addEventListener("click", (evt) => {
-            if (evt.target !== this._popup.querySelector("form")) {
+            if (evt.target === this._popup) {
                 this.close();
             }
         })

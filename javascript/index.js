@@ -1,14 +1,12 @@
 import { initialCards, cardsParent, cardTemplate, forms, profileName, profileProfession } from "./constants.js";
 
 import {Card} from "./card.js";
-import { profileEditButton, newCardButton, popupProfile, popupAddCard, popupIn, closePopup, clickOutsideToClose, escToClose} from "./utils.js";
+import { profileEditButton, newCardButton, popupIn, closePopup, clickOutsideToClose, escToClose} from "./utils.js";
 import { FormValidator } from "./FormValidator.js";
 import Popup from "./popup.js"
 import Section from "./section.js"
 import PopupWithImage from "./popupWithImage.js";
-
-console.log(initialCards)
-
+import PopupWithForm from "./popupWithForm.js";
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
 
@@ -38,24 +36,21 @@ const saveProfile = (popup) => {
 };
 
 //ADD EVENT LISTENER TO PROFILE BUTTON
-profileEditButton.addEventListener("click", () => {
-  popupIn(popupProfile);
-  //create saveButton for card
-  saveProfile(popupProfile);
-  const saveProfileButton = popupProfile.querySelector("button")
-  saveProfileButton.disabled = true
-  saveProfileButton.classList.add("popup__submit-button_inactive")
-});
-
+profileEditButton.addEventListener("click", () =>{
+  const profilePopup = new Popup (".popup_profile")
+  profilePopup.open();
+  saveProfile(profilePopup._popup);
+})
 
 //ADD EVENT LISTENER TO ADD NEW CARD BUTTON
 newCardButton.addEventListener("click", () => {
-  popupIn(popupAddCard);
-  createCard(popupAddCard);
-  const addNewCardbutton = popupAddCard.querySelector("button")
-  addNewCardbutton.disabled = true
-  addNewCardbutton.classList.add("popup__submit-button_inactive")
+  //popupIn(popupAddCard);
+  const newCardPopup = new Popup(".popup_add-card")
+  newCardPopup.open()
+  createCard(newCardPopup._popup);
 });
+
+
 
 //ADD IMAGE POPUP FUNCTION TO CARD
 function addImagePopupFunctionToCard(card){
@@ -158,4 +153,7 @@ forms.forEach((form) => {
 })
 
 
+const teste = new PopupWithForm(".popup_profile")
+teste.open()
 
+//new Popup (".popup_profile")
