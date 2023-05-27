@@ -47,23 +47,14 @@ let initialCards = [
 export const cardsParent = document.querySelector(".cards");
 export const cardTemplate = document.querySelector(".card-template").content;
 
+//CREATE ALL INITIAL CARDS
+const initialCardGrid = new Section({items: initialCards, renderer: (item) => {
+  const newCard = new Card(item, cardTemplate, false)
+  const cardElement = newCard.createCard()
+  initialCardGrid.addItem(cardElement)
+}}, cardsParent)
 
-
-
-//CREATE ALL CARDS
-// initialCards.forEach((card) => {
-//   const newCard = new Card (card, cardTemplate, false)
-//   newCard.createCard()
-// })
-
-
-// (function createAllCards() {
-//   initialCards.forEach((item) => {
-//     const newCard = new Card(item, cardTemplate, false)
-//     newCard.createCard()
-//   })
-// })();
-
+initialCardGrid.renderer()
 
 
 //SAVE PROFILE BUTTON FUNCTION
@@ -119,8 +110,9 @@ const createCard = (popup) => {
   createCardButton.addEventListener("click", updateCardAndClose);
   //
   function updateCardAndClose() {
-    const newCard = new Card(inputs, cardTemplate, true);
-    newCard.createCard()
+    const newCard = new Card({name:inputs.name.value, link: inputs.link.value, alt:inputs.alt.value}, cardTemplate, true);
+    newCard.setItem(newCard.createCard())
+
     createCardButton.removeEventListener("click", updateCardAndClose);
     closePopup(popup);
   }
@@ -201,6 +193,5 @@ forms.forEach((form) => {
     newForm.enableValidation()
 })
 
-const newSection = new Section({items: initialCards}, ".card-template")
-newSection.renderer()
+
 

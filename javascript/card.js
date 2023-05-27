@@ -15,12 +15,15 @@ export class Card {
    
     createCard(){
       const newCard = this.template.cloneNode(true)
-      newCard.querySelector(".card__title").textContent = this.name.value;
-      newCard.querySelector(".card__image").src = this.link.value;
-      newCard.querySelector(".card__image").alt = this.alt.value
-      newCard.querySelector(".card__popup-wrapper>p").textContent = this.name.value;
+
+      newCard.querySelector(".card__title").textContent = this.name;
+      newCard.querySelector(".card__image").src = this.link;
+      newCard.querySelector(".card__image").alt = this.alt
+      newCard.querySelector(".card__popup-wrapper>p").textContent = this.name;
       newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
-        this.link.value;
+        this.link;
+
+
   
     //   //Add EventListener to trash can icon  
       const trashCanIcon = newCard.querySelector(".card__delete-button")
@@ -32,14 +35,15 @@ export class Card {
     //   //Add Image Popup
       _imagePopup(newCard)
       
-    //console.log(newCard)
-
 
   
      //return and create card 
-     //Separate initial cards from new cards to that they appear first, instead of last (assignment requirement)
+     return newCard
+    }
 
-    if (this.isNew) {return cardsParent.prepend(newCard)} else {return cardsParent.append(newCard)};
+    //add new cards to DOM function
+    setItem(element){
+      cardsParent.prepend(element)
     }
   
   }
