@@ -1,16 +1,17 @@
 //CREATE NEWCARD CLASS
 import { cardsParent } from "./constants.js";
-import {deleteCard, _imagePopup} from "./index.js";
+import {deleteCard} from "./index.js";
 import { _addLikeButton } from "./utils.js";
  
 
 export class Card {
-    constructor ({name, link, alt}, template, isNew){
+    constructor ({name, link, alt}, template, isNew, handleCardClick){
       this.name = name;
       this.link = link;
       this.alt = name;
       this.template = template;
       this.isNew = isNew;
+      this._handleCardClick = handleCardClick;
     }
     
    
@@ -29,12 +30,13 @@ export class Card {
     //   //Add EventListener to trash can icon  
       const trashCanIcon = newCard.querySelector(".card__delete-button")
       trashCanIcon.addEventListener("click", deleteCard(newCard))
+    
   
     //   //Add Like Button Functionality
       _addLikeButton(newCard)
   
     //   //Add Image Popup
-      _imagePopup(newCard)
+      this._handleCardClick(newCard)
       
 
   

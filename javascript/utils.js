@@ -28,7 +28,7 @@ const closePopup = (popup) => {
   window.removeEventListener("keydown", escToClose);
 };
 
-//CLICK OUTSIDE TO CLOSE FUNCTION
+//CLICK OUTSIDE TO CLOSE POPUP FUNCTION
 const clickOutsideToClose = (popup) => {
   popup.addEventListener("click", (evt) => {
     if (evt.target === popup) {
@@ -37,7 +37,7 @@ const clickOutsideToClose = (popup) => {
   });
 };
 
-//ESC TO CLOSE FUNCTION
+//ESC TO CLOSE POPUP FUNCTION
 const escToClose = (evt) => {
   if (evt.key === "Escape") {
     popups.forEach((popup) => {
@@ -46,9 +46,57 @@ const escToClose = (evt) => {
   }
 };
 
+//-----------------IMAGE POPUP ---------------------------
+
+function _imagePopup(card){
+  const cardImage = card.querySelector(".card__image");
+  const cardImagePopup = card.querySelector(".card__image-popup")
+  const cardImageCloseBtn = card.querySelector(".card__close-button")
+  const cardImageBig = card.querySelector(".card__image-big")
 
 
-  // ---------------LIKE BUTTON FUNCTION------------------
+  //ADD EVENT LISTENER TO IMAGES FOR POPUP IN FUNCTION
+  cardImage.addEventListener("click", handleCardClick)
+
+  function handleCardClick() {
+    imagePopupIn(cardImagePopup)
+    window.addEventListener("keydown", escToCloseImage)
+    cardImagePopup.addEventListener("click", clickOutsideToCloseImage)
+
+  }
+}
+
+// ---------------CARD IMAGE POPUP IN FUNCTION-------------------
+const imagePopupIn = (popup) => {
+  popup.classList.add("popup_active")
+}
+
+//--------------- CARD IMAGE POPUP OUT FUNCTION -------------
+const imagePopupOut = (popup) => {
+  popup.classList.remove("popup_active")
+  window.removeEventListener("keydown", escToCloseImage)
+}
+
+// ------------ ESC TO CLOSE CARD IMAGE POPUP -------------------
+const escToCloseImage = (evt) => {
+  if (evt.key === "Escape") {
+    const activePopup = document.querySelector(".popup_active")
+    imagePopupOut(activePopup)    
+  } 
+}
+
+//----------------CARD IMAGE CLICK OUTSIDE TO POPUP OUT FUNCTION ---------------
+const clickOutsideToCloseImage = (evt) => {
+  const cardImageBig = document.querySelector(".popup_active").querySelector(".card__image-big");
+  const activePopup = cardImageBig.parentElement.parentElement
+
+  if (evt.target !== cardImageBig) {
+    imagePopupOut(activePopup)
+  }
+}
+
+
+// ---------------LIKE BUTTON FUNCTION------------------
 function _addLikeButton(card){
     const cardLikeButtonInactive = card.querySelector(".like-button_inactive");
     const cardLikeButtonActive = card.querySelector(".like-button_active")
@@ -66,4 +114,4 @@ function _addLikeButton(card){
     }
     }
 
-export {profileEditButton, newCardButton, popupIn, closePopup, clickOutsideToClose, escToClose, _addLikeButton}
+export {profileEditButton, newCardButton, popupIn, closePopup, clickOutsideToClose, escToClose, _imagePopup, _addLikeButton}
