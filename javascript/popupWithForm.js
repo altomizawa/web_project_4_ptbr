@@ -18,16 +18,16 @@ export default class PopupWithForm extends Popup{
      //Method to Close Popup
     close(){
         this._popup.classList.remove("popup_active");
-        //this._form.reset();
+        this._form.reset();
     }
 
     _getInputValues(){
-        const inputValues = {};
+        this._inputValues = {};
         const inputs = this._form.querySelectorAll("input")
         inputs.forEach((input) => {
-            inputValues[input.name] = input.value;
+            this._inputValues[input.name] = input.value;
         })
-        return this._formSubmitCallback = inputValues
+        return this._inputValues
     }
 
     //Method to Set all Event Listeners for Popup 
@@ -50,11 +50,8 @@ export default class PopupWithForm extends Popup{
 
         //Prevent default submit button and return Input values into an Object
         this._submitButton.addEventListener("click", (evt) => {
-            evt.preventDefault();
-            this._getInputValues();
-            this.close()
+            //evt.preventDefault();
+            //this.close()
         })
-
-
     };
 }

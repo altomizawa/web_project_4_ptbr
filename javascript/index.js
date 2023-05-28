@@ -7,6 +7,7 @@ import Popup from "./popup.js"
 import Section from "./section.js"
 import PopupWithImage from "./popupWithImage.js";
 import PopupWithForm from "./popupWithForm.js";
+import UserInfo from "./userInfo.js"
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
 
@@ -20,46 +21,26 @@ const initialCardGrid = new Section({items: initialCards, renderer: (item) => {
 
 initialCardGrid.renderer()
 
-//ADD EVENT LISTENER TO PROFILE BUTTON
+//EDIT PROFILE BUTTON
 profileEditButton.addEventListener("click", () =>{
   const profilePopup = new PopupWithForm (".popup_profile")
   profilePopup.open();
 
-  const inputName = profilePopup._form.querySelector(".popup__input_name")
-  const inputProfession = profilePopup._form.querySelector(".popup__input_profession")
-  const saveProfileButton = profilePopup._form.querySelector("button");
+  //Add Event Listener for submit button
+  profilePopup._submitButton.addEventListener("click", updateProfile)
 
-
-  saveProfileButton.addEventListener("click", () =>{
-    profileName.textContent = profilePopup._formSubmitCallback.name;
-    profileProfession.textContent = profilePopup._formSubmitCallback.profession;
-    console.log(profilePopup._getInputValues())
-  })
-
-
-  //console.log(inputs.querySelector(".popup__title"))
-  //saveProfile(profilePopup._popup);
+  //UPDATE PROFILE INFO
+  function updateProfile() {
+    const updatedUser = new UserInfo(profilePopup._getInputValues())
+    updatedUser.setUserInfo()
+    profilePopup._submitButton.removeEventListener("click", updateProfile)
+    profilePopup.close()
+  }
 })
 
-// //SAVE PROFILE BUTTON FUNCTION
-// const saveProfile = (popup) => {
-//   const saveProfileButton = popup.querySelector("button");
-//   const inputName = popup.querySelector(".popup__input_name");
-//   const inputProfession = popup.querySelector(".popup__input_profession")
-  
-//   //Update Profile
-//   saveProfileButton.addEventListener("click", () => {
-//     profileName.textContent = inputName.value;
-//     profileProfession.textContent = inputProfession.value;
-//     closePopup(popup);
-//   });
-// };
 
-
-
-//ADD EVENT LISTENER TO ADD NEW CARD BUTTON
+//NEW CARD BUTTON
 newCardButton.addEventListener("click", () => {
-  //popupIn(popupAddCard);
   const newCardPopup = new PopupWithForm(".popup_add-card")
   newCardPopup.open()
   createCard(newCardPopup);
@@ -67,31 +48,20 @@ newCardButton.addEventListener("click", () => {
 
 
 
-//ADD IMAGE POPUP FUNCTION TO CARD
-function addImagePopupFunctionToCard(card){
-  imagePopup(card)
-}
-
 //CREATE CARD BUTTON FUNCTION
 const createCard = (popup) => {
   const createCardButton = popup._submitButton;
-  console.log(createCardButton)
-  const form = popup._form
-  
-  const inputs = {
-    name: form.querySelector(".popup__input_card-title"),
-    link: form.querySelector(".popup__input_card-link"),
-    alt: form.querySelector(".popup__input_card-title")
-  }
+  //const form = popup._form
 
   //Update Profile
   createCardButton.addEventListener("click", updateCardAndClose);
-  //
+
+  //Update Card Grid and Close Popup
   function updateCardAndClose() {
-    const newCard = new Card({name:inputs.name.value, link: inputs.link.value, alt:inputs.alt.value}, cardTemplate, true);
+    const newCard = new Card(popup._getInputValues(), cardTemplate, true);
     newCard.setItem(newCard.createCard())
+    popup.close()
     createCardButton.removeEventListener("click", updateCardAndClose);
-    closePopup(popup);
   }
 };
 
@@ -168,5 +138,7 @@ forms.forEach((form) => {
     }, form)
     newForm.enableValidation()
 })
-
-
+const operator = {
+  name: "Alysson",
+  profession: "Lavrador"
+}
