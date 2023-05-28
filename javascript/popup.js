@@ -6,7 +6,7 @@ export default class Popup {
 
     open(){
             this._popup.classList.add("popup_active");
-            this.setEventListeners();           
+            this.setEventListeners();    
     }
     //Method to Close Popup
     close(){

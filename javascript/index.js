@@ -13,10 +13,12 @@ import UserInfo from "./userInfo.js"
 
 //CREATE ALL INITIAL CARDS
 const initialCardGrid = new Section({items: initialCards, renderer: (item) => {
-  const newCard = new Card(item, cardTemplate, false, (card) => {_imagePopup(card)})
+  const newCard = new Card(item, cardTemplate, false, (card) => {
+   _imagePopup(card)
+  })
   const cardElement = newCard.createCard()
-  //newCard._handleCardClick(cardElement)
   initialCardGrid.addItem(cardElement)
+
 }}, cardsParent)
 
 initialCardGrid.renderer()
