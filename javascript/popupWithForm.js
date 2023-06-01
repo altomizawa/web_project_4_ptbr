@@ -32,13 +32,15 @@ export default class PopupWithForm extends Popup{
     }
 
     //Method to Set all Event Listeners for Popup 
-    setEventListeners(){
+    setEventListeners(){ 
         //create closeButton for card and Add Event Listener
         const closeButtonEl = this._popup.querySelector(".popup__close-button");
         closeButtonEl.addEventListener("click", this.close)
 
         //add Esc To Close Event Listener
-        window.addEventListener("keydown", (evt) => {this._handleEscClose(evt)});
+        document.addEventListener("keydown", (evt) =>{
+            this._handleEscClose(evt)
+        });
 
         //close popup if clicked outside popup area
         this._popup.addEventListener("click", (evt) => {

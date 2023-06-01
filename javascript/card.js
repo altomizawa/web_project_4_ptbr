@@ -18,13 +18,9 @@ export class Card {
    
     createCard(){
       const newCard = this.template.cloneNode(true)
-
-      newCard.querySelector(".card__title").textContent = this.name;
-      newCard.querySelector(".card__image").src = this.link;
-      newCard.querySelector(".card__image").alt = this.alt
-      newCard.querySelector(".card__popup-wrapper>p").textContent = this.name;
-      newCard.querySelector(".card__popup-wrapper>.card__image-big").src =
-        this.link;
+      const cardPopup = new PopupWithImage(".card__image-popup")
+      cardPopup.open(newCard, this)
+      
 
 
   

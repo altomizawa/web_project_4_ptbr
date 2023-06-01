@@ -7,7 +7,8 @@ import Popup from "./popup.js"
 import Section from "./section.js"
 import PopupWithImage from "./popupWithImage.js";
 import PopupWithForm from "./popupWithForm.js";
-import UserInfo from "./userInfo.js"
+import UserInfo from "./userInfo.js";
+
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
 
@@ -22,6 +23,7 @@ const initialCardGrid = new Section({items: initialCards, renderer: (item) => {
 }}, cardsParent)
 
 initialCardGrid.renderer()
+
 
 //EDIT PROFILE BUTTON
 profileEditButton.addEventListener("click", () =>{
@@ -67,6 +69,8 @@ const createCard = (popup) => {
 };
 
 
+
+
 //-----------------DELETE CARD FUNCTION---------------------------
 export function deleteCard(cardAdded){
   const deleteButton = cardAdded.querySelector(".card__delete-button");
@@ -90,3 +94,6 @@ forms.forEach((form) => {
     }, form)
     newForm.enableValidation()
 })
+
+
+
