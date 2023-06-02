@@ -9,7 +9,7 @@ export default class PopupWithForm extends Popup{
         
     }
 
-    //Method to Open Popup
+    //Methos do Open Popup
     open(){
         this._popup.classList.add("popup_active");
         this.setEventListeners();
@@ -17,8 +17,7 @@ export default class PopupWithForm extends Popup{
 
      //Method to Close Popup
     close(){
-        //this._popup.classList.remove("popup_active");
-        super.close()
+        this._popup.classList.remove("popup_active");
         this._form.reset();
     }
 
@@ -35,7 +34,9 @@ export default class PopupWithForm extends Popup{
     setEventListeners(){ 
         //create closeButton for card and Add Event Listener
         const closeButtonEl = this._popup.querySelector(".popup__close-button");
-        closeButtonEl.addEventListener("click", this.close)
+        closeButtonEl.addEventListener("click", () => {
+            this.close();
+        })
 
         //add Esc To Close Event Listener
         document.addEventListener("keydown", (evt) =>{

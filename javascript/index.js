@@ -1,7 +1,7 @@
-import { initialCards, cardsParent, cardTemplate, forms, profileName, profileProfession } from "./constants.js";
+import { initialCards, cardsParent, cardTemplate, forms, profileName, profileProfession, cardImagePopup } from "./constants.js";
 
 import {Card} from "./card.js";
-import { profileEditButton, newCardButton, popupIn, closePopup, clickOutsideToClose, escToClose, _imagePopup} from "./utils.js";
+import { profileEditButton, newCardButton} from "./utils.js";
 import { FormValidator } from "./FormValidator.js";
 import Popup from "./popup.js"
 import Section from "./section.js"
@@ -15,9 +15,15 @@ import UserInfo from "./userInfo.js";
 //CREATE ALL INITIAL CARDS
 const initialCardGrid = new Section({items: initialCards, renderer: (item) => {
   const newCard = new Card(item, cardTemplate, false, (card) => {
-   _imagePopup(card)
+    const cardImage = card.querySelector(".card__image")
+    cardImage.addEventListener("click", () => {
+        const popup = new PopupWithImage(".card__image-popup", ".card__image-big", ".card__title")
+        popup.open(newCard)
+    })
   })
+
   const cardElement = newCard.createCard()
+
   initialCardGrid.addItem(cardElement)
 
 }}, cardsParent)
@@ -61,8 +67,16 @@ const createCard = (popup) => {
 
   //Update Card Grid and Close Popup
   function updateCardAndClose() {
-    const newCard = new Card(popup._getInputValues(), cardTemplate, true, (card) => {_imagePopup(card)});
+    const newCard = new Card(popup._getInputValues(), cardTemplate, true, (card) => {
+      const cardImage = card.querySelector(".card__image")
+      cardImage.addEventListener("click", () => {
+          const popup = new PopupWithImage(".card__image-popup", ".card__image-big", ".card__title")
+          popup.open(newCard)
+      })
+    
+    });
     newCard.setItem(newCard.createCard())
+    
     popup.close()
     createCardButton.removeEventListener("click", updateCardAndClose);
   }
