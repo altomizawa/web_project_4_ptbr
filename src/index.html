@@ -4,13 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <!-- <link rel="stylesheet" href="./pages/index.css" /> -->
     <title>Document</title>
   </head>
   <body>
     <header class="header">
       <img
-        src="./images/Around_the_US.svg"
+        src = "<%= require('./images/Around_the_US.svg')%>"
+        id = "around-the-us"
         alt="logotipo de Around the US"
         class="logo"
       />
@@ -58,7 +59,7 @@
         <!-- ------------------------PROFILE INFO------------------------------ -->
         <div class="profile__info">
           <img
-            src="./images/imageprofile-picture.jpg"
+            src= "<%= require ('./images/imageprofile-picture.jpg')%>"
             alt="imagem do Jacques Cousteau"
             class="profile__picture"
           />
@@ -66,7 +67,7 @@
             <div class="profile__name-wrapper">
               <h1 class="profile__name">Jacques Cousteau</h1>
               <button class="profile__edit">
-                <img src="./images/Pencil.svg" alt="ilustração de um lápis" />
+                <img src="<%= require('./images/Pencil.svg')%>" alt="ilustração de um lápis" />
               </button>
             </div>
             <h2 class="profile__title">Explorador</h2>
@@ -74,7 +75,7 @@
         </div>
         <button class="adicionar-button">
           <img
-            src="./images/Plus-sign.svg"
+            src="<%= require ('./images/Plus-sign.svg')%>"
             alt="sinal de mais para adicionar imagem"
             class="adicionar-button__image"
           />
@@ -86,7 +87,7 @@
         <div class="popup popup_add-card">
           <form class="popup__card" autocomplete="off" novalidate>
             <img
-              src="./images/Close_Icon.svg"
+              src="<%= require('./images/Close_Icon.svg')%>"
               alt="ícone X de fechar a janela"
               class="popup__close-button"
             />
@@ -119,7 +120,7 @@
         <div class="card__image-popup">
           <div class="card__popup-wrapper">
             <img
-              src="./images/Close_Icon.svg"
+              src="<%= require ('./images/Close_Icon.svg')%>"
               alt="ícone X de fechar a janela"
               class="card__close-button"
             />
@@ -139,12 +140,12 @@
             
             <button class="card__delete-button">
               <img
-                src="./images/trashCan.svg"
+                src="<%= require ('./images/trashCan.svg')%>"
                 alt="ícone de lata de lixo"
                 class="card__delete-icon card__delete-icon_active"
               />
               <img
-                src="./images/trashCan_grey.svg"
+                src="<%= require('./images/trashCan_grey.svg')%>"
                 alt="ícone de lata de lixo"
                 class="card__delete-icon card__delete-icon_inactive"
               />
@@ -153,13 +154,13 @@
             <div class="card__description-wrapper">
               <h4 class="card__title"></h4>
               <img
-                src="./images/heart.svg"
+                src="<%= require ('./images/heart.svg')%>"
                 alt="imagem de um coração vazado"
                 class="like-button like-button_inactive"
                 id="like_off"
               />
               <img
-                src="./images/heart_active.svg"
+                src="<%= require('./images/heart_active.svg')%>"
                 alt="imagem de um coração vazado"
                 class="like-button like-button_active like-button_hidden"
                 id="like_on"
@@ -174,9 +175,9 @@
     <footer class="footer">
       <p class="copyrights">© 2021 Around The U.S.</p>
     </footer>
-    <script type="module" src="./javascript/FormValidator.js"></script>
-    <script type="module" src="./javascript/index.js"></script>
-    <script type="module" src="./javascript/card.js"></script>
+    <!-- <script type="module" src="./javascript/FormValidator.js"></script>
+    <script type="module" src="./src/index.js"></script>
+    <script type="module" src="./javascript/card.js"></script> -->
     
    
   </body>
