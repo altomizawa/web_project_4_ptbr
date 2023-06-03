@@ -28,10 +28,10 @@
 @import url(/blocks/card/__delete-button/card__delete-button.css);
 @import url(/blocks/card/__delete-icon/card__delete-icon.css);
 @import url(/blocks/card/__delete-icon/card__delete-icon_inactive.css);
-@import url(/blocks/card/__image-popup/card__image-popup.css);
-@import url(/blocks/card/__close-button/card__close-button.css);
-@import url(/blocks/card/__popup-wrapper/card__popup-wrapper.css);
-@import url(/blocks/card/__image-popup/card__image-popup_active.css);
+/* @import url(/blocks/card/__image-popup/card__image-popup.css); */
+/* @import url(/blocks/card/__close-button/card__close-button.css); */
+/* @import url(/blocks/card/__popup-wrapper/card__popup-wrapper.css); */
+/* @import url(/blocks/card/__image-popup/card__image-popup_active.css); */
 
 /* --------------------FOOTER SECTION------------------------ */
 @import url(/blocks/footer/footer.css);
@@ -48,3 +48,7 @@
 
 @import url(/blocks/popup/__input/popup__input-error.css);
 
+@import url(/blocks/popupwithimage/popupwithimage.css);
+@import url(/blocks/popupwithimage/popupwithimage_active.css);
+@import url(/blocks/popupwithimage/__close-button/popupwithimage__close-button.css);
+@import url(/blocks/popupwithimage/__wrapper/popupwithimage__wrapper.css);

@@ -19,7 +19,7 @@ const initialCardGrid = new Section({items: initialCards, renderer: (item) => {
   const newCard = new Card(item, cardTemplate, false, (card) => {
     const cardImage = card.querySelector(".card__image")
     cardImage.addEventListener("click", () => {
-        const popup = new PopupWithImage(".card__image-popup", ".card__image-big", ".card__title")
+        const popup = new PopupWithImage(".popupwithimage", ".popupwithimage__image-big", ".card__title")
         popup.open(newCard)
     })
   })
@@ -72,7 +72,7 @@ const createCard = (popup) => {
     const newCard = new Card(popup._getInputValues(), cardTemplate, true, (card) => {
       const cardImage = card.querySelector(".card__image")
       cardImage.addEventListener("click", () => {
-          const popup = new PopupWithImage(".card__image-popup", ".card__image-big", ".card__title")
+          const popup = new PopupWithImage(".popupwithimage", ".popupwithimage__image-big", ".card__title")
           popup.open(newCard)
       })
     

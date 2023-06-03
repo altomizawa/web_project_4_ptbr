@@ -1,5 +1,0 @@
-.card__image-popup_active {
-  opacity: 1;
-  pointer-events: auto;
-  transition: 200ms ease-in;
-}

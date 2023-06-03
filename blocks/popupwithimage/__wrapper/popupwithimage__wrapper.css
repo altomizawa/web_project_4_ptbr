@@ -1,4 +1,4 @@
-.card__popup-wrapper {
+.popupwithimage__wrapper {
   max-width: 70%;
   max-height: 70%;
   display: flex;
@@ -9,14 +9,14 @@
   transform: translateY(-10px);
 }
 
-.card__popup-wrapper > .card__image-big {
+.popupwithimage__wrapper > .popupwithimage__image-big {
   width: 100%;
   max-height: 70vh;
   border-radius: 8px;
   object-fit: contain;
 }
 
-.card__popup-wrapper > p {
+.popupwithimage__wrapper > p {
   color: white;
   width: 100%;
   font-size: 14px;
@@ -25,7 +25,7 @@
 }
 
 @media screen and (max-width: 760px) {
-  .card__popup-wrapper {
+  .popup__wrapper {
     max-width: 90%;
   }
 }

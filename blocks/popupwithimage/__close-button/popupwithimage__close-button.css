@@ -1,4 +1,4 @@
-.card__close-button {
+.popupwithimage__close-button {
   width: 26px;
   height: 26px;
   position: absolute;
@@ -8,12 +8,12 @@
   cursor: pointer;
 }
 
-.card__close-button:hover {
+.popupwithimage__close-button:hover {
   opacity: 60%;
 }
 
 @media screen and (max-width: 768px) {
-  .card__close-button {
+  .popupwithimage__close-button {
     right: 0px;
     top: -50px;
   }

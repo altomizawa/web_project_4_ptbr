@@ -37,7 +37,7 @@ const cardTemplate = document.querySelector(".card-template").content;
 const forms = document.querySelectorAll(".popup__card")
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__title");
-const cardImagePopup = document.querySelector(".card__image-popup")
+const cardImagePopup = document.querySelector(".popupwithimage")
 
 
 export {initialCards, cardsParent, cardTemplate, forms, profileName, profileProfession, cardImagePopup}

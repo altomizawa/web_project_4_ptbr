@@ -24,7 +24,7 @@
         <div class="popup popup_profile">
           <form class="popup__card" autocomplete="off" novalidate>
             <img
-              src="./images/Close_Icon.svg"
+              src="<%= require('./images/Close_Icon.svg')%>"
               alt="ícone X de fechar a janela"
               class="popup__close-button"
             />
@@ -117,7 +117,7 @@
         </div>
 
 <!-- ------------------------CARD POPUP WITH IMAGE--------------------------- -->
-        <div class="card__image-popup">
+        <!-- <div class="card__image-popup">
           <div class="card__popup-wrapper">
             <img
               src="<%= require ('./images/Close_Icon.svg')%>"
@@ -127,6 +127,21 @@
             <img
               src=" "
               class="card__image-big"
+              alt=" "
+            />
+            <p></p>
+          </div>
+        </div> -->
+        <div class="popupwithimage">
+          <div class="popupwithimage__wrapper">
+            <img
+              src="<%= require ('./images/Close_Icon.svg')%>"
+              alt="ícone X de fechar a janela"
+              class="popupwithimage__close-button"
+            />
+            <img
+              src=" "
+              class="popupwithimage__image-big"
               alt=" "
             />
             <p></p>
