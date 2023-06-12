@@ -32,12 +32,15 @@ let initialCards = [
   },
 ];
 
+
+
 const cardsParent = document.querySelector(".cards");
 const cardTemplate = document.querySelector(".card-template").content;
 const forms = document.querySelectorAll(".popup__card")
 const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__title");
+const profilePicture = document.querySelector(".profile__picture")
 const cardImagePopup = document.querySelector(".popupwithimage")
 
 
-export {initialCards, cardsParent, cardTemplate, forms, profileName, profileProfession, cardImagePopup}
+export {initialCards, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePicture, cardImagePopup}

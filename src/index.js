@@ -10,12 +10,18 @@ import Section from "../javascript/section.js"
 import PopupWithImage from "../javascript/popupWithImage.js";
 import PopupWithForm from "../javascript/popupWithForm.js";
 import UserInfo from "../javascript/userInfo.js";
+import Api from "../javascript/api.js"
 
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
+//CREATE INITIAL ARRAY
+const arr = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+arr.getInitialCards()
+
 
 //CREATE ALL INITIAL CARDS
-const initialCardGrid = new Section({items: initialCards, renderer: (item) => {
+export function makeInitialCards(array){
+const initialCardGrid = new Section({items: array, renderer: (item) => {
   const newCard = new Card(item, cardTemplate, false, (card) => {
     const cardImage = card.querySelector(".card__image")
     cardImage.addEventListener("click", () => {
@@ -29,8 +35,14 @@ const initialCardGrid = new Section({items: initialCards, renderer: (item) => {
   initialCardGrid.addItem(cardElement)
 
 }}, cardsParent)
-
 initialCardGrid.renderer()
+}
+
+
+//GET USER INFO
+const newUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+newUser.getUser()
+
 
 
 //EDIT PROFILE BUTTON
