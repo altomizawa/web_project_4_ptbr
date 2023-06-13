@@ -1,16 +1,17 @@
 import {makeInitialCards} from "../src/index.js";
 import UserInfo from "../javascript/userInfo.js"
 
-export default class Api{
-    constructor(url, authorization, contentType){
+export class Api{
+    constructor(url, method, authorization, contentType){
         this.url = url;
+        this.method = method;
         this.authorization = authorization;
         this.contentType = contentType;
-        this.arr = this.arr
     }
 
     getInitialCards(){
     fetch(this.url, {
+    method: this.method,
     headers: {
     authorization: this.authorization,
     "Content-Type": this.contentType,
@@ -23,6 +24,7 @@ export default class Api{
 
     getUser(){
         fetch(this.url, {
+            method: this.method,
             headers: {
                 authorization: this.authorization,
                 "Content-Type": this.contentType,
@@ -30,11 +32,14 @@ export default class Api{
         })
         .then (res => res.json())
         .then((data) => {
-            console.log(data.avatar)
             const user = new UserInfo(data)
             user.getUserInfo()
             user.setUserInfo()
         })
+    }
+
+    updateUser(){
+
     }
   }
 

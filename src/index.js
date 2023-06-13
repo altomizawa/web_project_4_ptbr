@@ -10,12 +10,12 @@ import Section from "../javascript/section.js"
 import PopupWithImage from "../javascript/popupWithImage.js";
 import PopupWithForm from "../javascript/popupWithForm.js";
 import UserInfo from "../javascript/userInfo.js";
-import Api from "../javascript/api.js"
+import {Api} from "../javascript/api.js"
 
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
 //CREATE INITIAL ARRAY
-const arr = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+const arr = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 arr.getInitialCards()
 
 
@@ -40,7 +40,7 @@ initialCardGrid.renderer()
 
 
 //GET USER INFO
-const newUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+const newUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 newUser.getUser()
 
 
@@ -56,7 +56,8 @@ profileEditButton.addEventListener("click", () =>{
   //UPDATE PROFILE INFO
   function updateProfile() {
     const updatedUser = new UserInfo(profilePopup._getInputValues())
-    updatedUser.setUserInfo()
+    console.log(updatedUser._profession)
+    //updatedUser.setUserInfo()
     profilePopup._submitButton.removeEventListener("click", updateProfile)
     profilePopup.close()
   }
