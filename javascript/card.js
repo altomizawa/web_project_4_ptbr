@@ -7,13 +7,15 @@ import { _addLikeButton } from "./utils.js";
  
 
 export class Card {
-    constructor ({name, link, alt}, template, isNew, handleCardClick){
+    constructor ({name, link, alt, likes, owner}, template, isNew, handleCardClick){
       this.name = name;
       this.link = link;
       this.alt = name;
       this.template = template;
       this.isNew = isNew;
       this._handleCardClick = handleCardClick;
+      this.likes = likes;
+      this._id = owner._id
     }
     
    

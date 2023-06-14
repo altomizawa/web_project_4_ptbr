@@ -10,7 +10,7 @@ import Section from "../javascript/section.js"
 import PopupWithImage from "../javascript/popupWithImage.js";
 import PopupWithForm from "../javascript/popupWithForm.js";
 import UserInfo from "../javascript/userInfo.js";
-import {Api, Api2} from "../javascript/api.js"
+import {Api} from "../javascript/api.js"
 
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
@@ -40,10 +40,9 @@ initialCardGrid.renderer()
 
 
 //GET USER INFO
+
 const user = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 user.getUser()
-
-
 
 
 
@@ -59,9 +58,9 @@ profileEditButton.addEventListener("click", () =>{
   function updateProfile() {
     const newUserInfo = new UserInfo(profilePopup._getInputValues())
 
-    const updatedUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+    const newUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
    
-    updatedUser.updateUser(newUserInfo)
+    newUser.updateUser(newUserInfo)
 
     //updatedUser.setUserInfo()
     profilePopup._submitButton.removeEventListener("click", updateProfile)
