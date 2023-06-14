@@ -25,7 +25,7 @@ export class Api{
         }
 
 
-    async getUser(){
+    getUser(){
         fetch(this.url, {
             method: this.method,
             headers: {
@@ -33,7 +33,9 @@ export class Api{
                 "Content-Type": this.contentType,
             }
         })
-        .then (res => res.json())
+        .then (res => {if (res.ok) {
+            return res.json()
+        } else {console.log("error")}})
         .then((data) => {
             const user = new UserInfo(data)
             user.getUserInfo()
@@ -57,8 +59,24 @@ export class Api{
         profileProfession.textContent = user._profession;
     }
 
+    changeProfilePic(){
+
+    }
+
     addNewCard(){
         console.log("new Card Added")
+    }
+
+    removeCard(){
+
+    }
+
+    addLike(){
+
+    }
+
+    removeLike(){
+
     }
   }
 
