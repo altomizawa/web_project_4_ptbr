@@ -1,12 +1,13 @@
 import {makeInitialCards} from "../src/index.js";
 import UserInfo from "../javascript/userInfo.js"
+import { profileName, profilePicture, profileProfession } from "./constants.js";
 
 export class Api{
     constructor(url, method, authorization, contentType){
         this.url = url;
         this.method = method;
         this.authorization = authorization;
-        this.contentType = contentType;
+        this.contentType = contentType;          
     }
 
     getInitialCards(){
@@ -17,12 +18,14 @@ export class Api{
     "Content-Type": this.contentType,
     }
     })
-    .then (res => res.json())
+    .then (res => {if (res.ok) {
+        return res.json()
+    } else {console.log("error")}})
     .then ((data =>{return makeInitialCards(data)}))    
         }
 
 
-    getUser(){
+    async getUser(){
         fetch(this.url, {
             method: this.method,
             headers: {
@@ -38,8 +41,25 @@ export class Api{
         })
     }
 
-    updateUser(){
+    updateUser(user){
+        fetch(this.url, {
+            method: this.method,
+            headers: {
+                authorization: this.authorization,
+                "Content-Type": this.contentType,
+            },
+            body: JSON.stringify({
+                name: `${user._name}`,
+                about: `${user._profession}`,
+            })
+            });
+        profileName.textContent = user._name;
+        profileProfession.textContent = user._profession;
+    }
 
+    addNewCard(){
+        console.log("new Card Added")
     }
   }
 
+  
