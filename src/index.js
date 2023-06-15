@@ -44,6 +44,21 @@ initialCardGrid.renderer()
 const user = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 user.getUser()
 
+//GET USER ID
+// const userId = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+
+// export function getUserId (data){
+//   return data._id
+// }
+// userId.getUserId()
+
+
+//UPDATE USER INFO FUNCTION
+export function updateUserInfo(data){
+  const user = new UserInfo(data)
+  user.getUserInfo()
+  user.setUserInfo()
+}
 
 
 //EDIT PROFILE BUTTON

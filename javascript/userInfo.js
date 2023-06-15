@@ -6,6 +6,7 @@ export default class UserInfo{
         this._name = user.name;
         this._profession = user.about;
         this._avatar = user.avatar;
+        this._id = user._id;
     }   
 
     getUserInfo(){
