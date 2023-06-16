@@ -159,7 +159,7 @@ export class Api {
     }
   }
 
-  async removeNewCard(cardId) {
+  async removeCard(cardId) {
     try{
         await fetch(`${this.url}/${cardId}`, {
             method: this.method,

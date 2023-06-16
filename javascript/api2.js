@@ -35,5 +35,20 @@ export class Api2 {
         }
     }
 
+
+    async removeCard(cardId) {
+        try{
+            await fetch(`${this.url}/${cardId}`, {
+                method: this.method,
+                headers: {
+                  authorization: this.authorization,
+                  "Content-Type": this.contentType,
+                },
+              });
+        } catch (err) {
+            console.log("Error while posting user info:", err)
+        }
+      }
+
 }
 

@@ -45,6 +45,7 @@ function uploadCard(cardInfo) {
   })
   
   const cardElement = newCard.createCard()
+  //console.log(cardElement._id)
   cardsParent.append(cardElement)
 }
 
@@ -54,7 +55,7 @@ const cartaoNovo = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards
 
 
 //CALL DELETE CARD API
-const cardToBeDeleted = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+// const cardToBeDeleted = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 
 
 //GET USER INFO
@@ -134,9 +135,14 @@ const createCard = (popup) => {
 export function deleteCard(cardAdded){
   const deleteButton = cardAdded.querySelector(".card__delete-button");
   const cardToDelete = deleteButton.parentElement
+  const cardToDeleteId = cardToDelete.id
   deleteButton.addEventListener("click", () => {
-    console.log(cardToDelete.id)
     cardToDelete.remove()
+
+    //Delete from server
+    const cardToBeDeleted = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+    cardToBeDeleted.removeCard(cardToDeleteId)
+    
   })
 }
 

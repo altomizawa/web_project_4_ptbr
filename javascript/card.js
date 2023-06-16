@@ -6,7 +6,7 @@ import { _addLikeButton } from "./utils.js";
 import {Api} from "./api.js";
 
 export class Card {
-    constructor ({name, link, alt, likes, owner}, template, isNew, handleCardClick){
+    constructor ({name, link, alt, likes, owner, _id}, template, isNew, handleCardClick){
       this.name = name;
       this.link = link;
       this.alt = name;
@@ -15,6 +15,7 @@ export class Card {
       this._handleCardClick = handleCardClick;
       this.likes = likes;
       this.owner = owner
+      this._id = _id
     }
     
   
@@ -28,9 +29,7 @@ export class Card {
       newCard.querySelector(".card__image").alt = this.alt;
       newCard.querySelector(".card__title").textContent = this.name;
       newCard.likes = this.likes;
-      
-      newCard.querySelector(".card")._id = this._id
-      //console.log(newCard.querySelector(".card")._id)
+      newCard.querySelector(".card").id = this._id
 
       //  
 
