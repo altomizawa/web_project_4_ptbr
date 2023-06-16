@@ -1,38 +1,11 @@
-//CREATE INITIAL CARDS OBJECT
-let initialCards = [
-  {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-    alt: "Foto da Vale de Yosemite"
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-    alt: "Foto do Lago Louise"
-  },
-  {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-    alt: "Foto das Montanhas Carecas"
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-    alt: "Foto de Latemar"
-  },
-  {
-    name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-    alt: "Foto do Parque Nacional de Vanoise"
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-    alt: "Foto do Lago di Braies"
-  },
-];
+import { Api2 } from "./api2";
 
 
+const thisUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+const thisUserInfo = await(await thisUser.fetchData()).data
+
+const initialCards = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+const initialCardsArray = await(await initialCards.fetchData()).data
 
 const cardsParent = document.querySelector(".cards");
 const cardTemplate = document.querySelector(".card-template").content;
@@ -43,4 +16,4 @@ const profilePicture = document.querySelector(".profile__picture")
 const cardImagePopup = document.querySelector(".popupwithimage")
 
 
-export {initialCards, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePicture, cardImagePopup}
+export {thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePicture, cardImagePopup}

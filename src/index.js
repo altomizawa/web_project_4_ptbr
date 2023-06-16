@@ -1,6 +1,6 @@
 import "./styles/index.css";
 
-import { initialCards, cardsParent, cardTemplate, forms, profileName, profileProfession, cardImagePopup } from "../javascript/constants.js";
+import { thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, cardImagePopup } from "../javascript/constants.js";
 
 import {Card} from "../javascript/card.js";
 import { profileEditButton, newCardButton} from "../javascript/utils.js";
@@ -11,17 +11,13 @@ import PopupWithImage from "../javascript/popupWithImage.js";
 import PopupWithForm from "../javascript/popupWithForm.js";
 import UserInfo from "../javascript/userInfo.js";
 import {Api} from "../javascript/api.js"
+import { Api2 } from "../javascript/api2";
 
 
 //------------------------CREATE INITIAL CARDS IN JS---------------------
-//CREATE INITIAL ARRAY
-const arr = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-arr.getInitialCards()
-
 
 //CREATE ALL INITIAL CARDS
-export function makeInitialCards(array){
-const initialCardGrid = new Section({items: array, renderer: (item) => {
+const initialCardGrid = new Section({items: initialCardsArray, renderer: (item) => {
   const newCard = new Card(item, cardTemplate, false, (card) => {
     const cardImage = card.querySelector(".card__image")
     cardImage.addEventListener("click", () => {
@@ -36,29 +32,44 @@ const initialCardGrid = new Section({items: array, renderer: (item) => {
 
 }}, cardsParent)
 initialCardGrid.renderer()
+
+
+//CREATE NEW CARD
+function uploadCard(cardInfo) {
+  const newCard = new Card(cardInfo, cardTemplate, false, (card) => {
+    const cardImage = card.querySelector(".card__image")
+    cardImage.addEventListener("click", () => {
+        const popup = new PopupWithImage(".popupwithimage", ".popupwithimage__image-big", ".card__title")
+        popup.open(newCard)
+    })
+  })
+  
+  const cardElement = newCard.createCard()
+  cardsParent.append(cardElement)
 }
+
+//CALL POST TO ADD CARD API
+const cartaoNovo = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "POST", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+
+
+
+//CALL DELETE CARD API
+const cardToBeDeleted = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 
 
 //GET USER INFO
 
-const user = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-user.getUser()
-
-//GET USER ID
-// const userId = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-
-// export function getUserId (data){
-//   return data._id
-// }
-// userId.getUserId()
+// const user = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+// user.getUser();
 
 
 //UPDATE USER INFO FUNCTION
-export function updateUserInfo(data){
+function updateUserInfo(data){
   const user = new UserInfo(data)
   user.getUserInfo()
   user.setUserInfo()
 }
+updateUserInfo(thisUserInfo)
 
 
 //EDIT PROFILE BUTTON
@@ -77,7 +88,6 @@ profileEditButton.addEventListener("click", () =>{
    
     newUser.updateUser(newUserInfo)
 
-    //updatedUser.setUserInfo()
     profilePopup._submitButton.removeEventListener("click", updateProfile)
     profilePopup.close()
   }
@@ -125,6 +135,7 @@ export function deleteCard(cardAdded){
   const deleteButton = cardAdded.querySelector(".card__delete-button");
   const cardToDelete = deleteButton.parentElement
   deleteButton.addEventListener("click", () => {
+    console.log(cardToDelete.id)
     cardToDelete.remove()
   })
 }
@@ -143,3 +154,4 @@ forms.forEach((form) => {
     }, form)
     newForm.enableValidation()
 })
+
