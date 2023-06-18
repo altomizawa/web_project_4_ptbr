@@ -84,7 +84,7 @@ updateUserInfo(thisUserInfo)
 //EDIT PROFILE BUTTON
 profileEditButton.addEventListener("click", () =>{
   const profilePopup = new PopupWithForm (".popup_profile")
-  profilePopup.open();
+  profilePopup.openProfileForm();
 
   //Add Event Listener for submit button
   profilePopup._submitButton.addEventListener("click", updateProfile)
@@ -106,7 +106,7 @@ profileEditButton.addEventListener("click", () =>{
 //NEW CARD BUTTON
 newCardButton.addEventListener("click", () => {
   const newCardPopup = new PopupWithForm(".popup_add-card")
-  newCardPopup.open()
+  newCardPopup.openCardForm()
   createCard(newCardPopup);
 });
 

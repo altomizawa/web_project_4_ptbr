@@ -10,15 +10,18 @@ export default class PopupWithForm extends Popup{
         
     }
 
-    //Method to Open Popup
-    open(){
+    //Method to Open PROFILE Popup
+    openProfileForm(){
         this._popup.classList.add("popup_active");
         this.setEventListeners();
-        //console.log(this._form)
-        //console.log(document.querySelector(".profile__name").textContent)
+
         this._form.querySelector(".popup__input_name").value = document.querySelector(".profile__name").textContent
         this._form.querySelector(".popup__input_profession").value = document.querySelector(".profile__title").textContent
-
+    }  
+    //Method to Open CARD Popup
+    openCardForm(){
+        this._popup.classList.add("popup_active");
+        this.setEventListeners();
     }   
 
      //Method to Close Popup
