@@ -101,7 +101,7 @@
 
 // import { updateUserInfo} from "../src/index.js";
 // import UserInfo from "../javascript/userInfo.js";
-// import { profileName, profilePicture, profileProfession } from "./constants.js";
+import { profileName, profilePicture, profileProfession } from "./constants.js";
 
 export class Api {
   constructor(url, method, authorization, contentType) {

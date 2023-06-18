@@ -20,7 +20,7 @@ export class Card {
     
   
    
-    createCard(){
+    createCard(isCardNew){
       let newCard = this.template.cloneNode(true);
       const trashCanIcon = newCard.querySelector(".card__delete-button")
 
@@ -31,15 +31,20 @@ export class Card {
       newCard.likes = this.likes;
       newCard.querySelector(".card").id = this._id
 
-      //  
-
-
-      //Check if card belongs to user and Add EventListener to trash can icon
-      if (this.owner._id === thisUserInfo._id){
+      //Check if the CARD is NEW or PULLED from server
+      if (!isCardNew) {
+        //If CARD is from Server, check if card belongs to user and Add EventListener to trash can icon
+        if (this.owner._id === thisUserInfo._id){
         trashCanIcon.addEventListener("click", deleteCard(newCard))
       } else {
         trashCanIcon.style.opacity = "0"
         trashCanIcon.style.pointerEvents = "none"}
+      } 
+      else {
+        trashCanIcon.addEventListener("click", deleteCard(newCard))
+      }
+
+
       
     
   

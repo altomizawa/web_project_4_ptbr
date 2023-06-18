@@ -5,7 +5,8 @@ const thisUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/
 const thisUserInfo = await(await thisUser.fetchData()).data
 
 const initialCards = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-const initialCardsArray = await(await initialCards.fetchData()).data
+let initialCardsArray = await(await initialCards.fetchData()).data
+
 
 const cardsParent = document.querySelector(".cards");
 const cardTemplate = document.querySelector(".card-template").content;

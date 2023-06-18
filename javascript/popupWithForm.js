@@ -1,5 +1,6 @@
 import Popup from './popup.js'
 
+
 export default class PopupWithForm extends Popup{
     constructor(popupSelector, formSubmitCallback){
         super(popupSelector)
@@ -9,11 +10,16 @@ export default class PopupWithForm extends Popup{
         
     }
 
-    //Methos do Open Popup
+    //Method to Open Popup
     open(){
         this._popup.classList.add("popup_active");
         this.setEventListeners();
-    }
+        //console.log(this._form)
+        //console.log(document.querySelector(".profile__name").textContent)
+        this._form.querySelector(".popup__input_name").value = document.querySelector(".profile__name").textContent
+        this._form.querySelector(".popup__input_profession").value = document.querySelector(".profile__title").textContent
+
+    }   
 
      //Method to Close Popup
     close(){

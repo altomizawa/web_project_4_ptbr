@@ -35,6 +35,24 @@ export class Api2 {
         }
     }
 
+    async addNewCard(cardTitle, cardLink) {
+        try{
+            await fetch(this.url, {
+                method: this.method,
+                headers: {
+                  authorization: this.authorization,
+                  "Content-Type": this.contentType,
+                },
+                body: JSON.stringify({
+                  name: cardTitle,
+                  link: cardLink,
+                }),
+              });
+        } catch (err) {
+            console.log("Error while posting user info:", err)
+        }
+      }
+
 
     async removeCard(cardId) {
         try{
@@ -49,6 +67,29 @@ export class Api2 {
             console.log("Error while posting user info:", err)
         }
       }
+
+    async updateUser(user) {
+    try {
+        await fetch(this.url, {
+        method: this.method,
+        headers: {
+            authorization: this.authorization,
+            "Content-Type": this.contentType,
+        },
+        body: JSON.stringify({
+            name: user._name,
+            about: user._profession,
+        }),
+        });
+
+        profileName.textContent = user._name;
+        profileProfession.textContent = user._profession;
+    } catch (err) {
+        console.log("Error while updating user:", err);
+    }
+    }
+
+
 
 }
 
