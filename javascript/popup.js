@@ -37,6 +37,12 @@ export default class Popup {
                 this.close();
             }
         })
+        
+        //Prevent default submit button and return Input values into an Object
+        // this._submitButton.addEventListener("click", (evt) => {
+        //     evt.preventDefault();
+        //     this.close()
+        // });
     };
 }
 

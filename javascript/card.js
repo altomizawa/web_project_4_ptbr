@@ -2,11 +2,12 @@
 import { thisUserInfo, cardsParent, cardImagePopup} from "./constants.js";
 import {deleteCard} from "../src/index.js";
 import PopupWithForm from "./popupWithForm.js";
-import { _addLikeButton } from "./utils.js";
+import { _addLikeButton} from "./utils.js";
 import {Api} from "./api.js";
+import {Api2} from "./api2.js"
 
 export class Card {
-    constructor ({name, link, alt, likes, owner, _id}, template, isNew, handleCardClick){
+    constructor ({name, link, likes, owner, _id}, template, isNew, handleCardClick){
       this.name = name;
       this.link = link;
       this.alt = name;
@@ -23,13 +24,17 @@ export class Card {
     createCard(isCardNew){
       let newCard = this.template.cloneNode(true);
       const trashCanIcon = newCard.querySelector(".card__delete-button")
+      const likeButtonActive = newCard.querySelector(".like-button_active")
+      const likeButtonInactive = newCard.querySelector(".like-button_inactive")
+
 
       //Add content to Card
       newCard.querySelector(".card__image").src = this.link;
       newCard.querySelector(".card__image").alt = this.alt;
       newCard.querySelector(".card__title").textContent = this.name;
-      newCard.likes = this.likes;
+      //newCard.likes = this.likes;
       newCard.querySelector(".card").id = this._id
+      newCard.querySelector(".card__likes").textContent = this.likes.length
 
       //Check if the CARD is NEW or PULLED from server
       if (!isCardNew) {
@@ -44,22 +49,39 @@ export class Card {
         trashCanIcon.addEventListener("click", deleteCard(newCard))
       }
 
+      //console.log(newCard, this._id)
+      _addLikeButton(newCard, this)
 
-      
-    
-  
-      //Add Like Button Functionality
-      _addLikeButton(newCard)
-  
+
+      //get card info => if like.owner.id = my.id, add class enabled to like button and add buttonClickDislike function, else add buttonClickLike function button
+
+      //addLikeButton()
+
+
+
       //Add Image Popup
       
       //const cardImage = newCard.querySelector(".card__image")
       this._handleCardClick(newCard)
       
+      
       //return and create card 
       return newCard
     }
 
+    handleLikeButton(isLiked){
+        if(!isLiked){
+          likeButtonInactive.addEventListener("click", this.likeCard)
+        }
+      }
+
+     //Add handle Like Button Functionality
+    likeCard(){
+      // likeButtonActive.classList.remove('like-button_hidden')
+      // likeButtonInactive.classList.add('like-button_hidden')
+
+      // const likeApi = new Api2 ("https://around.nomoreparties.co/v1/web_ptbr_04/cards/like/cardId", "PUT", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+    }
     //add new cards to DOM function
     setItem(element){
       cardsParent.prepend(element)

@@ -1,24 +1,87 @@
+import { Api2 } from "./api2";
+import { thisUserInfo } from "./constants";
+
 //POPUP IN FUNCTION
 const profileEditButton = document.querySelector(".profile__edit");
 const newCardButton = document.querySelector(".adicionar-button");
 const popups = document.querySelectorAll(".popup");
 
 // ---------------LIKE BUTTON FUNCTION------------------
-function _addLikeButton(card){
+function _addLikeButton(card, cardInfo){
     const cardLikeButtonInactive = card.querySelector(".like-button_inactive");
     const cardLikeButtonActive = card.querySelector(".like-button_active")
-    cardLikeButtonInactive.addEventListener("click", buttonClickLike)
+    const cardLikeButtonCounter = card.querySelector(".card__likes")
     
+
+    // Check if you have liked the card
+    const likedByYou = cardInfo.likes.some((like) => like._id === thisUserInfo._id);
+    if(likedByYou){
+      cardLikeButtonInactive.classList.add("like-button_hidden")
+      cardLikeButtonActive.classList.remove("like-button_hidden")
+      cardLikeButtonActive.addEventListener("click", buttonClickDislike)
+    } else {
+      cardLikeButtonInactive.classList.remove("like-button_hidden")
+      cardLikeButtonActive.classList.add("like-button_hidden")
+      cardLikeButtonInactive.addEventListener("click", buttonClickLike)
+    }
+
     function buttonClickLike() {
       cardLikeButtonInactive.classList.add("like-button_hidden")
       cardLikeButtonActive.classList.remove("like-button_hidden")
       cardLikeButtonActive.addEventListener("click", buttonClickDislike)
+
+      //Send like to server
+      const likeApi = new Api2 (`https://around.nomoreparties.co/v1/web_ptbr_04/cards/likes/${cardInfo._id}`, "PUT", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+      likeApi.fetchData().then((response)=>{cardLikeButtonCounter.textContent=response.data.likes.length})
+      
     }
     
     function buttonClickDislike(){
       cardLikeButtonInactive.classList.remove("like-button_hidden")
       cardLikeButtonActive.classList.add("like-button_hidden")
+
+      //Send dislike to server
+      const likeApi = new Api2 (`https://around.nomoreparties.co/v1/web_ptbr_04/cards/likes/${cardInfo._id}`, "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+      likeApi.fetchData().then((response)=>{cardLikeButtonCounter.textContent=response.data.likes.length})
     }
-    }
+  }
+
+
+// --------------- HANDLE CARD CLICK FUNCTION ------------------
+
+// class handleLikeButton{
+//   constructor(cardId, thisCard){
+//     this.cardId = cardId;
+//     this.card = thisCard;
+//     this.likeButtonInactive = thisCard.querySelector(".like-button_inactive");
+//     this.likeButtonActive = thisCard.querySelector(".like-button_active");
+//     this.likeCounter = thisCard.querySelector(".card__likes")
+//   }
+
+//   _addLikeButton(){
+//     this.likeButtonInactive.addEventListener('click', ()=>{
+//       this.likeButtonInactive.classList.add("like-button_hidden")
+//       this.likeButtonActive.classList.remove("like-button_hidden")
+//       //Send like to server
+//       const newLike = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards/", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+//       newLike.fetchData().then((result)=>{console.log(result.data[9].likes)})
+//       console.log(thisUserInfo)
+      
+//       this.likeButtonActive.addEventListener("click", ()=>{
+//         this.likeButtonInactive.classList.remove("like-button_hidden")
+//       this.likeButtonActive.classList.add("like-button_hidden")
+//       })
+//     })
+//   }
+
+// _buttonClickLike(){
+//   this.classList.add("like-button_hidden")
+//   console.log(this.parentElement)
+//   this.parentElement.querySelector(".like-button_active").classList.remove("like-button_hidden")
+//   this.parentElement.querySelector(".like-button_active").addEventListener("click", ()=>{this._teste()})
+// }
+
+// }
+
 
 export { profileEditButton, newCardButton, popups, _addLikeButton}

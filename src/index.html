@@ -53,7 +53,7 @@
               required
             />
               <span class="popup__input-error description-input-error" id="description-input--error"></span>
-            <button class="popup__submit-button">Salvar</button>
+            <button class="popup__submit-button" type="submit">Salvar</button>
           </form>
         </div>
         <!-- ------------------------PROFILE INFO------------------------------ -->
@@ -112,7 +112,7 @@
               required
             />
               <span class="popup__input-error card-link-input-error" id="card-link-input--error"></span>
-            <button class="popup__submit-button">Criar</button>
+            <button class="popup__submit-button" type="submit">Criar</button>
           </form>
         </div>
 
@@ -153,18 +153,22 @@
             <img src=" " alt="" class="card__image" />
             <div class="card__description-wrapper">
               <h4 class="card__title"></h4>
-              <img
-                src="<%= require ('./images/heart.svg')%>"
-                alt="imagem de um coração vazado"
-                class="like-button like-button_inactive"
-                id="like_off"
-              />
-              <img
-                src="<%= require('./images/heart_active.svg')%>"
-                alt="imagem de um coração vazado"
-                class="like-button like-button_active like-button_hidden"
-                id="like_on"
-              />
+              <div class="card__like-wrapper">
+                
+                <img
+                  src="<%= require ('./images/heart.svg')%>"
+                  alt="imagem de um coração vazado"
+                  class="like-button like-button_inactive"
+                  id="like_off"
+                />
+                <img
+                  src="<%= require('./images/heart_active.svg')%>"
+                  alt="imagem de um coração vazado"
+                  class="like-button like-button_active like-button_hidden"
+                  id="like_on"
+                />
+                <p class="card__likes">22</p>
+              </div>
             </div>
           </li>
         </template>
