@@ -79,8 +79,6 @@
         </div>
 
 
-
-
         <!-- ------------------------PROFILE INFO------------------------------ -->
         <div class="profile__info">
           <div class="profile__picture-wrapper">
@@ -163,6 +161,18 @@
           </div>
         </div>
 
+<!-- -----------------DELETE CARD CONFIRMATION POPUP------------------------->
+<div class="popup popup_delete-card-confirmation popup_active">
+  <div class="popup__card">
+    <img
+      src="<%= require('./images/Close_Icon.svg')%>"
+      alt="ícone X de fechar a janela"
+      class="popup__close-button"
+    />
+    <h4 class="popup__title">Excluir cartão?</h4>
+    <button class="popup__confirmation-button" type="submit" enabled>SIM</button>
+  </div>
+</div>
 
 <!-- ------------------------CARDS TEMPLATE------------------------------ -->
         <template class="card-template">          
