@@ -57,3 +57,30 @@
 @import url(/blocks/popupwithimage/popupwithimage_active.css);
 @import url(/blocks/popupwithimage/__close-button/popupwithimage__close-button.css);
 @import url(/blocks/popupwithimage/__wrapper/popupwithimage__wrapper.css);
+
+
+
+.profile__picture-overlay{
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.5);
+    position: absolute;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.profile__picture-overlay:hover{
+    opacity: 1;
+    
+}
+
+.profile__picture-icon{
+    width: 25px;
+    aspect-ratio: 1/1;
+}
+
+

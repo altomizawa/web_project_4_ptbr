@@ -56,13 +56,43 @@
             <button class="popup__submit-button" type="submit">Salvar</button>
           </form>
         </div>
+        <!-- -----------------PROFILE PICTURE EDIT POPUP ------------------------->
+        <div class="popup popup_profile-picture">
+          <form class="popup__card" autocomplete="off" novalidate>
+            <img
+              src="<%= require('./images/Close_Icon.svg')%>"
+              alt="ícone X de fechar a janela"
+              class="popup__close-button"
+            />
+            <h4 class="popup__title">Alterar a foto do perfil</h4>
+            <input
+              id="profile-link-input"
+              name="link"
+              type="url"
+              class="popup__input popup__input_profile-link"
+              placeholder="Link da imagem"
+              required
+            />
+              <span class="popup__input-error card-link-input-error" id="profile-link-input--error"></span>
+            <button class="popup__submit-button" type="submit">Salvar</button>
+          </form>
+        </div>
+
+
+
+
         <!-- ------------------------PROFILE INFO------------------------------ -->
         <div class="profile__info">
+          <div class="profile__picture-wrapper">
+            <div class="profile__picture-overlay">
+              <img src="<%= require('./images/Pencil.svg')%>" alt="illustration of pencil to edit profile image" class="profile__picture-icon">
+            </div>
           <img
             src= "<%= require ('./images/imageprofile-picture.jpg')%>"
             alt="imagem do Jacques Cousteau"
             class="profile__picture"
           />
+        </div>
           <div class="profile__text-wrapper">
             <div class="profile__name-wrapper">
               <h1 class="profile__name"></h1>

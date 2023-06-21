@@ -1,6 +1,6 @@
 import "./styles/index.css";
 
-import { thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, cardImagePopup } from "../javascript/constants.js";
+import { thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePopup, profilePictureEditButton, cardImagePopup } from "../javascript/constants.js";
 
 import {Card} from "../javascript/card.js";
 import { profileEditButton, newCardButton} from "../javascript/utils.js";
@@ -46,8 +46,36 @@ function updateUserInfo(data){
 }
 updateUserInfo(thisUserInfo)
 
+//EDIT PROFILE PICTURE BUTTON
+profilePictureEditButton.addEventListener("click", () =>{
+  console.log('clicked')
+  const profilePopup = new PopupWithForm (".popup_profile-picture")
+  profilePopup.openProfilePictureForm();
 
-//EDIT PROFILE BUTTON
+  //Add Event Listener for submit button
+  profilePopup._submitButton.addEventListener("click", updateProfile)
+
+  //UPDATE PROFILE INFO
+  function updateProfile() {
+    const newUserInfo = new UserInfo(profilePopup._getInputValues())
+
+    
+    const newUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+   
+    newUser.updateUser(newUserInfo)
+
+    profilePopup._submitButton.removeEventListener("click", updateProfile)
+    profilePopup.close()
+  }
+})
+function openPopup(){
+  //add class to popup-profile picture
+  console.log('edit photo')
+}
+
+
+
+//EDIT PROFILE INFO BUTTON
 profileEditButton.addEventListener("click", () =>{
   const profilePopup = new PopupWithForm (".popup_profile")
   profilePopup.openProfileForm();

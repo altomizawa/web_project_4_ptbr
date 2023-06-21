@@ -15,6 +15,8 @@ const profileName = document.querySelector(".profile__name");
 const profileProfession = document.querySelector(".profile__title");
 const profilePicture = document.querySelector(".profile__picture")
 const cardImagePopup = document.querySelector(".popupwithimage")
+const profilePictureEditButton = document.querySelector(".profile__picture-wrapper")
+const profilePopup = document.querySelector(".popup_profile-picture")
 
 
-export {thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePicture, cardImagePopup}
+export {thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePicture, profilePictureEditButton, profilePopup, cardImagePopup}
