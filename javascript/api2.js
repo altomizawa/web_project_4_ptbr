@@ -79,6 +79,7 @@ export class Api2 {
         body: JSON.stringify({
             name: user._name,
             about: user._profession,
+            avatar: user.avatar
         }),
         });
 
@@ -88,8 +89,5 @@ export class Api2 {
         console.log("Error while updating user:", err);
     }
     }
-
-
-
 }
 

@@ -1,6 +1,6 @@
 import "./styles/index.css";
 
-import { thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePopup, profilePictureEditButton, cardImagePopup } from "../javascript/constants.js";
+import {initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePopup, profilePictureEditButton, cardImagePopup } from "../javascript/constants.js";
 
 import {Card} from "../javascript/card.js";
 import { profileEditButton, newCardButton} from "../javascript/utils.js";
@@ -39,16 +39,17 @@ updateCardArray()
 
 
 //UPDATE USER INFO FUNCTION
-function updateUserInfo(data){
-  const user = new UserInfo(data)
-  user.getUserInfo()
-  user.setUserInfo()
+function updateUserInfo(){
+  const thisUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+  const thisUserInfo = thisUser.fetchData().then((response)=>{
+    const user = new UserInfo(response.data)
+    user.getUserInfo()
+    user.setUserInfo()})
 }
-updateUserInfo(thisUserInfo)
+updateUserInfo()
 
 //EDIT PROFILE PICTURE BUTTON
 profilePictureEditButton.addEventListener("click", () =>{
-  console.log('clicked')
   const profilePopup = new PopupWithForm (".popup_profile-picture")
   profilePopup.openProfilePictureForm();
 
@@ -56,22 +57,13 @@ profilePictureEditButton.addEventListener("click", () =>{
   profilePopup._submitButton.addEventListener("click", updateProfile)
 
   //UPDATE PROFILE INFO
-  function updateProfile() {
-    const newUserInfo = new UserInfo(profilePopup._getInputValues())
-
-    
-    const newUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-   
-    newUser.updateUser(newUserInfo)
-
+  function updateProfile() {    
+    const newUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me/avatar", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+    newUser.updateUser(profilePopup._getInputValues()).then(()=>{updateUserInfo()})
     profilePopup._submitButton.removeEventListener("click", updateProfile)
     profilePopup.close()
   }
 })
-function openPopup(){
-  //add class to popup-profile picture
-  console.log('edit photo')
-}
 
 
 
