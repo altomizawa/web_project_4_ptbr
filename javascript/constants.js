@@ -1,10 +1,10 @@
-import { Api2 } from "./api2";
+import { Api } from "./api";
 
 
-const thisUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+const thisUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 const thisUserInfo = await(await thisUser.fetchData()).data
 
-const initialCards = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+const initialCards = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 let initialCardsArray = await(await initialCards.fetchData()).data
 
 

@@ -18,17 +18,3 @@ constructor({items, renderer}, containerSelector){
     }    
 }
 
-// renderer: (item) => {
-//   const newCard = new Card(item, cardTemplate, false, (card) => {
-//     const cardImage = card.querySelector(".card__image")
-//     cardImage.addEventListener("click", () => {
-//         const popup = new PopupWithImage(".popupwithimage", ".popupwithimage__image-big", ".card__title")
-//         popup.open(newCard)
-//     })
-//   })
-
-//   const cardElement = newCard.createCard()
-
-//   initialCardGrid.addItem(cardElement)
-
-// }

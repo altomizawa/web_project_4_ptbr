@@ -4,7 +4,6 @@ import {deleteCard} from "../src/index.js";
 import PopupWithForm from "./popupWithForm.js";
 import { _addLikeButton} from "./utils.js";
 import {Api} from "./api.js";
-import {Api2} from "./api2.js"
 
 export class Card {
     constructor ({name, link, likes, owner, _id}, template, isNew, handleCardClick){
@@ -49,17 +48,7 @@ export class Card {
         trashCanIcon.addEventListener("click", deleteCard(newCard))
       }
 
-      //console.log(newCard, this._id)
       _addLikeButton(newCard, this)
-
-
-      //get card info => if like.owner.id = my.id, add class enabled to like button and add buttonClickDislike function, else add buttonClickLike function button
-
-      //addLikeButton()
-
-
-
-      //Add Image Popup
       
       //const cardImage = newCard.querySelector(".card__image")
       this._handleCardClick(newCard)
@@ -84,7 +73,9 @@ export class Card {
     }
     //add new cards to DOM function
     setItem(element){
+      console.log(element)
       cardsParent.prepend(element)
+
     }
   
   }

@@ -1,9 +1,9 @@
 import "./styles/index.css";
 
-import {initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePopup, profilePictureEditButton, cardImagePopup, deleteCardConfirmationPopup} from "../javascript/constants.js";
+import {initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePopup, profilePictureEditButton, cardImagePopup, deleteCardConfirmationPopup, thisUserInfo} from "../javascript/constants.js";
 
 import {Card} from "../javascript/card.js";
-import { profileEditButton, newCardButton} from "../javascript/utils.js";
+import { profileEditButton, newCardButton, _addLikeButton} from "../javascript/utils.js";
 import { FormValidator } from "../javascript/FormValidator.js";
 import Popup from "../javascript/popup.js"
 import Section from "../javascript/section.js"
@@ -11,11 +11,10 @@ import PopupWithImage from "../javascript/popupWithImage.js";
 import PopupWithForm from "../javascript/popupWithForm.js";
 import UserInfo from "../javascript/userInfo.js";
 import {Api} from "../javascript/api.js"
-import { Api2 } from "../javascript/api2.js";
 
-
+//GET INITIAL CARD ARRAY FROM SERVER AND RENDER ON PAGE
 function updateCardArray(){
-const cardArray = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+const cardArray = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 return cardArray.fetchData().then((result)=>{
   const initialCardGrid = new Section({items: result.data, renderer: (item) => {
     const newCard = new Card(item, cardTemplate, false, (card) => {
@@ -37,32 +36,103 @@ return cardArray.fetchData().then((result)=>{
 }
 updateCardArray()
 
-//==================TESTE INÍCIO=========================
 
-// const userTest = {
-//   _name: "João",
-//   _profession: "plumber",
-//   _avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+// //-------------------------ADD ONE CARD TEST-------------------------
+// // const fictionalCard = {
+// //   name: "Rio de Janeiro",
+// //   link: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+// //   likes: [],
+// //   owner: thisUserInfo,
+// //   _id: "10859d303ec3f62cc793e37b"
+// // }
+
+// class OneCard {
+//   constructor({name, link, likes, owner, _id}, isCardNew, gridToAppend){
+//     this.name = name;
+//     this.link = link;
+//     this.likes = likes; 
+//     this.owner = owner; 
+//     this._id = _id;
+//     this.gridToAppend = gridToAppend;
+//     this.isCardNew = isCardNew;
+
+//     this.cardElement = this.createCard();
+//   }
+  
+//   createCard() {
+//     const newCard = cardTemplate.cloneNode(true)
+//     const trashCanIcon = newCard.querySelector(".card__delete-button")
+//     newCard.querySelector(".card__image").src = this.link;
+//     newCard.querySelector(".card__image").alt = this.name;
+//     newCard.querySelector(".card__title").textContent = this.name;
+//     newCard.querySelector(".card").id = this._id;
+//     newCard.querySelector(".card__likes").textContent = this.likes.length
+    
+//     //Check if the CARD is NEW or PULLED from server
+//     if (!this.isCardNew) {
+//       //If CARD is from Server, check if card belongs to user and Add EventListener to trash can icon
+//       if (this.owner._id == thisUserInfo._id){
+//       trashCanIcon.addEventListener("click", deleteCard(newCard))
+//     } else {
+//       trashCanIcon.style.opacity = "0"
+//       trashCanIcon.style.pointerEvents = "none"}
+//     } 
+//     else {
+//       trashCanIcon.addEventListener("click", deleteCard(newCard))
+//     }
+
+//     _addLikeButton(newCard,this)
+
+//     //execute function to add card Click
+//     handleCardClick(newCard)
+
+//     return newCard
+//   }
+
+//   handleCardClick(card){
+//     const cardImage = card.querySelector(".card__image")
+//     cardImage.addEventListener("click", () => {
+//       const popup = new PopupWithImage(".popupwithimage", ".popupwithimage__image-big", ".card__title")
+//       popup.open(newCard)
+//     })
+    
+//   }
+
+//   render() {
+//     this.gridToAppend.prepend(this.cardElement)
+//   }
+
+//   }
+
+  
+//   initialCardsArray.forEach((card) =>{
+//     const newFictionalCard = new OneCard(card, false, cardsParent)
+//     newFictionalCard.render()
+//   })
+
+
+
+//----------------------HANDLE CARD CLICK FUNCTION--------------------
+// function handleCardClick(card) {
+//   const cardImage = card.querySelector(".card__image")
+//   cardImage.addEventListener("click", () => {
+//       const popup = new PopupWithImage(".popupwithimage", ".popupwithimage__image-big", ".card__title")
+//       popup.open(newCard)
+//   })
 // }
 
 
 
-// const updateUserTestePatch = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-// updateUserTestePatch.updateUser(userTest)
+//---------------------------ADD ONE CARD TEST END------------------------
 
-
-// const updateUserTeste = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-// updateUserTeste.fetchData().then((response)=>{console.log(response.data)})
-
-
-//==================TESTE FIM=========================
 
 
 //UPDATE USER INFO FUNCTION
+
+
 function updateUserInfo(){
-  const thisUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+  const thisUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
   const thisUserInfo = thisUser.fetchData().then((response)=>{
-    //console.log(response.data) //show how object should come
     const user = new UserInfo(response.data)
     user.getUserInfo()
     user.setUserInfo()})
@@ -79,10 +149,9 @@ profilePictureEditButton.addEventListener("click", () =>{
 
   //UPDATE PROFILE INFO
   function updateProfile() {    
-    const newUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me/avatar", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-    newUser.updateUser(profilePopup._getInputValues()).then(()=>{updateUserInfo()})
+    const newUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me/avatar", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+    newUser.updateUser(profilePopup._getInputValues(), profilePopup).then(()=>{updateUserInfo()})
     profilePopup._submitButton.removeEventListener("click", updateProfile)
-    profilePopup.close()
   }
 })
 
@@ -99,11 +168,10 @@ profileEditButton.addEventListener("click", () =>{
   //UPDATE PROFILE INFO
   function updateProfile(evt) {
     const newUserInfo = new UserInfo(profilePopup._getInputValues())
-    const newUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-    newUser.updateUser(newUserInfo)
+    const newUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+    newUser.updateUser(newUserInfo, profilePopup)
 
     profilePopup._submitButton.removeEventListener("click", updateProfile)
-    profilePopup.close()
   }
 })
 
@@ -117,11 +185,14 @@ newCardButton.addEventListener("click", () => {
 
     //Send card to server
     const cardInputValues = newCardPopup._getInputValues()
-    const updateCardApi = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "POST", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-    updateCardApi.addNewCard(cardInputValues.name, cardInputValues.link)
+    const updateCardApi = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "POST", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+    updateCardApi.addNewCard(cardInputValues.name, cardInputValues.link, newCardPopup)
+    
     .then (()=>{
+      console.log(cardInputValues)
       //close popup
       newCardPopup.close()
+      
       //refresh card Grid
       location.reload()
     })
@@ -129,62 +200,17 @@ newCardButton.addEventListener("click", () => {
 
 });
 
-// class CreateCard{
-//   constructor(cardPopup){
-//     this.cardPopup = cardPopup
-//     this.popupForm = cardPopup._form
-//     this.popupButton = cardPopup._submitButton
-//     this.popupTitleInput = this.popupForm.querySelector(".popup__input_card-title")
-//     this.popupLinkInput = this.popupForm.querySelector(".popup__input_card-link")
-
-//     this.popupButton.addEventListener("click", () =>{this.submitForm()})
-//   }
-//   submitForm(){
-//     console.log('hello')
-//     this.popupForm.classList.remove("popup_active")
-    
-//   }
-// }
-
-//CREATE CARD BUTTON FUNCTION
-// const createCard = (popup) => {
-//   const createCardButton = popup._submitButton;
-//   const cardTitleInput = popup._form.querySelector(".popup__input_card-title")
-//   const cardLinkInput = popup._form.querySelector(".popup__input_card-link")
-
-//   //Update Profile
-//   createCardButton.addEventListener("click", updateCardAndClose);
-
-
-
-//   //Update Card Grid and Close Popup
-//   function updateCardAndClose() {
-//     const newCardApi = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "POST", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-
-//     newCardApi.addNewCard(cardTitleInput.value, cardLinkInput.value)
-//       .then(() =>{
-//         return newCardApi.fetchData();
-//       })
-//       .then((result) =>{console.log(result)})
-
-//     popup.close()
-//     createCardButton.removeEventListener("click", updateCardAndClose)
-    
-//   }
-// };
-
-
 
 //-----------------DELETE CARD FUNCTION---------------------------
 export function deleteCard(cardAdded){
   const deleteButton = cardAdded.querySelector(".card__delete-button");
   const cardToDelete = deleteButton.parentElement
   const cardToDeleteId = cardToDelete.id
-  //const confirmationButton = deleteCardConfirmationPopup.querySelector("button")
 
   deleteButton.addEventListener("click", () => {
     const cardDeleteConfirmationPopup = new Popup('.popup_delete-card-confirmation')
     const confirmationButton = cardDeleteConfirmationPopup._submitButton
+
     cardDeleteConfirmationPopup.open()
 
     confirmationButton.addEventListener("click", deleteCard)
@@ -193,7 +219,7 @@ export function deleteCard(cardAdded){
       cardToDelete.remove()
 
       //Delete from server
-      const cardToBeDeleted = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+      const cardToBeDeleted = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
       cardToBeDeleted.removeCard(cardToDeleteId)
       cardDeleteConfirmationPopup.close()
     }
