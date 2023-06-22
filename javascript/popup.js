@@ -3,7 +3,6 @@ export default class Popup {
         this._popup = document.querySelector(popupSelector)
         this._popupActive = `${this._popup}_active`
         this._submitButton = this._popup.querySelector("button")
-        console.log(this._submitButton)
     }
   
     open(){

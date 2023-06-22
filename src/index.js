@@ -99,11 +99,7 @@ profileEditButton.addEventListener("click", () =>{
   //UPDATE PROFILE INFO
   function updateProfile(evt) {
     const newUserInfo = new UserInfo(profilePopup._getInputValues())
-
-
-    
     const newUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-   
     newUser.updateUser(newUserInfo)
 
     profilePopup._submitButton.removeEventListener("click", updateProfile)
@@ -184,19 +180,22 @@ export function deleteCard(cardAdded){
   const deleteButton = cardAdded.querySelector(".card__delete-button");
   const cardToDelete = deleteButton.parentElement
   const cardToDeleteId = cardToDelete.id
-  const confirmationButton = deleteCardConfirmationPopup.querySelector("button")
+  //const confirmationButton = deleteCardConfirmationPopup.querySelector("button")
 
   deleteButton.addEventListener("click", () => {
     const cardDeleteConfirmationPopup = new Popup('.popup_delete-card-confirmation')
+    const confirmationButton = cardDeleteConfirmationPopup._submitButton
     cardDeleteConfirmationPopup.open()
-    confirmationButton.addEventListener("click", deleteCard)
-    function deleteCard(){
-      // cardToDelete.remove()
 
-      // //Delete from server
-      // const cardToBeDeleted = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-      // cardToBeDeleted.removeCard(cardToDeleteId)
-      // cardDeleteConfirmationPopup.close()
+    confirmationButton.addEventListener("click", deleteCard)
+
+    function deleteCard(){
+      cardToDelete.remove()
+
+      //Delete from server
+      const cardToBeDeleted = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+      cardToBeDeleted.removeCard(cardToDeleteId)
+      cardDeleteConfirmationPopup.close()
     }
     
   })
