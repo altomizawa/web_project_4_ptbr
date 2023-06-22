@@ -17,6 +17,7 @@ const profilePicture = document.querySelector(".profile__picture")
 const cardImagePopup = document.querySelector(".popupwithimage")
 const profilePictureEditButton = document.querySelector(".profile__picture-wrapper")
 const profilePopup = document.querySelector(".popup_profile-picture")
+const deleteCardConfirmationPopup = document.querySelector(".popup_delete-card-confirmation")
 
 
-export {thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePicture, profilePictureEditButton, profilePopup, cardImagePopup}
+export {thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePicture, profilePictureEditButton, profilePopup, cardImagePopup, deleteCardConfirmationPopup}

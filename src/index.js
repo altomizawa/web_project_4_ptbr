@@ -1,6 +1,6 @@
 import "./styles/index.css";
 
-import {initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePopup, profilePictureEditButton, cardImagePopup } from "../javascript/constants.js";
+import {initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePopup, profilePictureEditButton, cardImagePopup, deleteCardConfirmationPopup} from "../javascript/constants.js";
 
 import {Card} from "../javascript/card.js";
 import { profileEditButton, newCardButton} from "../javascript/utils.js";
@@ -37,11 +37,32 @@ return cardArray.fetchData().then((result)=>{
 }
 updateCardArray()
 
+//==================TESTE INÍCIO=========================
+
+// const userTest = {
+//   _name: "João",
+//   _profession: "plumber",
+//   _avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80"
+// }
+
+
+
+// const updateUserTestePatch = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+// updateUserTestePatch.updateUser(userTest)
+
+
+// const updateUserTeste = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+// updateUserTeste.fetchData().then((response)=>{console.log(response.data)})
+
+
+//==================TESTE FIM=========================
+
 
 //UPDATE USER INFO FUNCTION
 function updateUserInfo(){
   const thisUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
   const thisUserInfo = thisUser.fetchData().then((response)=>{
+    //console.log(response.data) //show how object should come
     const user = new UserInfo(response.data)
     user.getUserInfo()
     user.setUserInfo()})
@@ -76,8 +97,9 @@ profileEditButton.addEventListener("click", () =>{
   profilePopup._submitButton.addEventListener("click", updateProfile)
 
   //UPDATE PROFILE INFO
-  function updateProfile() {
+  function updateProfile(evt) {
     const newUserInfo = new UserInfo(profilePopup._getInputValues())
+
 
     
     const newUser = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
@@ -157,21 +179,25 @@ newCardButton.addEventListener("click", () => {
 
 
 
-
-
-
-
 //-----------------DELETE CARD FUNCTION---------------------------
 export function deleteCard(cardAdded){
   const deleteButton = cardAdded.querySelector(".card__delete-button");
   const cardToDelete = deleteButton.parentElement
   const cardToDeleteId = cardToDelete.id
-  deleteButton.addEventListener("click", () => {
-    cardToDelete.remove()
+  const confirmationButton = deleteCardConfirmationPopup.querySelector("button")
 
-    //Delete from server
-    const cardToBeDeleted = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-    cardToBeDeleted.removeCard(cardToDeleteId)
+  deleteButton.addEventListener("click", () => {
+    const cardDeleteConfirmationPopup = new Popup('.popup_delete-card-confirmation')
+    cardDeleteConfirmationPopup.open()
+    confirmationButton.addEventListener("click", deleteCard)
+    function deleteCard(){
+      // cardToDelete.remove()
+
+      // //Delete from server
+      // const cardToBeDeleted = new Api2("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+      // cardToBeDeleted.removeCard(cardToDeleteId)
+      // cardDeleteConfirmationPopup.close()
+    }
     
   })
 }
