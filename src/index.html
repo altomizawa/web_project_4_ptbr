@@ -176,41 +176,41 @@
 
 <!-- ------------------------CARDS TEMPLATE------------------------------ -->
         <template class="card-template">          
-          <li class="card" id="">
+            <li class="card" id="">
+              <button class="card__delete-button">
+                <img
+                  src="<%= require ('./images/trashCan.svg')%>"
+                  alt="ícone de lata de lixo"
+                  class="card__delete-icon card__delete-icon_active"
+                />
+                <img
+                  src="<%= require('./images/trashCan_grey.svg')%>"
+                  alt="ícone de lata de lixo"
+                  class="card__delete-icon card__delete-icon_inactive"
+                />
+              </button>
+              <img src=" " alt="" class="card__image" />
+              <div class="card__description-wrapper">
+                <h4 class="card__title"></h4>
+                <div class="card__like-wrapper">
             
-            <button class="card__delete-button">
-              <img
-                src="<%= require ('./images/trashCan.svg')%>"
-                alt="ícone de lata de lixo"
-                class="card__delete-icon card__delete-icon_active"
-              />
-              <img
-                src="<%= require('./images/trashCan_grey.svg')%>"
-                alt="ícone de lata de lixo"
-                class="card__delete-icon card__delete-icon_inactive"
-              />
-            </button>
-            <img src=" " alt="" class="card__image" />
-            <div class="card__description-wrapper">
-              <h4 class="card__title"></h4>
-              <div class="card__like-wrapper">
-                
-                <img
-                  src="<%= require ('./images/heart.svg')%>"
-                  alt="imagem de um coração vazado"
-                  class="like-button like-button_inactive"
-                  id="like_off"
-                />
-                <img
-                  src="<%= require('./images/heart_active.svg')%>"
-                  alt="imagem de um coração vazado"
-                  class="like-button like-button_active like-button_hidden"
-                  id="like_on"
-                />
-                <p class="card__likes">22</p>
+                  <img
+                    src="<%= require ('./images/heart.svg')%>"
+                    alt="imagem de um coração vazado"
+                    class="like-button like-button_inactive"
+                    id="like_off"
+                  />
+                  <img
+                    src="<%= require('./images/heart_active.svg')%>"
+                    alt="imagem de um coração vazado"
+                    class="like-button like-button_active like-button_hidden"
+                    id="like_on"
+                  />
+                  <p class="card__likes">22</p>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+          
         </template>
       </ul>
     </main>
