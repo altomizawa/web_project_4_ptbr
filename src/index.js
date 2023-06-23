@@ -1,16 +1,16 @@
 import "./styles/index.css";
 
-import {initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePopup, profilePictureEditButton, cardImagePopup, deleteCardConfirmationPopup, thisUserInfo} from "../javascript/constants.js";
+import {initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePopup, profilePictureEditButton, cardImagePopup, deleteCardConfirmationPopup, thisUserInfo} from "./components/constants.js";
 
-import {Card} from "../javascript/card.js";
-import { profileEditButton, newCardButton, _addLikeButton} from "../javascript/utils.js";
-import { FormValidator } from "../javascript/FormValidator.js";
-import Popup from "../javascript/popup.js"
-import Section from "../javascript/section.js"
-import PopupWithImage from "../javascript/popupWithImage.js";
-import PopupWithForm from "../javascript/popupWithForm.js";
-import UserInfo from "../javascript/userInfo.js";
-import {Api} from "../javascript/api.js"
+import {Card} from "../src/components/card.js";
+import { profileEditButton, newCardButton, _addLikeButton} from "../src/components/utils.js";
+import { FormValidator } from "../src/components/FormValidator.js";
+import Popup from "../src/components/popup.js"
+import Section from "../src/components/section.js"
+import PopupWithImage from "../src/components/popupWithImage";
+import PopupWithForm from "../src/components/popupWithForm.js";
+import UserInfo from "../src/components/userInfo.js";
+import {Api} from "../src/components/api.js"
 
 //GET INITIAL CARD ARRAY FROM SERVER AND RENDER ON PAGE
 function updateCardArray(){
@@ -35,6 +35,7 @@ return cardArray.fetchData().then((result)=>{
 })
 }
 updateCardArray()
+
 
 
 // //-------------------------ADD ONE CARD TEST-------------------------

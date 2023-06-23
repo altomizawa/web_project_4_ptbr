@@ -1,4 +1,4 @@
-import { updateUserInfo} from "../src/index.js";
+import { updateUserInfo} from "../index.js";
 import UserInfo from "./userInfo.js";
 import { profileName, profilePicture, profileProfession } from "./constants.js";
 
