@@ -1,9 +1,9 @@
 import "./styles/index.css";
 
-import {initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePopup, profilePictureEditButton, cardImagePopup, deleteCardConfirmationPopup, thisUserInfo} from "./components/constants.js";
+import {api, cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton, thisUserInfo} from "./components/constants.js";
 
 import {Card} from "../src/components/card.js";
-import { profileEditButton, newCardButton, _addLikeButton} from "../src/components/utils.js";
+import { profileEditButton, newCardButton} from "../src/components/utils.js";
 import { FormValidator } from "../src/components/FormValidator.js";
 import Popup from "../src/components/popup.js"
 import Section from "../src/components/section.js"
@@ -11,6 +11,9 @@ import PopupWithImage from "../src/components/popupWithImage";
 import PopupWithForm from "../src/components/popupWithForm.js";
 import UserInfo from "../src/components/userInfo.js";
 import {Api} from "../src/components/api.js"
+
+const teste = api.fetchData()
+console.log(teste)
 
 //GET INITIAL CARD ARRAY FROM SERVER AND RENDER ON PAGE
 function updateCardArray(){
@@ -35,96 +38,6 @@ return cardArray.fetchData().then((result)=>{
 })
 }
 updateCardArray()
-
-
-
-// //-------------------------ADD ONE CARD TEST-------------------------
-// // const fictionalCard = {
-// //   name: "Rio de Janeiro",
-// //   link: "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
-// //   likes: [],
-// //   owner: thisUserInfo,
-// //   _id: "10859d303ec3f62cc793e37b"
-// // }
-
-// class OneCard {
-//   constructor({name, link, likes, owner, _id}, isCardNew, gridToAppend){
-//     this.name = name;
-//     this.link = link;
-//     this.likes = likes; 
-//     this.owner = owner; 
-//     this._id = _id;
-//     this.gridToAppend = gridToAppend;
-//     this.isCardNew = isCardNew;
-
-//     this.cardElement = this.createCard();
-//   }
-  
-//   createCard() {
-//     const newCard = cardTemplate.cloneNode(true)
-//     const trashCanIcon = newCard.querySelector(".card__delete-button")
-//     newCard.querySelector(".card__image").src = this.link;
-//     newCard.querySelector(".card__image").alt = this.name;
-//     newCard.querySelector(".card__title").textContent = this.name;
-//     newCard.querySelector(".card").id = this._id;
-//     newCard.querySelector(".card__likes").textContent = this.likes.length
-    
-//     //Check if the CARD is NEW or PULLED from server
-//     if (!this.isCardNew) {
-//       //If CARD is from Server, check if card belongs to user and Add EventListener to trash can icon
-//       if (this.owner._id == thisUserInfo._id){
-//       trashCanIcon.addEventListener("click", deleteCard(newCard))
-//     } else {
-//       trashCanIcon.style.opacity = "0"
-//       trashCanIcon.style.pointerEvents = "none"}
-//     } 
-//     else {
-//       trashCanIcon.addEventListener("click", deleteCard(newCard))
-//     }
-
-//     _addLikeButton(newCard,this)
-
-//     //execute function to add card Click
-//     handleCardClick(newCard)
-
-//     return newCard
-//   }
-
-//   handleCardClick(card){
-//     const cardImage = card.querySelector(".card__image")
-//     cardImage.addEventListener("click", () => {
-//       const popup = new PopupWithImage(".popupwithimage", ".popupwithimage__image-big", ".card__title")
-//       popup.open(newCard)
-//     })
-    
-//   }
-
-//   render() {
-//     this.gridToAppend.prepend(this.cardElement)
-//   }
-
-//   }
-
-  
-//   initialCardsArray.forEach((card) =>{
-//     const newFictionalCard = new OneCard(card, false, cardsParent)
-//     newFictionalCard.render()
-//   })
-
-
-
-//----------------------HANDLE CARD CLICK FUNCTION--------------------
-// function handleCardClick(card) {
-//   const cardImage = card.querySelector(".card__image")
-//   cardImage.addEventListener("click", () => {
-//       const popup = new PopupWithImage(".popupwithimage", ".popupwithimage__image-big", ".card__title")
-//       popup.open(newCard)
-//   })
-// }
-
-
-
-//---------------------------ADD ONE CARD TEST END------------------------
 
 
 
@@ -190,7 +103,6 @@ newCardButton.addEventListener("click", () => {
     updateCardApi.addNewCard(cardInputValues.name, cardInputValues.link, newCardPopup)
     
     .then (()=>{
-      console.log(cardInputValues)
       //close popup
       newCardPopup.close()
       
@@ -240,7 +152,6 @@ forms.forEach((form) => {
         inputErrorClass: "popup__input-error",
         errorClass: "popup__input-error"
     }, form)
-    newForm.enableValidation()
 })
 
 
