@@ -1,11 +1,13 @@
 import { Api } from "./api";
 
-
+const apiUrl = "https://around.nomoreparties.co/v1/web_ptbr_04"
+const authorization = "f3091314-56bf-4879-8be9-facfbce522a8"
 const thisUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 const thisUserInfo = await(await thisUser.fetchData()).data
 
+const api = new Api(apiUrl)
 const initialCards = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-let initialCardsArray = await(await initialCards.fetchData()).data
+const initialCardsArray = await(await initialCards.fetchData()).data
 
 
 const cardsParent = document.querySelector(".cards");
@@ -20,4 +22,4 @@ const profilePopup = document.querySelector(".popup_profile-picture")
 const deleteCardConfirmationPopup = document.querySelector(".popup_delete-card-confirmation")
 
 
-export {thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePicture, profilePictureEditButton, profilePopup, cardImagePopup, deleteCardConfirmationPopup}
+export {api, thisUserInfo, initialCardsArray, cardsParent, cardTemplate, forms, profileName, profileProfession, profilePicture, profilePictureEditButton, profilePopup, cardImagePopup, deleteCardConfirmationPopup}

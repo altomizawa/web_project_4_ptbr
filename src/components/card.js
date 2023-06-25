@@ -1,9 +1,7 @@
 //CREATE NEWCARD CLASS
-import { thisUserInfo, cardsParent, cardImagePopup} from "./constants.js";
+import { thisUserInfo, cardsParent} from "./constants.js";
 import {deleteCard} from "../index.js";
-import PopupWithForm from "./popupWithForm.js";
 import { _addLikeButton} from "./utils.js";
-import {Api} from "./api.js";
 
 export class Card {
     constructor ({name, link, likes, owner, _id}, template, isNew, handleCardClick){
@@ -21,7 +19,7 @@ export class Card {
   
    
     createCard(isCardNew){
-      let newCard = this.template.cloneNode(true);
+      const newCard = this.template.cloneNode(true);
       const trashCanIcon = newCard.querySelector(".card__delete-button")
       const likeButtonActive = newCard.querySelector(".like-button_active")
       const likeButtonInactive = newCard.querySelector(".like-button_inactive")
@@ -68,12 +66,9 @@ export class Card {
     likeCard(){
       // likeButtonActive.classList.remove('like-button_hidden')
       // likeButtonInactive.classList.add('like-button_hidden')
-
-      // const likeApi = new Api2 ("https://around.nomoreparties.co/v1/web_ptbr_04/cards/like/cardId", "PUT", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
     }
     //add new cards to DOM function
     setItem(element){
-      console.log(element)
       cardsParent.prepend(element)
 
     }
