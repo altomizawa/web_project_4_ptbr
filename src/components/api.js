@@ -97,17 +97,22 @@ import { profileName, profileProfession } from "./constants.js";
 // }
 
 export class Api {
-  constructor(url) {
+  constructor(url, authorization) {
     this._url = url;
+    this._authorization = authorization;
   }
 
-  getUser(token){
-    fetch(`${this._url}/users/me/`,{
-      method: "GET", 
+  getUser(){
+    return fetch (`${this._url}/users/me`, {
+      method: "GET",
       headers: {
-        authorization: token,
-        "Content-Type": "application/json"},
+        Authorization: this._authorization,
+        "Content-Type": "application/json"
       }
-    )
+    })
+    .then(res => res.json())
+    .then(data => {
+      return data})
+
   }
 }

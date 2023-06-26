@@ -1,6 +1,6 @@
 import "./styles/index.css";
 
-import {apiUrl, authorization, cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton, thisUserInfo} from "./components/constants.js";
+import {apiUrl,authorization, cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton, thisUserInfo} from "./components/constants.js";
 
 import {Card} from "../src/components/card.js";
 import { profileEditButton, newCardButton} from "../src/components/utils.js";
@@ -12,22 +12,18 @@ import PopupWithForm from "../src/components/popupWithForm.js";
 import UserInfo from "../src/components/userInfo.js";
 import {Api} from "../src/components/api.js"
 
-//console.log(apiUrl, authorization)
-// console.log(authorization)
-
-// fetch("https://around.nomoreparties.co/v1/web_ptbr_04/user/me")
-
-// const newClient = new Api(apiUrl)
-// newClient.getUser(authorization).then(res => {console.log(res.json())})
-
-fetch(`${apiUrl}/users/me`, {
-  method: "GET",
-  headers: {
-    authorization: authorization,
-    "Content-Type": "application/json"
-  }
-}).then(res => res.json())
-
+const testUser = new Api(apiUrl, authorization)
+testUser.getUser().then(data => {console.log(data.name)})
+// fetch (`${apiUrl}/users/me`, {
+//   method: "GET",
+//   headers: {
+//     Authorization: authorization,
+//     "Content-Type": "application/json"
+//   }
+// })
+//   .then(res => res.json())
+//   .then(data => {console.log(data);
+//   })
 
 //GET INITIAL CARD ARRAY FROM SERVER AND RENDER ON PAGE
 function updateCardArray(){
