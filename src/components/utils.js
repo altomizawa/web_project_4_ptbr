@@ -1,5 +1,4 @@
 import { Api } from "./api";
-import { thisUserInfo } from "./constants";
 
 //POPUP IN FUNCTION
 const profileEditButton = document.querySelector(".profile__edit");

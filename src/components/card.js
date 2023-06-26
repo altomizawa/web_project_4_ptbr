@@ -1,5 +1,5 @@
 //CREATE NEWCARD CLASS
-import { thisUserInfo, cardsParent} from "./constants.js";
+import {cardsParent} from "./constants.js";
 import {deleteCard} from "../index.js";
 import { _addLikeButton} from "./utils.js";
 
