@@ -86,8 +86,9 @@ profilePictureEditButton.addEventListener("click", () =>{
 
   //UPDATE PROFILE INFO
   function updateProfile(evt) {
+    evt.target.textContent = "Salvando..."
     const newUserInfo = new UserInfo(profilePopup._getInputValues())
-    clientApi.updateProfilePicture(newUserInfo).then(()=>{
+    clientApi.updateProfilePicture(newUserInfo, evt.target).then(()=>{
       updateUserInfo();
       profilePopup.close();
       profilePopup._submitButton.removeEventListener("click", updateProfile);
@@ -107,13 +108,13 @@ profileEditButton.addEventListener("click", () =>{
 
   //UPDATE PROFILE INFO
   function updateProfile(evt) {
+    evt.target.textContent = "Salvando..."
     const newUserInfo = new UserInfo(profilePopup._getInputValues())
-    clientApi.updateProfile(newUserInfo).then(()=>{
+    clientApi.updateProfile(newUserInfo, evt.target).then(()=>{
       updateUserInfo();
       profilePopup.close();
       profilePopup._submitButton.removeEventListener("click", updateProfile);
     })
-    
   }
 })
 
@@ -151,10 +152,11 @@ export function deleteCard(cardAdded){
     confirmationButton.addEventListener("click", deleteCard)
 
     function deleteCard(){
+      confirmationButton.textContent = "Aguarde..."
       cardToDelete.remove()
 
       //Delete from server
-      clientApi.removeCard(cardToDeleteId)
+      clientApi.removeCard(cardToDeleteId, confirmationButton)
       cardDeleteConfirmationPopup.close()
       confirmationButton.removeEventListener("click", deleteCard)
     }
@@ -165,15 +167,17 @@ export function deleteCard(cardAdded){
 
 
 //CREATE FORM VALIDATION FOR ALL FORMS
-forms.forEach((form) => {
-    const newForm = new FormValidator({
-        formSelector: ".popup__card",
-        inputSelector: ".popup__input",
-        submitButtonSelector: ".popup__submit-button",
-        inactiveButtonClass: "popup__submit-button_inactive",
-        inputErrorClass: "popup__input-error",
-        errorClass: "popup__input-error"
-    }, form)
-})
-
+export function enableValidation(){
+  forms.forEach((form) => {
+      const newForm = new FormValidator({
+          formSelector: ".popup__card",
+          inputSelector: ".popup__input",
+          submitButtonSelector: ".popup__submit-button",
+          inactiveButtonClass: "popup__submit-button_inactive",
+          inputErrorClass: "popup__input-error",
+          errorClass: "popup__input-error"
+      }, form)
+  })
+}
+enableValidation()
 

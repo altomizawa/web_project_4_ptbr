@@ -1,4 +1,5 @@
 import { authorization, profileName, profileProfession } from "./constants.js";
+import { enableValidation } from "../index.js";
 
 // export class Api {
 //   constructor(url, method, authorization, contentType) {
@@ -110,10 +111,16 @@ export class Api {
         "Content-Type": "application/json"
       }
     })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {return res.json()}
+
+      //if server returns error, then:
+      return Promise.reject(`Error: ${res.status}`)
+    })
+    .catch(err => {console.log(err)})
   }
 
-  updateProfile(userInfo){
+  updateProfile(userInfo, button){
     return fetch (`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
@@ -126,9 +133,13 @@ export class Api {
 
       })
     })
+    .finally(()=>{
+      button.textContent = "Salvar"
+    })
+
   }
 
-  updateProfilePicture(userInfo){
+  updateProfilePicture(userInfo, button){
     return fetch (`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: {
@@ -140,6 +151,9 @@ export class Api {
 
       })
     })
+    .finally (()=>{
+      button.textContent = "Salvar"
+    })
   }
 
   getCardArray(){
@@ -150,7 +164,12 @@ export class Api {
         "Content-Type": "application/json"
       }
     })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok) {return res.json()}
+
+      //if server returns error, then:
+      return Promise.reject(`Error: ${res.status}`)
+    })
     .catch(err => {console.log(err)})
   }
 
@@ -168,7 +187,7 @@ export class Api {
     })
   }
 
-  async removeCard(cardId){
+  async removeCard(cardId, button){
     return await fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
       headers: {
@@ -176,6 +195,7 @@ export class Api {
         "Content-Type": "application/json"
       }
     })
+    .finally (() =>{button.textContent = "SIM"})
 
   }
 
