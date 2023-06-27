@@ -102,7 +102,6 @@ profilePictureEditButton.addEventListener("click", () =>{
 })
 
 
-
 //EDIT PROFILE INFO BUTTON
 profileEditButton.addEventListener("click", () =>{
   const profilePopup = new PopupWithForm (".popup_profile")
@@ -175,8 +174,8 @@ export function deleteCard(cardAdded){
 }
 
 
-//CREATE FORM VALIDATION FOR ALL FORMS
 
+//CREATE FORM VALIDATION FOR ALL FORMS
 forms.forEach((form) => {
     const newForm = new FormValidator({
         formSelector: ".popup__card",

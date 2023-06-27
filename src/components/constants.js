@@ -6,13 +6,19 @@ const authorization = "f3091314-56bf-4879-8be9-facfbce522a8"
 
 // const initialCards = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
 // const initialCardsArray = await(await initialCards.fetchData()).data
-const thisUserInfo = {
-    name: "Al Tomizawa",
-    about: "Front-End Developer",
-    avatar: "https://images.unsplash.com/photo-1536599018102-9f803c140fc1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8aG9uZyUytMGtvbmd8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=400&q=60",
-    cohort: "web_ptbr_04",
-    _id: "10859d303ec3f62cc793e37b"
-}
+async function fetchUserData(url) {
+    const userData = await fetch(url, {
+      method: "GET",
+      headers: {
+        authorization: "f3091314-56bf-4879-8be9-facfbce522a8",
+        "Content-Type": "application/json",
+      }
+    });
+    const jsonData = await userData.json();
+    return jsonData
+  }
+
+const thisUserInfo = await fetchUserData("https://around.nomoreparties.co/v1/web_ptbr_04/users/me")
 
 
 
