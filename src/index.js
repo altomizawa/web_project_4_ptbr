@@ -127,14 +127,8 @@ newCardButton.addEventListener("click", () => {
 
     //Send card to server
     const cardInputValues = newCardPopup._getInputValues()
-    const updateCardApi = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "POST", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-    updateCardApi.addNewCard(cardInputValues.name, cardInputValues.link, newCardPopup)
-    
-    .then (()=>{
-      //close popup
-      newCardPopup.close()
-      
-      //refresh card Grid
+    clientApi.addCard(cardInputValues.name, cardInputValues.link, newCardPopup).then(result => {console.log(result)})
+    .then(()=>{
       location.reload()
     })
   })
@@ -160,9 +154,9 @@ export function deleteCard(cardAdded){
       cardToDelete.remove()
 
       //Delete from server
-      const cardToBeDeleted = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-      cardToBeDeleted.removeCard(cardToDeleteId)
+      clientApi.removeCard(cardToDeleteId)
       cardDeleteConfirmationPopup.close()
+      confirmationButton.removeEventListener("click", deleteCard)
     }
     
   })

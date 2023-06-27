@@ -113,18 +113,6 @@ export class Api {
     .then(res => res.json())
   }
 
-  getCardArray(){
-    return fetch (`${this._url}/cards`, {
-      method: "GET",
-      headers: {
-        Authorization: this._authorization,
-        "Content-Type": "application/json"
-      }
-    })
-    .then(res => res.json())
-    .catch(err => {console.log(err)})
-  }
-
   updateProfile(userInfo){
     return fetch (`${this._url}/users/me`, {
       method: "PATCH",
@@ -152,6 +140,43 @@ export class Api {
 
       })
     })
+  }
+
+  getCardArray(){
+    return fetch (`${this._url}/cards`, {
+      method: "GET",
+      headers: {
+        Authorization: this._authorization,
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+    .catch(err => {console.log(err)})
+  }
+
+  async addCard(cardTitle, cardLink, popup){
+    return await fetch(`${this._url}/cards`, {
+      method: "POST",
+      headers: {
+        Authorization: this._authorization,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: cardTitle,
+        link: cardLink,
+      }),
+    })
+  }
+
+  async removeCard(cardId){
+    return await fetch(`${this._url}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: this._authorization,
+        "Content-Type": "application/json"
+      }
+    })
+
   }
 
   sendLike(cardId){
