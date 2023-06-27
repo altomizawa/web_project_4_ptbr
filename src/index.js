@@ -1,6 +1,6 @@
 import "./styles/index.css";
 
-import {apiUrl, authorization, cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton, thisUserInfo} from "./components/constants.js";
+import {apiUrl, authorization, clientApi,cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton, thisUserInfo} from "./components/constants.js";
 
 import {Card} from "../src/components/card.js";
 import { profileEditButton, newCardButton} from "../src/components/utils.js";
@@ -10,12 +10,12 @@ import Section from "../src/components/section.js"
 import PopupWithImage from "../src/components/popupWithImage";
 import PopupWithForm from "../src/components/popupWithForm.js";
 import UserInfo from "../src/components/userInfo.js";
-import {Api} from "../src/components/api.js"
+// import {Api} from "../src/components/api.js"
 
 
-export const clientApi = new Api(apiUrl, authorization)
 
-//clientApi.getUser().then(data => {console.log(data)})
+
+//UPDATE USER INFO FUNCTION
 function updateUserInfo () {
   clientApi.getUser().then(results => {
     const userInfo = new UserInfo(results);
@@ -25,7 +25,9 @@ function updateUserInfo () {
 }
 updateUserInfo()
 
-clientApi.getCardArray().then(result => {
+//GET INITIAL CARD ARRAY FROM SERVER AND RENDER ON PAGE
+function updateCardArray() {
+  clientApi.getCardArray().then(result => {
   const initialCardGrid = new Section({items: result, renderer: (item) => {
     const newCard = new Card(item, cardTemplate, false, (card) => {
       const cardImage = card.querySelector(".card__image")
@@ -38,11 +40,14 @@ clientApi.getCardArray().then(result => {
   
     const cardElement = newCard.createCard()
   
-    // initialCardGrid.addItem(cardElement)
+    initialCardGrid.addItem(cardElement)
   
   }}, cardsParent)
   initialCardGrid.renderer()
-})
+  })
+}
+ updateCardArray()
+
 
 //GET INITIAL CARD ARRAY FROM SERVER AND RENDER ON PAGE
 // function updateCardArray(){
@@ -68,18 +73,6 @@ clientApi.getCardArray().then(result => {
 // }
 // updateCardArray()
 
-
-
-//UPDATE USER INFO FUNCTION
-
-
-// function updateUserInfo2(){
-//   const thisUserInfo = thisUser.fetchData().then((response)=>{
-//     const user = new UserInfo(response.data)
-//     user.getUserInfo()
-//     user.setUserInfo()})
-// }
-// //updateUserInfo()
 
 //EDIT PROFILE PICTURE BUTTON
 profilePictureEditButton.addEventListener("click", () =>{
