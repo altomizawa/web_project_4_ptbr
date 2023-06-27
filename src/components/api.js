@@ -1,4 +1,4 @@
-import { profileName, profileProfession } from "./constants.js";
+import { authorization, profileName, profileProfession } from "./constants.js";
 
 // export class Api {
 //   constructor(url, method, authorization, contentType) {
@@ -152,6 +152,28 @@ export class Api {
 
       })
     })
+  }
+
+  sendLike(cardId){
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: this._authorization,
+        "Content-Type": "application.json"
+      },
+    })
+    .then(res => res.json())
+  }
+
+  sendDislike(cardId){
+    return fetch(`${this._url}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: this._authorization,
+        "Content-Type": "application.json"
+      },
+    })
+    .then(res => res.json())
   }
 
 }

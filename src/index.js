@@ -1,6 +1,6 @@
 import "./styles/index.css";
 
-import {apiUrl, authorization, clientApi,cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton, thisUserInfo} from "./components/constants.js";
+import {apiUrl, authorization, clientApi, cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton, thisUserInfo} from "./components/constants.js";
 
 import {Card} from "../src/components/card.js";
 import { profileEditButton, newCardButton} from "../src/components/utils.js";
@@ -47,6 +47,8 @@ function updateCardArray() {
   })
 }
  updateCardArray()
+
+
 
 
 //GET INITIAL CARD ARRAY FROM SERVER AND RENDER ON PAGE

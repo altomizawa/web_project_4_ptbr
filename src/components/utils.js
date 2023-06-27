@@ -1,5 +1,5 @@
 import { Api } from "./api";
-import{thisUserInfo} from "./constants"
+import{thisUserInfo, clientApi} from "./constants"
 
 //POPUP IN FUNCTION
 const profileEditButton = document.querySelector(".profile__edit");
@@ -32,9 +32,9 @@ function _addLikeButton(card, cardInfo){
       cardLikeButtonActive.addEventListener("click", buttonClickDislike)
 
       //Send like to server
-      const likeApi = new Api (`https://around.nomoreparties.co/v1/web_ptbr_04/cards/likes/${cardInfo._id}`, "PUT", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-      likeApi.fetchData().then((response)=>{cardLikeButtonCounter.textContent=response.data.likes.length})
-      
+      clientApi.sendLike(cardInfo._id).then(data=>{
+        cardLikeButtonCounter.textContent = data.likes.length
+      })
     }
     
     function buttonClickDislike(){
@@ -43,8 +43,9 @@ function _addLikeButton(card, cardInfo){
       cardLikeButtonInactive.addEventListener("click", buttonClickLike)
 
       //Send dislike to server
-      const likeApi = new Api (`https://around.nomoreparties.co/v1/web_ptbr_04/cards/likes/${cardInfo._id}`, "DELETE", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-      likeApi.fetchData().then((response)=>{cardLikeButtonCounter.textContent=response.data.likes.length})
+      clientApi.sendDislike(cardInfo._id).then(data =>{
+        cardLikeButtonCounter.textContent = data.likes.length
+      })
     }
   }
 
