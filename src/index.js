@@ -1,6 +1,6 @@
 import "./styles/index.css";
 
-import {apiUrl,authorization, cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton, thisUserInfo} from "./components/constants.js";
+import {apiUrl, authorization, cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton, thisUserInfo} from "./components/constants.js";
 
 import {Card} from "../src/components/card.js";
 import { profileEditButton, newCardButton} from "../src/components/utils.js";
@@ -12,24 +12,21 @@ import PopupWithForm from "../src/components/popupWithForm.js";
 import UserInfo from "../src/components/userInfo.js";
 import {Api} from "../src/components/api.js"
 
-const testUser = new Api(apiUrl, authorization)
-testUser.getUser().then(data => {console.log(data.name)})
-// fetch (`${apiUrl}/users/me`, {
-//   method: "GET",
-//   headers: {
-//     Authorization: authorization,
-//     "Content-Type": "application/json"
-//   }
-// })
-//   .then(res => res.json())
-//   .then(data => {console.log(data);
-//   })
 
-//GET INITIAL CARD ARRAY FROM SERVER AND RENDER ON PAGE
-function updateCardArray(){
-const cardArray = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-return cardArray.fetchData().then((result)=>{
-  const initialCardGrid = new Section({items: result.data, renderer: (item) => {
+export const clientApi = new Api(apiUrl, authorization)
+
+//clientApi.getUser().then(data => {console.log(data)})
+function updateUserInfo () {
+  clientApi.getUser().then(results => {
+    const userInfo = new UserInfo(results);
+    userInfo.getUserInfo();
+    userInfo.setUserInfo();
+  }) 
+}
+updateUserInfo()
+
+clientApi.getCardArray().then(result => {
+  const initialCardGrid = new Section({items: result, renderer: (item) => {
     const newCard = new Card(item, cardTemplate, false, (card) => {
       const cardImage = card.querySelector(".card__image")
       cardImage.addEventListener("click", () => {
@@ -41,27 +38,48 @@ return cardArray.fetchData().then((result)=>{
   
     const cardElement = newCard.createCard()
   
-    initialCardGrid.addItem(cardElement)
+    // initialCardGrid.addItem(cardElement)
   
   }}, cardsParent)
   initialCardGrid.renderer()
 })
-}
-updateCardArray()
+
+//GET INITIAL CARD ARRAY FROM SERVER AND RENDER ON PAGE
+// function updateCardArray(){
+// const cardArray = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
+// return cardArray.fetchData().then((result)=>{
+//   const initialCardGrid = new Section({items: result.data, renderer: (item) => {
+//     const newCard = new Card(item, cardTemplate, false, (card) => {
+//       const cardImage = card.querySelector(".card__image")
+//       cardImage.addEventListener("click", () => {
+//           const popup = new PopupWithImage(".popupwithimage", ".popupwithimage__image-big", ".card__title")
+//           popup.open(newCard)
+//       })
+//     })
+//     newCard.likeCard()
+  
+//     const cardElement = newCard.createCard()
+  
+//     initialCardGrid.addItem(cardElement)
+  
+//   }}, cardsParent)
+//   initialCardGrid.renderer()
+// })
+// }
+// updateCardArray()
 
 
 
 //UPDATE USER INFO FUNCTION
 
 
-function updateUserInfo(){
-  const thisUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-  const thisUserInfo = thisUser.fetchData().then((response)=>{
-    const user = new UserInfo(response.data)
-    user.getUserInfo()
-    user.setUserInfo()})
-}
-updateUserInfo()
+// function updateUserInfo2(){
+//   const thisUserInfo = thisUser.fetchData().then((response)=>{
+//     const user = new UserInfo(response.data)
+//     user.getUserInfo()
+//     user.setUserInfo()})
+// }
+// //updateUserInfo()
 
 //EDIT PROFILE PICTURE BUTTON
 profilePictureEditButton.addEventListener("click", () =>{
@@ -72,10 +90,14 @@ profilePictureEditButton.addEventListener("click", () =>{
   profilePopup._submitButton.addEventListener("click", updateProfile)
 
   //UPDATE PROFILE INFO
-  function updateProfile() {    
-    const newUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me/avatar", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-    newUser.updateUser(profilePopup._getInputValues(), profilePopup).then(()=>{updateUserInfo()})
-    profilePopup._submitButton.removeEventListener("click", updateProfile)
+  function updateProfile(evt) {
+    const newUserInfo = new UserInfo(profilePopup._getInputValues())
+    clientApi.updateProfilePicture(newUserInfo).then(()=>{
+      updateUserInfo();
+      profilePopup.close();
+      profilePopup._submitButton.removeEventListener("click", updateProfile);
+    })
+    
   }
 })
 
@@ -92,10 +114,12 @@ profileEditButton.addEventListener("click", () =>{
   //UPDATE PROFILE INFO
   function updateProfile(evt) {
     const newUserInfo = new UserInfo(profilePopup._getInputValues())
-    const newUser = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/users/me", "PATCH", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-    newUser.updateUser(newUserInfo, profilePopup)
-
-    profilePopup._submitButton.removeEventListener("click", updateProfile)
+    clientApi.updateProfile(newUserInfo).then(()=>{
+      updateUserInfo();
+      profilePopup.close();
+      profilePopup._submitButton.removeEventListener("click", updateProfile);
+    })
+    
   }
 })
 

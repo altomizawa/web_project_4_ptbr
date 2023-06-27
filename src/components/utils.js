@@ -1,4 +1,5 @@
 import { Api } from "./api";
+import{thisUserInfo} from "./constants"
 
 //POPUP IN FUNCTION
 const profileEditButton = document.querySelector(".profile__edit");
@@ -10,6 +11,7 @@ function _addLikeButton(card, cardInfo){
     const cardLikeButtonInactive = card.querySelector(".like-button_inactive");
     const cardLikeButtonActive = card.querySelector(".like-button_active")
     const cardLikeButtonCounter = card.querySelector(".card__likes")
+  
     
 
     // Check if you have liked the card

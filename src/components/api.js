@@ -111,8 +111,46 @@ export class Api {
       }
     })
     .then(res => res.json())
-    .then(data => {
-      return data})
-
   }
+
+  getCardArray(){
+    return fetch (`${this._url}/cards`, {
+      method: "GET",
+      headers: {
+        Authorization: this._authorization,
+        "Content-Type": "application/json"
+      }
+    })
+    .then(res => res.json())
+  }
+
+  updateProfile(userInfo){
+    return fetch (`${this._url}/users/me`, {
+      method: "PATCH",
+      headers: {
+        Authorization: this._authorization,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: `${userInfo._name}`,
+        about: `${userInfo._profession}`
+
+      })
+    })
+  }
+
+  updateProfilePicture(userInfo){
+    return fetch (`${this._url}/users/me/avatar`, {
+      method: "PATCH",
+      headers: {
+        Authorization: this._authorization,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        avatar: `${userInfo._avatar}`,
+
+      })
+    })
+  }
+
 }

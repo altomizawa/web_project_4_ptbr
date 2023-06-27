@@ -2,6 +2,9 @@
 import {cardsParent} from "./constants.js";
 import {deleteCard} from "../index.js";
 import { _addLikeButton} from "./utils.js";
+import { thisUserInfo } from "./constants.js";
+
+
 
 export class Card {
     constructor ({name, link, likes, owner, _id}, template, isNew, handleCardClick){
@@ -19,10 +22,12 @@ export class Card {
   
    
     createCard(isCardNew){
+      
       const newCard = this.template.cloneNode(true);
       const trashCanIcon = newCard.querySelector(".card__delete-button")
       const likeButtonActive = newCard.querySelector(".like-button_active")
       const likeButtonInactive = newCard.querySelector(".like-button_inactive")
+    
 
 
       //Add content to Card
@@ -35,7 +40,7 @@ export class Card {
 
       //Check if the CARD is NEW or PULLED from server
       if (!isCardNew) {
-        //If CARD is from Server, check if card belongs to user and Add EventListener to trash can icon
+        // If CARD is from Server, check if card belongs to user and Add EventListener to trash can icon
         if (this.owner._id === thisUserInfo._id){
         trashCanIcon.addEventListener("click", deleteCard(newCard))
       } else {
