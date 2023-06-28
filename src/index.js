@@ -1,6 +1,6 @@
 import "./styles/index.css";
 
-import {apiUrl, authorization, clientApi, cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton, thisUserInfo} from "./components/constants.js";
+import {clientApi, cardsParent, cardTemplate, forms, profilePopup, profilePictureEditButton} from "./components/constants.js";
 
 import {Card} from "../src/components/card.js";
 import { profileEditButton, newCardButton} from "../src/components/utils.js";
@@ -10,9 +10,6 @@ import Section from "../src/components/section.js"
 import PopupWithImage from "../src/components/popupWithImage";
 import PopupWithForm from "../src/components/popupWithForm.js";
 import UserInfo from "../src/components/userInfo.js";
-// import {Api} from "../src/components/api.js"
-
-
 
 
 //UPDATE USER INFO FUNCTION
@@ -49,33 +46,6 @@ function updateCardArray() {
  updateCardArray()
 
 
-
-
-//GET INITIAL CARD ARRAY FROM SERVER AND RENDER ON PAGE
-// function updateCardArray(){
-// const cardArray = new Api("https://around.nomoreparties.co/v1/web_ptbr_04/cards", "GET", "f3091314-56bf-4879-8be9-facfbce522a8", "application/json")
-// return cardArray.fetchData().then((result)=>{
-//   const initialCardGrid = new Section({items: result.data, renderer: (item) => {
-//     const newCard = new Card(item, cardTemplate, false, (card) => {
-//       const cardImage = card.querySelector(".card__image")
-//       cardImage.addEventListener("click", () => {
-//           const popup = new PopupWithImage(".popupwithimage", ".popupwithimage__image-big", ".card__title")
-//           popup.open(newCard)
-//       })
-//     })
-//     newCard.likeCard()
-  
-//     const cardElement = newCard.createCard()
-  
-//     initialCardGrid.addItem(cardElement)
-  
-//   }}, cardsParent)
-//   initialCardGrid.renderer()
-// })
-// }
-// updateCardArray()
-
-
 //EDIT PROFILE PICTURE BUTTON
 profilePictureEditButton.addEventListener("click", () =>{
   const profilePopup = new PopupWithForm (".popup_profile-picture")
@@ -87,8 +57,8 @@ profilePictureEditButton.addEventListener("click", () =>{
   //UPDATE PROFILE INFO
   function updateProfile(evt) {
     evt.target.textContent = "Salvando..."
-    const newUserInfo = new UserInfo(profilePopup._getInputValues())
-    clientApi.updateProfilePicture(newUserInfo, evt.target).then(()=>{
+    const newUserPicture = new UserInfo(profilePopup._getInputValues())
+    clientApi.updateProfilePicture(newUserPicture, evt.target).then(()=>{
       updateUserInfo();
       profilePopup.close();
       profilePopup._submitButton.removeEventListener("click", updateProfile);
