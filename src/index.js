@@ -113,9 +113,6 @@ newCardButton.addEventListener("click", () => {
     const cardInputValues = newCardPopup._getInputValues();
     clientApi
       .addCard(cardInputValues.name, cardInputValues.link, newCardPopup)
-      .then((result) => {
-        console.log(result);
-      })
       .then(() => {
         location.reload();
       });
